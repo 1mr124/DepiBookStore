@@ -61,3 +61,29 @@ footer {
     background-color: #000;
     color: #fff;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.login-form hr{
+    background-color: black;
+  padding: .5px;
+
+}
+
+.login-form #customLabel{
+    font-weight: 400;
+    font-size: 0.64rem;
+    padding: 2px;
+    line-height: 1.185rem;
+    color: #212121;
+}
