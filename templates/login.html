@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Login Page</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">     <!-- This bootstrap version is 5.3.3 the offline one -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">  <!-- This bootstrap version is better, the first one chatGPT gave me,lol i like it more-->
+    <link rel="stylesheet" href="../static/css/auth.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a class="navbar-brand mx-auto" href="#">
+            <img src="../static/imgs/logo.png" alt="easyT.online" class="center-logo">
+        </a>
+    </nav>
+
+    <!-- Login Form -->
+    <div class="container d-flex align-items-center justify-content-center">
+        <div class="login-form">
+            <form>
+                <h2 class="text-center">دخول</h2>
+                <div class="form-group">
+                    <label for="email">الايميل</label>
+                    <input type="email" class="form-control" id="email" placeholder="الايميل">
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور (باللغة الانجليزية)</label>
+                    <input type="password" class="form-control" id="password" placeholder="كلمة المرور">
+                    <a href="#" class="forgot-password">نسيت كلمة المرور</a>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">تذكرني</label>
+                </div>
+                <button type="submit" class="btn btn-danger btn-block">دخول</button>
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-light btn-block"><img src="../static/imgs/GoogleLogo.svg" alt="Google"> الدخول باستخدام حساب جوجل</button>
+                </div>
+                <p class="text-center mt-3">هل تريد تسجيل حساب جديد؟ <a href="#">إنشاء حساب جديد</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-3">
+        © easyT.online | 2024
+    </footer>
+
+    
+</body>
+</html>

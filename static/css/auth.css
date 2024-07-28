@@ -1,0 +1,63 @@
+body{
+    background-color: #fff;
+    text-align: center;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+
+}
+
+
+.navbar {
+    width: 100%;
+    background-color: #000;
+}
+
+.navbar .navbar-brand {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.navbar .center-logo {
+    height: 40px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-top: 78px;
+}
+
+.login-form h2 {
+    margin-bottom: 15px;
+}
+.btn-danger{
+    background-color: #ed1c24;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+}
