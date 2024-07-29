@@ -1,0 +1,74 @@
+.navbar {
+    background-color: black;
+    overflow: hidden;
+}
+
+.navbar img {
+    width: 220px;
+    height: 52.8px;
+    margin-left: 16%;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #fff !important;
+    font-size: 15px;
+    font-weight: 200;
+    font-family: 'Markazi Text', serif;
+    white-space: nowrap;
+}
+
+.navbar-nav .nav-item {
+    white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+    background-color: black;
+    color: #bac1c7;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.42857143;
+
+}
+
+.footer ul li{
+    list-style-type: none; /* Remove bullets */
+}
+.footer ul{
+    margin-left: -9%;
+}
+.footer .social-icons a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+.footer .text-center {
+    margin-bottom: 10px;
+}
+
+.footer div{
+    margin-top: 16px;
+}
+.social-icons i {
+    margin-top: 14%;
+}

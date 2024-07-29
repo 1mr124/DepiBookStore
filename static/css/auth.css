@@ -48,10 +48,21 @@ body{
     background-color: #ed1c24;
 }
 
+.customRememberMe{
+    text-align: right;
+    margin-right: 29px;
+}
+
+#rememberMe{
+    margin: 5px;
+}
+
 .forgot-password {
     display: block;
     margin-top: 10px;
     font-size: 0.9rem;
+    text-align: right;
+    margin-right: 10px;
 }
 
 footer {
@@ -67,7 +78,10 @@ footer {
 
 
 
-
+input::placeholder {
+    text-align: right;
+  }
+  
 
 
 
