@@ -1,18 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+
 .navbar {
     background-color: black;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 200px;
 }
 
 .navbar img {
-    width: 220px;
-    height: 52.8px;
+    width: 80%;
     margin-left: 16%;
 }
 
-.navbar a {
+.navbar a.nav-link {
     text-decoration: none;
-    color: #fff !important;
-    font-size: 15px;
+    color: #eee;
+    font-size: 1em;
     font-weight: 200;
     font-family: 'Markazi Text', serif;
     white-space: nowrap;
@@ -22,23 +33,12 @@
     white-space: nowrap;
 }
 
-
-
-
-
-
-
-
-
-
-
-
+/* Footer */
 
 .footer {
     background-color: black;
     color: #bac1c7;
-    padding: 20px 0;
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -50,13 +50,13 @@
 }
 
 .footer ul li{
-    list-style-type: none; /* Remove bullets */
+    list-style-type: none;
 }
 .footer ul{
     margin-left: -9%;
 }
 .footer .social-icons a {
-    color: white;
+    color: #eee;
     margin: 0 10px;
     text-decoration: none;
     font-size: 1.5em;
