@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Markazi+Text:wght@400..700&family=Poppins:wght@700&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+.header{
+    position: relative;
+    background-image: url('../imgs/consulting.webp'); 
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    color: white;
+    top:0;
+    width: 100%;
+  }
+  .rtl-text {
+    direction: rtl;
+    text-align: right;
+  }
+  .cairo-font{
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 72px;
+    white-space: nowrap;
+
+  }
+  .custom-font,.hed-sec3{
+    font-family: "Markazi Text", serif;
+    font-weight: 700;
+    font-size: 32px;
+  }
+  .img-Span,.block-text,.card-body,.img-Desc,.block-text2{
+    font-family: "Markazi Text", serif;
+    font-size: 16px;
+  }
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 63%;
+    transform: translate(-50%, -63%);}
+.card-body,.img-Desc,.block-text2{
+    font-weight: 400;
+}
+.card-title-hed{
+  font-family: "Markazi Text", serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+.container{
+    width: 40%;
+}
+
+.block-text{
+    height: auto; 
+    background-color: #ed1c24;
+}
+.block-text p{
+    width: 40%;
+}
+
+@media (max-width: 992px) {
+  .container,.block-text p{
+    width: 100%; 
+    text-align: left; 
+    padding: 10px; 
+  }
+  .block-text2{
+    text-align: right; 
+  }
+}
+@media (max-width: 540px) {   
+    .overlay-text {
+      left: 56%;
+    }  
+    @media (max-width: 554px) {   
+      .overlay-text {
+        top:57%;
+      }  
+      .cairo-font {
+        white-space: wrap;
+      }  
+    } 
+  } 
+
+
+/* ////////// */
+.parent-div {
+  overflow-y: scroll;
+
+    height: auto; 
+    }
+.parent-div-body{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  height: 400px;
+}
+  .card {
+    border: none;
+    border-top: 1px solid rgba(154, 154, 154, 0.648);
+    border-radius: 0%;
+    transition: 1s;
+   cursor: pointer;
+  }
+  .card:hover{
+    background-color: #aaaaaa85;
+    transition: 1s;
+  }
+.card-title-point {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #ed1c24;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.p2{
+  background-color: #1ca7ed;
+}

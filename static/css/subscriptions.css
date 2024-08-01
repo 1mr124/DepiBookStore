@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Markazi+Text:wght@400..700&family=Poppins:wght@700&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+.header{
+    position: relative;
+    background-image: url('../imgs/consulting.webp'); 
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    color: white;
+    top:0;
+    width: 100%;
+  }
+  .rtl-text {
+    direction: rtl;
+    text-align: right;
+  }
+  .cairo-font,.card-text{
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 72px;
+    white-space: nowrap;
+  }
+  .custom-font,.card-text-sec2 {
+    font-family: "Markazi Text", serif;
+    font-weight: 400;
+    font-size: 20px;
+  }
+  .overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 63%;
+    transform: translate(-50%, -63%);}
+     @media (max-width: 450px) {   
+        .overlay-text {
+          top:60%;
+          left: 70%;
+        }  
+      .cairo-font{
+        white-space: wrap;
+      }  } 
+    @media (max-width: 488px) {   
+      .overlay-text {
+        left: 60%;
+      }   
+     
+    }
+    /* ////// */
+   
+    .card-text-sec2 {
+      font-size: 16px;
+    }
+    .card2-bg{
+      background-color: #ed1c24;
+  }
+   .card-text{
+    font-size: 32px
+   }
