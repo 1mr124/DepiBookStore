@@ -1,0 +1,159 @@
+body {
+  background-color: #fafafa;
+  font-family: "Markazi Text", serif;
+  color: rgb(33, 35, 56); !important;
+}
+.parent {
+  margin-top: 80px;
+}
+section{
+  margin-bottom: 30px;
+}
+.container h2 {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 35px;
+  margin-bottom: 20px;
+}
+
+.container .row a{
+  text-decoration: none;
+  color: rgb(33, 35, 56);
+}
+/* ------------------------------Search and Filter --------------------------- */
+.search input {
+  border-color: #000;
+  padding: 23px 10px;
+}
+.search .btn i {
+  font-size: 25px;
+}
+
+.course-filter h5 {
+  color: #989898;
+}
+.course-filter .btn {
+  line-height: 10px;
+  font-size: 20px;
+  padding: 5px;
+  color: #d61828;
+  font-weight: bolder;
+}
+.course-filter .btn:focus {
+  border: none;
+  box-shadow: none;
+}
+.dropdown-menu {
+  max-height: 300px;
+  overflow-y: auto;
+  text-align: right;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.dropdown .dropdown-menu li a:hover {
+  background-color: #f6f5f5;
+}
+
+/* ------------------------  Live Courses ----------------------- */
+.card{
+  box-shadow: 0 1px #f4dfe1;
+    border: 1px solid #f4dfe1;
+    height: 400px;
+    padding-bottom: 10px;
+}
+ .card-body .card-text{
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25px;
+  margin-bottom: 30px; 
+}
+ .card-body .card-discrp{
+  font-size: 16px;
+  font-family: 600; 
+}
+.card-body .info span{
+  font-size:16px;
+  font-weight: 600;
+  margin-left: 10px;
+  color: rgb(33, 35, 56);
+}
+.card-body span{
+  color: #d61828;
+  font-weight: 600;
+}
+
+.card:hover{
+  border: 2px solid #d61828;
+  
+}
+.card:hover .card-text{
+  color: #d61828;
+}
+
+/* ----------------------------------Diplomas-----------------------------------  */
+.card-body .diploma-price{
+  color: #d61828;
+}
+
+/* ----------------------------------Courses----------------------------------- */
+.card-body  .course-price{
+  font-size: 20px;
+  font-weight: 600;
+}
+.course-price del{
+  color: #d3d3d3;
+}
+.info .icons{
+  color: #ffa500;
+  padding-left: 10px;
+}
+
+/* ----------------------------pagination--------------------------- */
+.pagination {
+  background: #fff;
+  border-radius: 30px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+}
+.pagination .current, .pagination a:hover {
+background: #d61828;
+color: #fff;
+}
+.pagination .previous_page, .pagination .current, .pagination a {
+padding: 12px 20px 10px;
+display: inline-block;
+border-right: 1px solid #dee8e9;
+margin-right: -4px;
+}
+/* ------------------------------------------Books-------------------------------------- */
+
+
+
+
+/* ----------------------------------Button----------------------------------- */
+.left-btn {
+position: fixed;
+    z-index: 99999999;
+    margin: 0px;
+    inset: auto auto 50% 0px;
+    transform: rotate(270deg) translate(-50%, 100%);
+    transform-origin: left bottom;
+}
+
+.left-btn .btn {
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.btn .txt-btn {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

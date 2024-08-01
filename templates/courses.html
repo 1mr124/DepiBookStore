@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Markazi+Text:wght@400..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/courses.css">
+    <title>All Courses</title>
+
+</head>
+
+<body>
+    <!-------------------------- Nav ------------------------->
+    <div id="nav-placeholder"></div>
+
+    <div class="container parent" dir="rtl">
+        <!------------------------------Search and Filter --------------------------->
+        <div class="row d-flex justify-content-around search-filter-row">
+
+            <!-- Search -->
+            <div class="col-md-4 my-auto search ">
+                <form class="d-flex mx-4" role="search">
+                    <input class="form-control me-2 ml-2" type="search" placeholder="ابحث عن دورة" aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Filter -->
+            <div class="col-md-5 mt-3 p-3 d-flex justify-content-evenly course-filter">
+                <div class="instractur-filter d-flex">
+                    <div class="filter-lable">
+                        <h5>
+                            المحاضر :
+                        </h5>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            الكل
+                        </button>
+                        <ul class="dropdown-menu mt-2" dir="ltr">
+                            <li><a class="dropdown-item" href="#">الكل</a></li>
+                            <li><a class="dropdown-item" href="#">E-Academy</a></li>
+                            <li><a class="dropdown-item" href="#">Easy T</a></li>
+                            <li><a class="dropdown-item" href="#">إسلام علاء </a></li>
+                            <li><a class="dropdown-item" href="#">أحمد إبراهيم</a></li>
+                            <li><a class="dropdown-item" href="#">يوسف حسن</a></li>
+                            <li><a class="dropdown-item" href="#">مها جميل</a></li>
+                            <li><a class="dropdown-item" href="#">إيناس السيد أحمد</a></li>
+                            <li><a class="dropdown-item" href="#">أمل علي محمد</a></li>
+                            <li><a class="dropdown-item" href="#">إبراهيم عبدالسلام</a></li>
+                            <li><a class="dropdown-item" href="#">أحمد حمدي</a></li>
+                            <li><a class="dropdown-item" href="#"> يوسف سالم </a></li>
+                            <li><a class="dropdown-item" href="#">إبراهيم وائل</a></li>
+                            <li><a class="dropdown-item" href="#">أحمد إبراهيم</a></li>
+                            <li><a class="dropdown-item" href="#">أحمد حسن</a></li>
+                            <li><a class="dropdown-item" href="#">محمد وليد</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="Cycle-filter d-flex">
+                    <div class="filter-lable">
+                        <h5>
+                            المحاضر :
+                        </h5>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            الكل
+                        </button>
+                        <ul class="dropdown-menu mt-2" dir="ltr">
+                            <li><a class="dropdown-item" href="#">الكل</a></li>
+                            <li><a class="dropdown-item" href="#">الجرافيك وتصوير المونتاج</a></li>
+                            <li><a class="dropdown-item" href="#">الحماية والاختراق</a></li>
+                            <li><a class="dropdown-item" href="#"> كورسات الشهر </a></li>
+                            <li><a class="dropdown-item" href="#"> تعليم اللغات</a></li>
+                            <li><a class="dropdown-item" href="#"> البرامح الهندسية</a></li>
+                            <li><a class="dropdown-item" href="#">ديجيتال ماركتينج</a></li>
+                            <li><a class="dropdown-item" href="#"> الربح من الانترنت</a></li>
+                            <li><a class="dropdown-item" href="#"> البرمجة وتطوير المواقع</a></li>
+                            <li><a class="dropdown-item" href="#">تربية وتعليم الأطفال</a></li>
+                            <li><a class="dropdown-item" href="#">الإدارة والتسويق </a></li>
+                            <li><a class="dropdown-item" href="#"> علم النفس</a></li>
+                            <li><a class="dropdown-item" href="#"> الذكاء الأصطناعي</a></li>
+                            <li><a class="dropdown-item" href="#"> الفن والهوايات</a></li>
+                            <li><a class="dropdown-item" href="#"> المهارات وتطوير الذات</a></li>
+                            <li><a class="dropdown-item" href="#"> الإقتصاد والإحصاء</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ------------------------Live Courses-------------------------- -->
+        <section class="live-courses">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <h2 class="mt-5 ">كورسات مباشرة (لايف)</h2>
+                    </div>
+                </div>
+
+                <div class="row live-courses-row justify-content-center" dir="ltr">
+
+                    <div class="col-md-4 col-sm-6 col-xm-12 mb-5 live-course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/استيراتيجيات اعلانية متقدمة.png" class="card-img-top"
+                                    alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        استراتيجيات إعلانية متقدمة لإعلانات الفيسبوك وانستجرام 2024 بإضافات الذكاء
+                                        الاصطناعى.</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/me.jpg" class="rounded-circle" alt="">
+                                        <span>أحمد حسن خميس</span>
+                                    </div>
+                                    <span>$45</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12 mb-5 live-course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/استيراتيجيات اعلانية متقدمة يوتيوب.png" class="card-img-top"
+                                    alt="...">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        استراتيجيات إعلانية متقدمة لإعلانات جوجل ويوتيوب وتيك توك 2024</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/me.jpg" class="rounded-circle" alt="">
+                                        <span>أحمد حسن خميس</span>
+                                    </div>
+                                    <span>$45</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ----------------------------------Diplomas----------------------------------- -->
+        <section class="Diplomas">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <h2 class="mt-5 mr-5">الدبلومات</h2>
+                    </div>
+                </div>
+
+                <div class="row diplomas-row justify-content-center" dir="ltr">
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة اساسيات الكمبيوتر.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة تعليم أساسيات الكمبيوتر والإنترنت</p>
+                                    <p class="card-discrp">
+                                        ICDL (Windows + Microsoft Office)</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة الموشن جرافيك.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة الموشن جرافيك والأنيميشن - Animation & Motion Graphic Diploma</p>
+                                    <p class="card-discrp">
+                                        Premier Pro - After Effects - Animate - Motion Graphic App</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$69</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة الاختراق والحماية.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة الحماية والاختراق</p>
+                                    <p class="card-discrp">
+                                        حماية واختراق (حسابات التواصل الاجتماعى-المواقع والتطبيقات-شبكات الواى فاى-الأمن
+                                        السيبرانى) ْ</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$79</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة التصميم المعمارى.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة الرسم الهندسى والتصميم المعمارى
+                                    </p>
+                                    <p class="card-discrp">
+                                        3DS Max - AutoCAD - Revit - Lumion</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة تطوير وبرمجة المواقع.png" class="card-img-top"
+                                    alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة تطوير وبرمجة المواقع (Full Stack)</p>
+                                    <p class="card-discrp">
+                                        HTML5-JS-CSS-Bootstrap-Jquery-PHP-MySQL</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة البرمجة بلغة بايثون .webp" class="card-img-top"
+                                    alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة البرمجة بلغة بايثون من المستوى المبتدئ إلى الاحتراف
+                                    </p>
+                                    <p class="card-discrp">
+                                        Basics - Advanced - GUI - Django</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة الذكاء الاصطناعى.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة برمجة تطبيقات الذكاء الاصطناعى باستخدام بايثون
+                                    </p>
+                                    <p class="card-discrp">
+                                        AI - Machine Learning - Deep Learning - Big Data</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة PMP.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة إدارة المشروعات الإحترافية</p>
+                                    <p class="card-discrp">
+                                        شرح شامل للمنهج والتحضير للحصول على الشهادة</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة الربح من الانترنت.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة الربح من الانترنت</p>
+                                    <p class="card-discrp">
+                                        WooCommerce - Drop Shipping- Affiliate - Amazon FBA - Amazon Merch - Payments
+                                        Gateways</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة الجرافيك ديزاين.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة الجرافيك ديزاين وتصميمات السوشيال ميديا</p>
+                                    <p class="card-discrp">
+                                        Photoshop - Illustrator - InDesign - InfoGraphic - Visual Content</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة تطبيقات الموبايل.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة برمجة تطبيقات الهواتف الذكية
+                                    </p>
+                                    <p class="card-discrp">
+                                        Flutter-Dart-Kotlin-Swift-Android Studio-Java</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة البرمجة للمبتدئين.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة تعليم البرمجة للمبتدئين
+                                    </p>
+                                    <p class="card-discrp">
+                                        How to start - C++ - C# - SQL - Python</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12 mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة الديجيتال ماركيتنج.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة التسويق الالكترونى الشاملة الاحترافية - Digital Marketing Diploma</p>
+                                    <p class="card-discrp">
+                                        Facebooks-Twitter-Snapchat-TikTok-Google-YouTube-Copy Writing-SEO-Email
+                                        Market-Strategies</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة التعليم الالكترونى2.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة التعليم الالكترونى الشاملة الاحترافية</p>
+                                    <p class="card-discrp">
+                                        إنشاء وتصميم منصة تعليمية - إعداد المحاضرات - أدوات المحاضر ومهارات التسويق -
+                                        تدريب المدربين TOT</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة صناعة المحتوى.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+
+                                        دبلومة صناعة المحتوى الاحترافى</p>
+                                    <p class="card-discrp">
+                                        إنشاء قناة بدون الظهور-إنشاء قناة وثائقية-إنشاء البودكاست-إنشاء الوايت
+                                        بورد-الربح من انستجرام-كتابة محتوى السوشيال ميديا-كتابة سكريت الإعلان</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة تحليل البيانات.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        دبلومة تحليل البيانات</p>
+                                    <p class="card-discrp">
+                                        Google Analytics-Excel Dashboard-Power BI-SPSS-Tableau-Google Looker-Python Data
+                                        Science & analyses</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between mb-2">
+                                    <div class="info d-flex flex-column">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 diploma-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/دبلومة المشاريع الالكترونية والعمل الحر.png"
+                                    class="card-img-top" alt="...">
+                                <div class="card-body ">
+                                    <p class="card-text mb-1">
+                                        دبلومة المشاريع الإلكترونية والعمل الحر</p>
+                                    <p class="card-discrp">
+                                        الربح من العمل الحر-منصات العمل الحر-الدروب سيرفسينج-بناء شركة SMM-انشاء موقع
+                                        أدوات-اقتناص الدومينات-الربح من بيع الكتب</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info d-flex flex-column ">
+                                        <span>Course:5</span>
+                                        <span>Digital Download:1
+                                        </span>
+                                    </div>
+                                    <div class="diploma-price pt-4">$45</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ----------------------------------Courses----------------------------------- -->
+        <section class="courses">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <h2 class="mt-5 mr-5">الكورسات</h2>
+                    </div>
+                </div>
+
+                <div class="row courses-row justify-content-center" dir="ltr">
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/synchro-4d.png" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/تصميم مواقع تواصل اجتماعي" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/مصطفى أبو الفضل</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/جوجل انالتيكس" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/light room copy.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/كتابة المحتوى المتخصص copy.webp" class="card-img-top"
+                                    alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/التسويق للمشورعات الصغيرة والناشئة copy.webp"
+                                    class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/كانفا copy.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/الرياضيات المتقطعة copy.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/alight motion copy.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/تصميم موقع بودكاست copy.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/مغناطيس جذب العملاء copy.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/ai-cv copy.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/التنسيق الاحترافى للكتب copy.webp" class="card-img-top"
+                                    alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/هندسة الاوامر.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/tools-website.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/اسرار صناعة المحتوى التسويقى.webp" class="card-img-top"
+                                    alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/tot.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/google looker.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/تصميم موقع رحلات سياحية.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/الادارة الاستراتيجية.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/capcut.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/تصميم موقع مطعم.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/استخدام الذكاء الاصطناعى فى المحاماة.webp" class="card-img-top"
+                                    alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/الربح من انستجرام.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/presentation ai.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/tableau.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/rust.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/تصميم موقع عقارى.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/freelancer2024.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/mind map.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/go.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/robotics.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/wordpress2024.png" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/podcast.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/تصميم اغلفة الكتب.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 course-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/solidity.webp" class="card-img-top" alt="...">
+                                <div class="card-body text-center">
+                                    <p class="card-text mb-1">
+                                        Synchro Pro 4D</p>
+                                    <p class="card-discrp">
+                                        التخطيط الإنشائي المتقدم والمحاكاة الزمنية باستخدام Synchro Pro 4D</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/مصطفى أبو الفضل.png" class="rounded-circle" alt="">
+                                        <span>
+                                            م/محمد فاروق</span>
+                                        <p class="icons">★★★★★ (219)</p>
+                                    </div>
+                                    <div class="course-price pr-2">
+                                        <span> $45</span> <del>99$</del><br>
+                                        <span>222EGP </span> <del>405EGP</del>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!--------------------------------- pagination --------------------------------->
+        <div class="row " dir="ltr">
+            <div class=" col-md-12 d-flex justify-content-center">
+                <nav class="pagination" role="navigation" aria-label="pager">
+                    <span class="page current">
+                        1
+                    </span>
+                    <span class="page">
+                        <a rel="next" href="/courses?page=2">2</a>
+                    </span>
+                    <span class="page">
+                        <a href="/courses?page=3">3</a>
+                    </span>
+                    <span class="page">
+                        <a href="/courses?page=4">4</a>
+                    </span>
+                    <span class="page">
+                        <a href="/courses?page=5">5</a>
+                    </span>
+                    <span class="page gap">…</span>
+                    <span class="next">
+                        <a rel="next" href="/courses?page=2">Next ›</a>
+                    </span>
+                    <span class="last">
+                        <a href="/courses?page=8">Last »</a>
+                    </span>
+                </nav>
+            </div>
+        </div>
+        <!-- --------------------------- Books-------------------------------- -->
+        <section class="books">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <h2 class="mt-5 mr-5">الكتب و الملحقات</h2>
+                    </div>
+                </div>
+
+                <div class="row books-row justify-content-center" dir="ltr">
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 book-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/عربى.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        Learn and speak Arabic</p>
+                                    <p class="card-discrp mb-1">
+                                        2 Files</p>
+                                    <p>
+                                        Arabic for non-native speakers</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/easy 300x300.png" class="rounded-circle" alt="">
+                                        <span>
+                                            easyT</span>
+                                    </div>
+                                    <div class="book-price pr-2">
+                                        <span> $45</span><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 book-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/تركى.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+
+                                        تعلم وتحدث اللغة التركية</p>
+                                    <p class="card-discrp mb-1">
+                                        2 Files</p>
+                                    <p>
+
+                                        كتاب وقاموس ناطق مصور للكلمات والجمل الشائعة</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/easy 300x300.png" class="rounded-circle" alt="">
+                                        <span>
+                                            easyT</span>
+                                    </div>
+                                    <div class="book-price pr-2">
+                                        <span> $77</span><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 book-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/اسبانى.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        تعلم وتحدث اللغة الاسبانية</p>
+                                    <p class="card-discrp mb-1">
+                                        2 Files</p>
+                                    <p>
+                                        كتاب وقاموس ناطق مصور للكلمات والجمل الشائعة</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/easy 300x300.png" class="rounded-circle" alt="">
+                                        <span>
+                                            easyT</span>
+                                    </div>
+                                    <div class="book-price pr-2">
+                                        <span> $45</span><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 book-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/اسرار جوجل.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        أسرار جوجل</p>
+                                    <p class="card-discrp mb-1">
+                                        2 Files</p>
+                                    <p>
+                                        الخدمات والأوامر الخفية التى لايعرفها أحد</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/easy 300x300.png" class="rounded-circle" alt="">
+                                        <span>
+                                            easyT</span>
+                                    </div>
+                                    <div class="book-price pr-2">
+                                        <span> $45</span><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 book-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/اسرار فوتوشوب.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        أسرار فوتوشوب</p>
+                                    <p class="card-discrp mb-1">
+                                        2 Files</p>
+                                    <p>
+                                        أهم 100 سر من أسرار الفوتوشوب لراغبى احتراف البرنامج</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/easy 300x300.png" class="rounded-circle" alt="">
+                                        <span>
+                                            easyT</span>
+                                    </div>
+                                    <div class="book-price pr-2">
+                                        <span> $45</span><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12  mb-5 book-card" style="width: 25rem;">
+                        <a href="#">
+                            <div class="card">
+                                <img src="../static/imgs/500 سؤال فى الشبكات.png" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <p class="card-text mb-1">
+                                        كتاب 500 سؤال وجواب فى الشبكات</p>
+                                    <p class="card-discrp mb-1">
+                                        2 Files</p>
+                                    <p>
+                                        learn more</p>
+                                </div>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="info">
+                                        <img src="../static/imgs/easy 300x300.png" class="rounded-circle" alt="">
+                                        <span>
+                                            easyT</span>
+                                    </div>
+                                    <div class="book-price pr-2">
+                                        <span> $45</span><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!------------------------------------- Button ---------------------------------------------->
+        <div class="FloatingButton__FloatingButtonContainer-sc-q5md4t-0 left-btn">
+            <button type="button" tabindex="0" class="ButtonBase__ButtonContainer-sc-p43e7i-3 btn"
+                style="border-radius: 0px 0px 4px 4px; border-color: rgba(0, 0, 0, 0); line-height: 1.32; color: rgb(255, 255, 255); font-family: inherit; font-weight: bold; font-size: 13px; background-color: rgb(214, 24, 40); border-width: 1px; box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px 0px;">
+                <span class="ButtonBase__Overlay-sc-p43e7i-4 cjTloD"
+                    style="padding: 2px 19px; border-radius: calc(-1px) calc(-1px) calc(3px) calc(3px); background-color: rgba(0, 0, 0, 0);">
+                    <span class="ButtonBase__Ellipsis-sc-p43e7i-5 txt-btn">عرض الصيف</span></span></button>
+        </div>
+
+    </div> <!--/parent-->
+
+    <!-- ---------------------------------Footer ----------------------->
+    <div id="footer-placeholder"></div>
+
+
+    <script src="../static/js/bootstrap.bundle.min"></script>
+    <script src="../static/js/main.js"></script>
+</body>
+</html>

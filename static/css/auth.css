@@ -66,11 +66,12 @@ body{
 }
 
 footer {
-    position: absolute;
     bottom: 0;
     width: 100%;
     background-color: #000;
-    color: #fff;
+    position: absolute;
+    color: #bac1c7;
+    padding: 39px 0 42px;
 }
 
 
