@@ -1,62 +1,220 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Markazi+Text:wght@400..700&family=Poppins:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Markazi+Text:wght@400..700&family=Poppins:wght@700&display=swap");
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-.header{
-    position: relative;
-    background-image: url('../imgs/wwww\ copy.webp'); 
-    background-size: cover;
-    background-position: center;
-    height: 90vh;
-    color: white;
-    top:0;
-    width: 100%;
-  }
-  .rtl-text {
-    direction: rtl;
-    text-align: right;
-  }
-  .cairo-font,.card-text{
-    font-family: 'Cairo', sans-serif;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 72px;
-    white-space: nowrap;
-  }
-  .custom-font,.card-text-sec2 {
-    font-family: "Markazi Text", serif;
-    font-weight: 400;
-    font-size: 20px;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Markazi Text", serif;
+}
+.header {
+  position: relative;
+  background-image: url("../imgs/wwww\ copy.webp");
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  color: white;
+  top: 0;
+  width: 100%;
+}
+.rtl-text {
+  direction: rtl;
+  text-align: right;
+}
+.cairo-font,
+.card-text {
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 72px;
+  white-space: nowrap;
+}
+.custom-font,
+.card-text-sec2 {
+  font-family: "Markazi Text", serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 63%;
+  transform: translate(-50%, -63%);
+}
+@media (max-width: 450px) {
   .overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 63%;
-    transform: translate(-50%, -63%);}
-     @media (max-width: 450px) {   
-        .overlay-text {
-          top:60%;
-          left: 70%;
-        }  
-      .cairo-font{
-        white-space: wrap;
-      }  } 
-    @media (max-width: 488px) {   
-      .overlay-text {
-        left: 60%;
-      }   
-     
-    }
-    /* ////// */
-   
-    .card-text-sec2 {
-      font-size: 16px;
-    }
-    .card2-bg{
-      background-color: #ed1c24;
+    top: 60%;
+    left: 70%;
   }
-   .card-text{
-    font-size: 32px
-   }
+  .cairo-font {
+    white-space: wrap;
+  }
+}
+@media (max-width: 488px) {
+  .overlay-text {
+    left: 60%;
+  }
+}
+/* ////// */
+
+.card-text-sec2 {
+  font-size: 16px;
+}
+.card2-bg {
+  background-color: #f5000c;
+}
+.card-body2 .card-text {
+  font-size: 32px;
+}
+
+/* sec3 */
+.cards {
+  margin-top: 70px;
+}
+.card .card-title {
+  font-size: 30px;
+  font-family: "Markazi Text", serif;
+  font-weight: 700;
+  color: #b82d2d;
+}
+.cards .card {
+  border-radius: 20px;
+  margin-top: 20px !important;
+  margin-right: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.card img {
+  border-radius: 20px 20px 0 0;
+  height: 200px;
+}
+.card .card-subtitle {
+  font-size: 15px;
+  font-weight: 400;
+  color: #f5000c;
+}
+.card-body .card-content {
+  padding: 10px;
+  background-color: #f8f8f8;
+  height: 15rem;
+}
+.card-content .content-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+.card-content .content-text {
+  line-height: 18px;
+}
+
+.hint-container {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.item-text {
+  color: #979797;
+}
+
+.price span {
+  font-size: 15px;
+  font-weight: 200;
+}
+.card-footer .sub-btn {
+  margin: auto;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  width: 120px;
+  padding: 5px 0;
+  border-radius: 5px;
+  background-color: #b82d2d;
+  color: #f8f8f8;
+  font-size: 18px;
+}
+.card-footer span {
+  font-size: 12px;
+  font-weight: 200;
+  color: #979797;
+  display: block;
+  text-align: center;
+  padding-top: 10px;
+}
+.sub-btn:hover {
+  background-color: #f5000c;
+}
+
+.card:hover {
+  transform: translateY(-20px);
+  transition: 0.5s;
+}
+
+/* lastSec */
+.opinions .opinion-lable {
+  margin: auto;
+  background-color: #f5000c;
+  padding-bottom: 0;
+  padding-top: 5px;
+}
+.txt p {
+  font-size: 20px;
+  font-weight: 700;
+}
+.stars {
+  color: #f8f8f8;
+  padding-top: 5px;
+}
+.star:hover {
+  color: yellow;
+}
+
+.comment {
+  margin: auto;
+}
+.comment img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.wrt-comment {
+  width: 700px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  padding: 15px 10px;
+}
+.wrt-comment h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+textarea {
+  width: 100%;
+  background-color: transparent;
+  margin-bottom: 10px;
+  transition: 0.5s;
+}
+
+input[type="submit"],
+button {
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+}
+input[type="submit"] {
+  width: 120px;
+  padding: 5px 0;
+  border-radius: 5px;
+  background-color: #b82d2d;
+  color: #f8f8f8;
+}
+button {
+  color: #333;
+  background-color: transparent;
+}
+.btn {
+  display: none;
+}
+.emoji {
+  cursor: pointer;
+  font-size: 18px;
+}

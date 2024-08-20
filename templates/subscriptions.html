@@ -1,49 +1,734 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>  اشتراك عام موحد فى منصة إيزيتى | easyT.online | إيزيتى</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">     <!-- This bootstrap version is 5.3.3 the offline one -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">  <!-- This bootstrap version is better, the first one chatGPT gave me,lol i like it more-->
+    <title> اشتراك عام موحد فى منصة إيزيتى | easyT.online | إيزيتى</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <!-- This bootstrap version is 5.3.3 the offline one -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- This bootstrap version is better, the first one chatGPT gave me,lol i like it more-->
     <link rel="stylesheet" href="../static/css/main.css">
     <link rel="stylesheet" href="../static/css/subscriptions.css">
     <link rel="stylesheet" href="../static/css/all.min.css">
 
 </head>
+
 <body>
-      <div id="nav-placeholder"></div>
-      <!-- sec1 -->
-      <section class="header">
+    <div id="nav-placeholder"></div>
+    <!-- sec1 -->
+    <section class="header">
         <div class="overlay-text ">
-          <div class="d-flex flex-column ">
+            <div class="d-flex flex-column ">
                 <div class=" mt-4 rtl-text cairo-font">اشتراك عام موحد</div>
                 <div class="rtl-text custom-font">اختر إحدى الباقات وشاهد جميع الكورسات
-                 <br>التى تناسب تخصصك باشتراك واحد</div>
-              </div>
+                    <br>التى تناسب تخصصك باشتراك واحد
+                </div>
             </div>
-      </section>
-      <!-- sec2 -->
-      <section class=" container-fluid ">
+        </div>
+    </section>
+    <!-- sec2 -->
+    <section class=" container-fluid">
         <div class="row">
             <div class="col-12 col-md-12 bg-light">
                 <div class="card-body  ">
                     <p class="card-text-sec2 container w-50 text-center">
-                        يمنحك الاشتراك بأحد الباقات التمتع بالوصول غير المحدود لكل الكورسات التى تحتويها الباقة طوال فترة الاشتراك، 
-                        وكذلك <br>الحصول على كافة التحديثات، والحصول على جميع الكورسات والدبلومات الجديدة التى ستضاف إلى الباقة مستقبلاً
+                        يمنحك الاشتراك بأحد الباقات التمتع بالوصول غير المحدود لكل الكورسات التى تحتويها الباقة طوال
+                        فترة الاشتراك،
+                        وكذلك <br>الحصول على كافة التحديثات، والحصول على جميع الكورسات والدبلومات الجديدة التى ستضاف إلى
+                        الباقة مستقبلاً
                     </p>
                 </div>
             </div>
             <div class="col-12 col-md-12 card2-bg ">
                 <div class="card-body2">
-                    <p class="card-text text-light text-center">
+                    <p class="card-text text-light text-center p-2">
                         تعلم من 15 كورس جديد شهريًا
                     </p>
                 </div>
             </div>
         </div>
-      </section>
-          
-          <script src="../static/js/main.js"></script>
+    </section>
+    <!-- sec3 -->
+    <section class="container-fluid cards mb-4" dir="rtl">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="card" style="width: 90%;">
+                    <img src="../static/imgs/General.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="titles ">
+                            <h3 class="card-title text-center">الباقة العامة</h3>
+                            <h6 class="text-center card-subtitle">جميع كورسات المنصة</h6>
+                        </div>
+                        <div class="card-content rtl-text mt-5">
+                            <h4 class="content-title mb-3">تصنيفات الكورسات التى تحتويها الباقة</h4>
+                            <div class="content-text">
+                                <p>جميع تصنيفات الكورسات الموجودة فى باقة المبدعين وباقة العباقرة وباقة الأعمال بالإضافة
+                                    إلى :</p>
+                                <span>
+                                    علم النفس
+                                    <br>
+                                    التربية وتعليم الأطفال
+                                    <br>
+                                    كل ما يستجد من تصنيفات
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="content-items rtl-text">
+                            <div class="features-item mt-2" style="height: 35px;">
+                                <div class="item-inner d-flex p-1">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="عند إضافة أى تحديثات إلى أحد الكورسات الموجودة بالمنصة سوف يصلك إشعار بذلك على بريدك الالكترونى، حيث يمكنك الاطلاع على التحديثات المضافة إلى الكورس ودراستها">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                                  s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                                  c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between">الحصول على التحديثات</div>
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <div class="features-item " style="height: 48px;background-color: #f8f8f8;">
+                                <div class="item-inner d-flex p-1">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="سوف تجد مؤشرا يدل على نسبة الانتهاء من دراسة كل كورس، وعندما يصل المؤشر الخاص بأى كورس إلى 100% سوف تصلك شهادة على بريدك الالكترونى تفيد بإنتهائك من دراسة هذا الكورس، هذه الشهادة معتمدة من إيزيتى وهى تحتوى على رقم سيريال مميز يمكن لأى جهة التحقق من حصولك على الشهادة ">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                                  s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                                  c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between"> الحصول على شهادة بعد الانتهاء من كل كورس
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="features-item mt-2 " style="height: 35px;">
+                                <div class="item-inner d-flex p-1 ">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="يتم إضافة مجموعة من الكورسات الجديدة كل شهر إلى الباقة">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                              s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                              c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between"> كورسات جديدة كل شهر
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <div class="features-item " style="height: 48px;background-color: #f8f8f8;">
+                                <div class="item-inner d-flex p-1">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="الاستشارات المسجلة هى محاضرات مسجلة يتم الإجابة فيها عن استفساراتك، حيث سيتم إشراكك تلقائيًا في هذه الخدمة عند الاشتراك فى الباقة، لتترك استفساراتك والأسئلة التى تريد إجابات عنها، وسوف يقوم المختصون بالإجابة عن الأسئلة وتسجيلها فى محاضرة تضاف إلى حسابك داخل المنصة، ويمكنك الاستفادة من متابعة الردود على اسئلتك وكذلك الردود على أسئلة باقى المشتركين كل أسبوع">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                                  s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                                  c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between"> الاشتراك فى جميع خدمات الاستشارات المسجلة
+                                            <strong style="color: #f5000c;font-size: 20px;margin-right: 10px;">
+                                                &#9825;</strong>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="price text-center rtl-text mt-4">
+                            <h2>سنة/645<span>$</span></h2>
+                        </div>
+                        <div class="card-footer rtl-text">
+                            <a class=" sub-btn" href="#" role="button">اشترك الآن</a>
+                            <span>الدفع بعملتك المحلية بما يعادل الدولار</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class=" col-md-3 col-sm-6 col-xs-12">
+                <div class="card" style="width: 90%;">
+                    <img src="../static/imgs/Business.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="titles ">
+                            <h3 class="card-title text-center"> باقة الأعمال</h3>
+                            <h6 class="text-center card-subtitle">الديجيتال ماركيتنج والربح من الانترنت
+                            </h6>
+                        </div>
+
+                        <div class="card-content rtl-text mt-5">
+                            <h4 class="content-title mb-3">تصنيفات الكورسات التى تحتويها الباقة</h4>
+                            <div class="content-text">
+                                <p>
+                                    تعليم أساسيات الكمبيوتر
+                                    <br>
+                                    الديجيتال ماركيتنج
+                                    <br>
+                                    الربح من الانترنت <br>
+                                    الإدارة والتسويق والمبيعات<br>
+                                    الاقتصاد والمحاسبة والاحصاء <br>
+                                    تعليم اللغات <br>
+                                    المهارات الشخصية وتطوير الذات
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="content-items rtl-text">
+                            <div class="features-item mt-2" style="height: 35px;">
+                                <div class="item-inner d-flex p-1">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="عند إضافة أى تحديثات إلى أحد الكورسات الموجودة بالمنصة سوف يصلك إشعار بذلك على بريدك الالكترونى، حيث يمكنك الاطلاع على التحديثات المضافة إلى الكورس ودراستها">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                                  s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                                  c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between">الحصول على التحديثات</div>
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <div class="features-item " style="height: 48px;background-color: #f8f8f8;">
+                                <div class="item-inner d-flex p-1">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="سوف تجد مؤشرا يدل على نسبة الانتهاء من دراسة كل كورس، وعندما يصل المؤشر الخاص بأى كورس إلى 100% سوف تصلك شهادة على بريدك الالكترونى تفيد بإنتهائك من دراسة هذا الكورس، هذه الشهادة معتمدة من إيزيتى وهى تحتوى على رقم سيريال مميز يمكن لأى جهة التحقق من حصولك على الشهادة ">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                                  s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                                  c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between"> الحصول على شهادة بعد الانتهاء من كل كورس
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="features-item mt-2 " style="height: 35px;">
+                                <div class="item-inner d-flex p-1 ">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="يتم إضافة مجموعة من الكورسات الجديدة كل شهر إلى الباقة">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                              s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                              c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between"> كورسات جديدة كل شهر
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <div class="features-item " style="height: 48px;background-color: #f8f8f8;">
+                                <div class="item-inner d-flex p-1">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="الاستشارات المسجلة هى محاضرات مسجلة يتم الإجابة فيها عن استفساراتك، حيث سيتم إشراكك تلقائيًا في هذه الخدمة عند الاشتراك فى الباقة، لتترك استفساراتك والأسئلة التى تريد إجابات عنها، وسوف يقوم المختصون بالإجابة عن الأسئلة وتسجيلها فى محاضرة تضاف إلى حسابك داخل المنصة، ويمكنك الاستفادة من متابعة الردود على اسئلتك وكذلك الردود على أسئلة باقى المشتركين كل أسبوع">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                                  s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                                  c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between"> الاشتراك فى جميع خدمات الاستشارات المسجلة
+                                            <strong style="color: #f5000c;font-size: 20px;margin-right: 10px;">
+                                                &#9825;</strong>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="price text-center rtl-text mt-4">
+                            <h2>سنة/295<span>$</span></h2>
+                        </div>
+
+                        <div class="card-footer rtl-text">
+                            <a class=" sub-btn" href="#" role="button">اشترك الآن</a>
+                            <span>الدفع بعملتك المحلية بما يعادل الدولار</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="card" style="width: 90%;">
+                    <img src="../static/imgs/Creators.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="titles">
+                            <h3 class="card-title text-center">باقة المبدعين</h3>
+                            <h6 class="text-center card-subtitle">الجرافيك والتصميم</h6>
+                        </div>
+                        <div class="card-content rtl-text mt-5">
+                            <h4 class="content-title mb-3">تصنيفات الكورسات التى تحتويها الباقة</h4>
+                            <div class="content-text">
+                                <p>
+                                    تعليم أساسيات الكمبيوتر
+                                    <br>
+                                    الديجيتال ماركيتنج
+                                    <br>
+                                    لجرافيك والتصوير والمونتاج<br>
+                                    البرامج الهندسية <br>
+                                    الفن والهوايات<br>
+                                    المهارات الشخصية وتطوير الذات
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="content-items rtl-text">
+                            <div class="features-item mt-2" style="height: 35px;">
+                                <div class="item-inner d-flex p-1">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="عند إضافة أى تحديثات إلى أحد الكورسات الموجودة بالمنصة سوف يصلك إشعار بذلك على بريدك الالكترونى، حيث يمكنك الاطلاع على التحديثات المضافة إلى الكورس ودراستها">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                                  s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                                  c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between">الحصول على التحديثات</div>
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <div class="features-item " style="height: 48px;background-color: #f8f8f8;">
+                                <div class="item-inner d-flex p-1">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="سوف تجد مؤشرا يدل على نسبة الانتهاء من دراسة كل كورس، وعندما يصل المؤشر الخاص بأى كورس إلى 100% سوف تصلك شهادة على بريدك الالكترونى تفيد بإنتهائك من دراسة هذا الكورس، هذه الشهادة معتمدة من إيزيتى وهى تحتوى على رقم سيريال مميز يمكن لأى جهة التحقق من حصولك على الشهادة ">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                                  s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                                  c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between"> الحصول على شهادة بعد الانتهاء من كل كورس
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="features-item mt-2 " style="height: 35px;">
+                                <div class="item-inner d-flex p-1 ">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="يتم إضافة مجموعة من الكورسات الجديدة كل شهر إلى الباقة">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                              s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                              c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between"> كورسات جديدة كل شهر
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <div class="features-item " style="height: 48px;background-color: #f8f8f8;">
+                                <div class="item-inner d-flex p-1">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="الاستشارات المسجلة هى محاضرات مسجلة يتم الإجابة فيها عن استفساراتك، حيث سيتم إشراكك تلقائيًا في هذه الخدمة عند الاشتراك فى الباقة، لتترك استفساراتك والأسئلة التى تريد إجابات عنها، وسوف يقوم المختصون بالإجابة عن الأسئلة وتسجيلها فى محاضرة تضاف إلى حسابك داخل المنصة، ويمكنك الاستفادة من متابعة الردود على اسئلتك وكذلك الردود على أسئلة باقى المشتركين كل أسبوع">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                                  s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                                  c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between"> الاشتراك فى جميع خدمات الاستشارات المسجلة
+                                            <strong style="color: #f5000c;font-size: 20px;margin-right: 10px;">
+                                                &#9825;</strong>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="price text-center rtl-text mt-4">
+                            <h2>سنة/365<span>$</span></h2>
+                        </div>
+                        <div class="card-footer rtl-text">
+                            <a class=" sub-btn" href="#" role="button">اشترك الآن</a>
+                            <span>الدفع بعملتك المحلية بما يعادل الدولار</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="card" style="width: 90%;">
+                    <img src="../static/imgs/Geniuses.png" class="card-img-top" alt="..."
+                        style="border-top-left-radius: 20px;">
+                    <div class="card-body">
+                        <div class="titles">
+                            <h3 class="card-title text-center"> باقة العباقرة</h3>
+                            <h6 class="text-center card-subtitle">البرمجة وتطوير المواقع والتطبيقات</h6>
+                        </div>
+                        <div class="card-content rtl-text mt-5">
+                            <h4 class="content-title mb-3">تصنيفات الكورسات التى تحتويها الباقة</h4>
+                            <div class="content-text">
+                                <p>
+                                    تعليم أساسيات الكمبيوتر
+                                    <br>
+                                    البرمجة وتطويرالمواقع والتطبيقات<br>
+                                    البرامج الهندسية <br>
+                                    الروبوتات والالكترونيات والشبكات<br>
+                                    الذكاء الاصطناعي وتطبيقاته <br>
+                                    المهارات الشخصية وتطوير الذات
+                                </p>
+                            </div>
+                        </div>
+                        <div class="content-items rtl-text">
+                            <div class="features-item mt-2" style="height: 35px;">
+                                <div class="item-inner d-flex p-1">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="عند إضافة أى تحديثات إلى أحد الكورسات الموجودة بالمنصة سوف يصلك إشعار بذلك على بريدك الالكترونى، حيث يمكنك الاطلاع على التحديثات المضافة إلى الكورس ودراستها">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                                  s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                                  c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between">الحصول على التحديثات</div>
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <div class="features-item " style="height: 48px;background-color: #f8f8f8;">
+                                <div class="item-inner d-flex p-1">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="سوف تجد مؤشرا يدل على نسبة الانتهاء من دراسة كل كورس، وعندما يصل المؤشر الخاص بأى كورس إلى 100% سوف تصلك شهادة على بريدك الالكترونى تفيد بإنتهائك من دراسة هذا الكورس، هذه الشهادة معتمدة من إيزيتى وهى تحتوى على رقم سيريال مميز يمكن لأى جهة التحقق من حصولك على الشهادة ">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                                  s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                                  c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between"> الحصول على شهادة بعد الانتهاء من كل كورس
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="features-item mt-2 " style="height: 35px;">
+                                <div class="item-inner d-flex p-1 ">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="يتم إضافة مجموعة من الكورسات الجديدة كل شهر إلى الباقة">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                              s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                              c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between"> كورسات جديدة كل شهر
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+
+
+                            <div class="features-item " style="height: 48px;background-color: #f8f8f8;">
+                                <div class="item-inner d-flex p-1">
+                                    <span class="hint-container" eapps-link="hintContainer">
+                                        <span class="hint-icon" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            data-bs-title="الاستشارات المسجلة هى محاضرات مسجلة يتم الإجابة فيها عن استفساراتك، حيث سيتم إشراكك تلقائيًا في هذه الخدمة عند الاشتراك فى الباقة، لتترك استفساراتك والأسئلة التى تريد إجابات عنها، وسوف يقوم المختصون بالإجابة عن الأسئلة وتسجيلها فى محاضرة تضاف إلى حسابك داخل المنصة، ويمكنك الاستفادة من متابعة الردود على اسئلتك وكذلك الردود على أسئلة باقى المشتركين كل أسبوع">
+                                            <svg width="15" height="15" class="eapps-pricing-table-hint-icon-not-active"
+                                                viewBox="0 0 14 14">
+                                                <g>
+                                                    <path d="M7,0C3.1,0,0,3.1,0,7s3.1,7,7,7s7-3.1,7-7S10.9,0,7,0z M7,12.7c-3.2,0-5.7-2.6-5.7-5.7c0-3.2,2.6-5.7,5.7-5.7
+                                                  s5.7,2.6,5.7,5.7C12.7,10.2,10.2,12.7,7,12.7z"></path>
+                                                    <path
+                                                        d="M7,9.8c-0.5,0-0.8,0.4-0.8,0.8c0,0.5,0.4,0.8,0.8,0.8s0.8-0.4,0.8-0.8C7.8,10.1,7.5,9.8,7,9.8z">
+                                                    </path>
+                                                    <path
+                                                        d="M7,2.5c-1.3,0-2.3,1-2.3,2.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6c0-0.6,0.5-1.1,1.1-1.1s1.1,0.5,1.1,1.1S7.6,5.9,7,5.9
+                                                  c-0.4,0-0.6,0.3-0.6,0.6v1.3c0,0.4,0.3,0.6,0.6,0.6s0.6-0.3,0.6-0.6V7.1c1-0.3,1.7-1.2,1.7-2.2C9.3,3.6,8.3,2.5,7,2.5z">
+                                                    </path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="item-text">
+                                        <div class="justify-content-between"> الاشتراك فى جميع خدمات الاستشارات المسجلة
+                                            <strong style="color: #f5000c;font-size: 20px;margin-right: 10px;">
+                                                &#9825;</strong>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price text-center rtl-text mt-4">
+                            <h2>سنة/475<span>$</span></h2>
+                        </div>
+                        <div class="card-footer rtl-text">
+                            <a class=" sub-btn" href="#" role="button">اشترك الآن</a>
+                            <span>الدفع بعملتك المحلية بما يعادل الدولار</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- last sec -->
+    <section class="container opinions mb-3 mt-5">
+        <div class="row mb-2">
+            <div class="col-md-6 opinion-lable d-flex justify-content-between" style="height: 40px;">
+                <div class="txt">
+                    <p> 265 من آراء المتدربين فى المنصة </p>
+                </div>
+                <div class="stars">
+                    <span class="average margin-right-xs">4.8</span>
+                    <i class="fas fa-star-half-empty star rating-4"></i>
+                    <i class="fas fa-star star rating-4"></i>
+                    <i class="fas fa-star star rating-4"></i>
+                    <i class="fas fa-star star rating-4"></i>
+                    <i class="fas fa-star star rating-4"></i>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 comment d-flex justify-content-between">
+                <div class="image">
+                    <img src="../static/imgs/blankUser.gif" alt="">
+                </div>
+
+                <div class="wrt-comment">
+                    <h2>Leave Us a Comment ♥</h2>
+                    <form>
+                        <textarea placeholder="Add Your Comment" id="input-filed"></textarea>
+                        <div class="commentsEmoji hid" style="font-size: 12px; display: block;">
+                            <div class="emoji text-center">
+                                <span id="emoji1" onclick="emoji(this.id)"> &#128525;</span>
+                                <span id="emoji2" onclick="emoji(this.id)"> &#128536;</span>
+                                <span id="emoji3" onclick="emoji(this.id)"> &#129321;</span>
+                                <span id="emoji4" onclick="emoji(this.id)"> &#129392;</span>
+                                <span id="emoji5" onclick="emoji(this.id)"> &#128151;</span>
+                                <span id="emoji6" onclick="emoji(this.id)"> &#x1F493;</span>
+                                <span id="emoji7" onclick="emoji(this.id)"> &#x1F496;</span>
+                                <span id="emoji8" onclick="emoji(this.id)"> &#x1F49D;</span>
+                                <span id="emoji9" onclick="emoji(this.id)"> &#x1F49B;</span>
+                                <span id="emoji10" onclick="emoji(this.id)">&#x1F499;</span>
+                            </div>
+                        </div>
+                        <div class="btn">
+                            <input type="submit" value="إرسال">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="../static/js/main.js"></script>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/supscription.js"></script>
+
 </body>
+
 </html>
