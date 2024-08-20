@@ -29,6 +29,7 @@
   text-align: center;
   border-radius: 20px;
   padding: 0 10px;
+  margin-bottom: 10px;
 }
 .footer {
   background-color: black;
@@ -67,3 +68,4 @@
 .social-icons i {
   margin-top: 14%;
 }
+
