@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Markazi+Text:wght@400..700&family=Poppins:wght@700&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.rtl-text,.rtl-text-list {
+    direction: rtl;
+    text-align: right;
+  }
+  .custom-font,.custom-font2,.custom-font3,
+  .course-description,.custom-font4,.course-section-title,
+  .list-group-item-action,.author-name,center,.author-exper,
+  .final-mess,.payment-text{
+    font-family: "Markazi Text", serif;
+    font-weight: 700;
+    font-size: 38px;
+  }
+  .custom-font4,.author-name,center{
+    font-weight: 500;
+    font-size: 30px;
+  }
+  .custom-font,.custom-font3{
+    margin-top: 50px;
+  }
+  .custom-font2,.course-description,.list-group-item-action{
+    font-weight: 200;
+    font-size: 18px;
+  }
+  .list-group-item-action{
+    font-size: 16px;
+  }
+  .custom-font3{
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .course-section-title{
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .author-exper,.final-mess,.payment-text{
+    font-weight: 400;
+    font-size: 20px;
+  }
+  .payment-text{
+    font-weight: 400;
+    font-size: 14px;
+  }
+.course-description{
+    direction: rtl; 
+    text-align: right;
+}
+.icons a i{
+    font-size: 20px;
+    line-height: 44px;
+}
+@media (max-width: 767px) {
+    .icons{
+        display: none;
+    }
+    .course-description{
+        text-align: center;
+    }}
+@media (max-width: 991px) {
+    .custom-font,.custom-font3 {
+      margin-top: 0px;
+    } .btn2{
+       margin-top: 5px; 
+    }
+    .rtl-text {
+        text-align: center;
+      }}
+.list-group-item-action{
+background-color: #c5c4c429;
+      }
+.list-group-item-action:hover {
+    background-color: #ef343a2f;
+}
