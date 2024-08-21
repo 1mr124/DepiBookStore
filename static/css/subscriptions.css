@@ -145,6 +145,47 @@ body {
   transition: 0.5s;
 }
 
+/* sec4 */
+.custom-col {
+  position: relative;
+  width: calc(100% / 9);
+  padding: 0 3px;
+}
+@media (max-width: 800px) {
+  .custom-col {
+    width: calc(100% / 3);
+  }
+}
+.custom-col a::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  background-color: #ed1c235c;
+  transition: 0.6s;
+}
+.custom-col a:hover::after {
+  top: 0;
+  left: 0;
+  width: 95%;
+  height: 100%;
+  z-index: 1;
+  margin-left: 3px;
+}
+.sec5 h2 {
+  font-family: "Cairo", sans-serif;
+  font-weight: 200;
+  font-size: 32px;
+  padding-bottom: 10px;
+}
+.sec5 h3 strong {
+  font-family: "Cairo", sans-serif;
+  color: #f5000c;
+  font-size: 28px;
+  font-weight: 900;
+}
 /* lastSec */
 .opinions .opinion-lable {
   margin: auto;
@@ -171,13 +212,13 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  margin-right: 5px;
 }
 .wrt-comment {
-  width: 700px;
+  width: 600px;
   border: 2px solid #333;
   border-radius: 5px;
   padding: 15px 10px;
+  margin-left: 10px;
 }
 .wrt-comment h2 {
   text-align: center;
@@ -189,7 +230,10 @@ textarea {
   margin-bottom: 10px;
   transition: 0.5s;
 }
-
+.emoji {
+  cursor: pointer;
+  font-size: 18px;
+}
 input[type="submit"],
 button {
   padding: 10px 15px;
@@ -207,14 +251,10 @@ input[type="submit"] {
   background-color: #b82d2d;
   color: #f8f8f8;
 }
-button {
-  color: #333;
-  background-color: transparent;
-}
+
 .btn {
   display: none;
 }
-.emoji {
-  cursor: pointer;
-  font-size: 18px;
+.btn input:hover {
+  background-color: #f5000c;
 }
