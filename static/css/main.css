@@ -29,6 +29,7 @@
   text-align: center;
   border-radius: 20px;
   padding: 0 10px;
+  margin-bottom: 10px;
 }
 .footer {
   background-color: black;
@@ -52,7 +53,7 @@
 }
 .footer .social-icons a i {
   color: white;
-  margin: 0 10px;
+  margin: 0 4px;
   text-decoration: none;
   font-size: 1.5em;
 }
@@ -67,3 +68,4 @@
 .social-icons i {
   margin-top: 14%;
 }
+
