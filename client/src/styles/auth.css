@@ -8,8 +8,12 @@
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius);
     margin-top: 150px;
+    text-align: center;
 }
 
+#rememberMe{
+    margin-top: 7px;
+}
 /* Heading Style */
 h2 {
     margin-bottom: 1rem;
@@ -23,7 +27,7 @@ h2 {
 /* Custom Checkbox */
 .customRememberMe {
     display: flex;
-    align-items: center;
+    flex-direction: row-reverse;
     margin-bottom: 1rem;
 }
 
@@ -60,3 +64,16 @@ input::placeholder {
         height: 30px; /* Smaller logo on small screens */
     }
 }
+
+
+/* Sign Up Form Container */
+
+.login-form input {
+    margin: 10px 0;
+}
+
+
+
+
+
+/* Sign Up Form Container */
