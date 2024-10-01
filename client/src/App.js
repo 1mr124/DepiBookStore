@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from './components/Navbar'; 
 import Login from './components/Login'; 
 import SignUp from './components/SignUp';
+import Footer from './components/Footer'; 
+
 
 import { Routes, Route } from 'react-router-dom'; 
 
@@ -23,6 +25,7 @@ const App = () => {
         <Route path="/signUp" element={<SignUp />} />
         {/* Add other routes as needed */}
       </Routes>
+      <Footer />
     </div>
   );
 };
