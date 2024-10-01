@@ -12,6 +12,10 @@ body {
   padding: 1rem;
 }
 
+.nav-link{
+  color: white !important;
+}
+
 .center-logo {
   height: 40px;
 }
