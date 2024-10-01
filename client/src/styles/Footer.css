@@ -1,0 +1,20 @@
+.btn-link {
+  background: none;
+  border: none;
+  color: inherit; /* Use the inherited color */
+  cursor: pointer;
+  padding: 0; /* Remove padding */
+}
+
+.btn-link i {
+  margin: 0 5px; /* Add some spacing between icons */
+}
+
+.btn-link:hover{
+  color: red !important;
+}
+
+
+footer ul li{
+  list-style-type: none; /* Remove bullets */
+}
