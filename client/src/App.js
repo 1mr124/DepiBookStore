@@ -1,11 +1,29 @@
-import './App.css';
+import React from 'react';
+import Navbar from './components/Navbar'; 
+import { Routes, Route } from 'react-router-dom'; 
 
-function App() {
+const Consulting = () => <div>Consulting Page</div>;
+const Subscriptions = () => <div>Subscriptions Page</div>;
+const Books = () => <div>Books Page</div>;
+const Courses = () => <div>Courses Page</div>;
+const Login = () => <div>Login Page</div>;
+const SignUp = () => <div>Sign Up Page</div>;
+
+const App = () => {
   return (
-    <div className="App">
-     
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/consulting" element={<Consulting />} />
+        <Route path="/subscriptions" element={<Subscriptions />} />
+        <Route path="/books" element={<Books />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signUp" element={<SignUp />} />
+        {/* Add other routes as needed */}
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
