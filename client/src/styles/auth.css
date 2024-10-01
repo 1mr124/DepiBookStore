@@ -1,0 +1,79 @@
+
+/* Login Form Container */
+.login-form {
+    width: 100%;
+    max-width: var(--form-width);
+    padding: var(--form-padding);
+    background: var(--primary-text-color); /* White */
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    margin-top: 150px;
+    text-align: center;
+}
+
+#rememberMe{
+    margin-top: 7px;
+}
+/* Heading Style */
+h2 {
+    margin-bottom: 1rem;
+}
+
+/* Button Styling */
+.btn-danger {
+    background-color: var(--danger-bg-color); /* Red */
+}
+
+/* Custom Checkbox */
+.customRememberMe {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 1rem;
+}
+
+/* Forgot Password Link */
+.forgot-password {
+    margin-top: 10px;
+    font-size: var(--font-size-small);
+    text-align: right;
+}
+
+/* Footer Styling */
+footer {
+    background-color: var(--primary-bg-color); /* Black */
+    color: var(--footer-text-color); /* Light grey */
+    padding: 1rem 0;
+    position: fixed; 
+    bottom: 0;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Placeholder Text Alignment */
+input::placeholder {
+    text-align: right;
+}
+
+/* Responsive Styles */
+@media (max-width: 576px) {
+    .login-form {
+        padding: 1rem;
+    }
+
+    .center-logo {
+        height: 30px; /* Smaller logo on small screens */
+    }
+}
+
+
+/* Sign Up Form Container */
+
+.login-form input {
+    margin: 10px 0;
+}
+
+
+
+
+
+/* Sign Up Form Container */

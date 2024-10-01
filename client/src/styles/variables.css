@@ -1,0 +1,12 @@
+:root {
+    --primary-bg-color: #000;   /* Black */
+    --primary-text-color: #fff; /* White */
+    --danger-bg-color: #ed1c24; /* Red */
+    --footer-text-color: #bac1c7; /* Light Grey */
+    --form-width: 400px;
+    --form-padding: 15px;
+    --font-size-small: 0.9rem;
+    --font-size-xsmall: 0.64rem;
+    --border-radius: 5px;
+    --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

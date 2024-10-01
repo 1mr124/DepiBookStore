@@ -5,7 +5,7 @@ import logo from '../static/imgs/logo.png'; // Adjust the path as per your proje
 
 const NavigationBar = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="xl" fixed="top">
+    <Navbar variant="dark" expand="xl" fixed="top">
       <Container fluid>
         <Navbar.Brand as={Link} to="#">
           <img src={logo} alt="easyT.online" className="center-logo" />

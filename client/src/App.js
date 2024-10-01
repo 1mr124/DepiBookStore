@@ -1,13 +1,14 @@
 import React from 'react';
 import Navbar from './components/Navbar'; 
+import Login from './components/Login'; 
+import SignUp from './components/SignUp';
+
 import { Routes, Route } from 'react-router-dom'; 
 
 const Consulting = () => <div>Consulting Page</div>;
 const Subscriptions = () => <div>Subscriptions Page</div>;
 const Books = () => <div>Books Page</div>;
 const Courses = () => <div>Courses Page</div>;
-const Login = () => <div>Login Page</div>;
-const SignUp = () => <div>Sign Up Page</div>;
 
 const App = () => {
   return (
