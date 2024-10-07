@@ -45,10 +45,7 @@ const SignUp = () => {
         </div>
       </Container>
 
-      {/* Footer */}
-      <footer className="text-center py-3">
-        © easyT.online | 2024
-      </footer>
+      
     </div>
   );
 };
