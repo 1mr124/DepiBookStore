@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, Container, Form, FormControl } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import logo from '../static/imgs/BookLogo.png'; // Adjust the path as per your project
+import logo from '../static/imgs/Logo.png'; // Adjust the path as per your project
 
 const NavigationBar = () => {
   // State to manage navbar collapse
