@@ -19,11 +19,6 @@ h2 {
     margin-bottom: 1rem;
 }
 
-/* Button Styling */
-.btn-danger {
-    background-color: var(--danger-bg-color); /* Red */
-}
-
 /* Custom Checkbox */
 .customRememberMe {
     display: flex;

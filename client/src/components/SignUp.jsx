@@ -105,7 +105,7 @@ const SignUp = () => {
               />
             </Form.Group>
 
-            <Button type="submit" variant="danger" className="w-100">
+            <Button type="submit"  className="w-100 buttonColor">
               إنشاء حساب
             </Button>
 

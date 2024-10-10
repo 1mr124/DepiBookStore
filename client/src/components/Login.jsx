@@ -86,7 +86,7 @@ const Login = () => {
               <Form.Check type="checkbox" label="تذكرني" />
             </Form.Group>
 
-            <Button type="submit" variant="danger" className="w-100">دخول</Button>
+            <Button type="submit" variant="" className="w-100 buttonColor">دخول</Button>
 
             <div className="text-center mt-3">
               <Button variant="light" className="w-100">
