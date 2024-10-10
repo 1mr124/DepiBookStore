@@ -18,3 +18,15 @@
 footer ul li{
   list-style-type: none; /* Remove bullets */
 }
+
+
+
+.footer-nav {
+  display: flex; /* Enable Flexbox for the nav */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Align items to the start (left) */
+}
+
+.footer-nav .nav-link {
+  padding: 5px 0; /* Optional: Add some vertical spacing between links */
+}

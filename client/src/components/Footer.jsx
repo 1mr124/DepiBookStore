@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Nav } from 'react-bootstrap';
 import 'font-awesome/css/font-awesome.min.css'; // Ensure you have Font Awesome included
 import '../styles/Footer.css'; // Adjust path as necessary
 
@@ -9,9 +9,9 @@ const Footer = () => {
       <Container className="text-center">
         <Row>
           <Col md={4}>
-            <p>© easyT.online | 2024</p>
-            <p>شروط الاستخدام والضمان</p>
-            <p>سياسة الخصوصية</p>
+            <p>© BookHub | 2024</p>
+            <p>Terms of Use and Guarantee</p>
+            <p>Privacy Policy</p>
           </Col>
           <Col md={4} className="social-icons">
             <button aria-label="YouTube" className="btn-link"><i className="fa fa-youtube"></i></button>
@@ -22,15 +22,13 @@ const Footer = () => {
             <button aria-label="WhatsApp" className="btn-link"><i className="fa fa-whatsapp"></i></button>
           </Col>
           <Col md={4}>
-            <ul>
-              <li>مساعدة</li>
-              <li>طرق الدفع</li>
-              <li>كيفية الاستخدام والشراء</li>
-              <li>برنامج التسويق بالعمولة</li>
-              <li>انضم إلينا كمحاضر</li>
-              <li>من نحن؟</li>
-            </ul>
-          </Col>
+            <Nav className="footer-nav">
+              <Nav.Link href="#" >Help</Nav.Link>
+              <Nav.Link href="#" >Payment Methods</Nav.Link>
+              <Nav.Link href="#" >How to Use and Purchase</Nav.Link>
+              <Nav.Link href="#" >About Us</Nav.Link>
+            </Nav>
+              </Col>
         </Row>
       </Container>
     </footer>

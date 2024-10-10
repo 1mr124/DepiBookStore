@@ -17,10 +17,23 @@ body {
 }
 
 .center-logo {
-  height: 40px;
+  width: 40px; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 10px; /* Add space to the right if needed */
+  display: block; /* Ensure it behaves like a block element */
+  max-height: 100%; /* Prevent it from overflowing the navbar */
+  border-radius: 50%;
+
 }
 
 
 
 
+.buttonColor{
+  background-color: var(--btn-bg-color) !important; 
+  color: var(--primary-text-color);
+}
 
+.buttonColor:hover{
+  color: #fff;
+}
