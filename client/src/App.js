@@ -7,8 +7,7 @@ import './App.css';
 
 import { Routes, Route, useLocation } from 'react-router-dom'; 
 
-const Consulting = () => <div>Consulting Page</div>;
-const Subscriptions = () => <div>Subscriptions Page</div>;
+
 const Books = () => <div>Books Page</div>;
 const Courses = () => <div>Courses Page</div>;
 
@@ -22,8 +21,6 @@ const App = () => {
     <div>
       <Navbar />
       <Routes>
-        <Route path="/consulting" element={<Consulting />} />
-        <Route path="/subscriptions" element={<Subscriptions />} />
         <Route path="/books" element={<Books />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/login" element={<Login />} />
