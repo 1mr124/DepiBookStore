@@ -1,14 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import '../styles/apiSearch.css'; // Ensure the CSS file is linked
+import '../styles/apiSearch.css'; 
 
 const BookDetails = ({ selectedBook }) => {
-  useEffect(() => {
-    console.log('BookDetails component rendered with:', selectedBook); // Check selectedBook prop
-  }, [selectedBook]);
-
   if (!selectedBook) {
-    return <p>Please select a book to see details.</p>;
+    return <p>Please select a book to see details.</p>; // Ensure book is selected before rendering details
   }
 
   const { title, authors, description, imageLinks, averageRating, pageCount, publishedDate } = selectedBook.volumeInfo;

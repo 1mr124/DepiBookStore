@@ -6,7 +6,7 @@ import logo from '../static/imgs/Logo.png';
 import { useAuth } from '../context/AuthContext'; 
 import '../styles/apiSearch.css';
 
-const NavigationBar = ({ setSelectedBook }) => {
+const NavigationBar = ({ onBookSelect }) => {
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
   const [expanded, setExpanded] = useState(false);
@@ -48,8 +48,8 @@ const NavigationBar = ({ setSelectedBook }) => {
   const handleBookSelect = (book) => {
     setSearchResults([]);
     setQuery('');
-    setSelectedBook(book); // Set the selected book here
-    navigate('/search'); // Navigate to the search route
+    onBookSelect(book); // Set the selected book
+    navigate('/search'); // Navigate to the search page
   };
   
   const handleClickOutside = (event) => {
