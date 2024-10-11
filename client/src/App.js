@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from './components/Navbar'; 
+import NavigationBar from './components/NavigationBar'; 
 import Login from './components/Login'; 
 import SignUp from './components/SignUp';
 import Footer from './components/Footer'; 
@@ -18,7 +18,7 @@ const Contact = () => <div>Contact</div>;
 
 const App = () => {
   const location = useLocation();
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [selectedBook, setSelectedBook] = useState(null); // Make sure this is defined
   
   // Determine whether to show the footer
   const showFooter = location.pathname === '/login' || location.pathname === '/signup';
@@ -26,7 +26,7 @@ const App = () => {
   return (
     <AuthProvider> {/* Wrap the entire app with AuthProvider */}
       <div>
-        <Navbar onBookSelect={setSelectedBook} />
+        <NavigationBar setSelectedBook={setSelectedBook}  />
         
         <Routes>
           {/* Public Routes */}
@@ -39,8 +39,7 @@ const App = () => {
           <Route path="/" element={<PrivateRoute element={<Home />} />} />
           <Route path="/books" element={<PrivateRoute element={<Books />} />} />
           <Route path="/cart" element={<PrivateRoute element={<Cart />} />} />
-          <Route path="/search" element={<PrivateRoute><BookDetails selectedBook={selectedBook} /></PrivateRoute>} /> {/* Protecting search */}
-
+          <Route path="/search" element={<PrivateRoute><BookDetails selectedBook={selectedBook} /></PrivateRoute>} />
           {/* Add other routes as needed */}
         </Routes>
 
