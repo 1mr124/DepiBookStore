@@ -1,43 +1,41 @@
 import axios from 'axios';
 
-// Create Axios instances for the APIs
-const googleBooksApi = axios.create({
+// Create an Axios instance for the Google Books API with API key
+const googleBooksApiWithKey = axios.create({
   baseURL: 'https://www.googleapis.com/books/v1', // Base URL for Google Books API
 });
 
-const openLibraryApi = axios.create({
-  baseURL: 'https://openlibrary.org/search.json', // Base URL for Open Library API
+// Create an Axios instance for the Google Books API without API key
+const googleBooksApiWithoutKey = axios.create({
+  baseURL: 'https://www.googleapis.com/books/v1', // Base URL for Google Books API
 });
 
-// Fetch books function with fallback logic
+// Fetch books function using Google Books API
 export const fetchBooks = async (searchTerm) => {
-  const apis = [
-    { api: googleBooksApi, path: `/volumes?q=${searchTerm}` },
-    { api: openLibraryApi, path: `?q=${searchTerm}` },
-  ];
+  const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
 
-  for (const { api, path } of apis) {
+  // Check if the API key is available
+  if (apiKey) {
     try {
-      const res = await api.get(path);
-      // Return books based on which API is being used
-      if (api === googleBooksApi) {
-        return res.data.items || []; // Return items from Google Books API
-      } else if (api === openLibraryApi) {
-        return res.data.docs || []; // Return docs from Open Library API
-      }
+      // Fetch from Google Books API with the API key
+      const res = await googleBooksApiWithKey.get(`/volumes?q=${searchTerm}&key=${apiKey}`);
+      return res.data.items || []; // Return items from Google Books API
     } catch (error) {
-      console.error(`Error fetching from ${api.defaults.baseURL}:`, error);
+      console.error(`Error fetching from Google Books API with key:`, error);
       
-      // If it's a rate limit error, log it and continue to the next API
+      // Handle rate limiting or other errors
       if (error.response?.status === 429) {
-        console.warn(`Rate limit exceeded for ${api.defaults.baseURL}. Trying the next API...`);
-        continue; // Move to the next API
+        console.warn('Rate limit exceeded for Google Books API with key.');
       }
-      
-      // If any other error occurs, break the loop
-      break; 
     }
   }
 
-  return []; // Return empty if all APIs fail
+  // If no API key is found or the request with the key fails, try without the key
+  try {
+    const resWithoutKey = await googleBooksApiWithoutKey.get(`/volumes?q=${searchTerm}`);
+    return resWithoutKey.data.items || []; // Return items from Google Books API
+  } catch (errorWithoutKey) {
+    console.error(`Error fetching from Google Books API without key:`, errorWithoutKey);
+    return []; // Return empty array in case of failure
+  }
 };
