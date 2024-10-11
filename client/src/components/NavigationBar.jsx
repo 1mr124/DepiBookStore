@@ -1,60 +1,65 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Navbar, Nav, Container, Form, FormControl, ListGroup } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../api/api';
-import logo from '../static/imgs/Logo.png'; // Adjust the path as per your project
+import { fetchBooks } from '../api/publicApi'; // Import the fetchBooks function
+import logo from '../static/imgs/Logo.png'; 
+import { useAuth } from '../context/AuthContext'; 
 import '../styles/apiSearch.css';
 
 const NavigationBar = ({ onBookSelect }) => {
   const navigate = useNavigate();
-  const dropdownRef = useRef(null); // Create a ref for the dropdown
+  const dropdownRef = useRef(null);
   const [expanded, setExpanded] = useState(false);
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const { user, logout } = useAuth(); 
 
   const handleLinkClick = () => {
     setExpanded(false);
-    setSearchResults([]); // Clear search results on link click
+    setSearchResults([]);
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  
   const handleInputChange = (e) => {
+    e.preventDefault();
     const searchTerm = e.target.value;
     setQuery(searchTerm);
+
     if (searchTerm.length > 2) {
-      fetchBooks(searchTerm);
-      navigate('/search'); // Redirect to the /search route
+      const timer = setTimeout(async () => {
+        const results = await fetchBooks(searchTerm);
+        setSearchResults(results);
+      }, 300);
+  
+      return () => clearTimeout(timer);
     } else {
       setSearchResults([]);
-    }
-  };
-
-  const fetchBooks = async (searchTerm) => {
-    try {
-      const res = await api.get(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}`);
-      setSearchResults(res.data.items || []);
-    } catch (error) {
-      console.error("Error fetching books", error);
     }
   };
 
   const handleBookSelect = (book) => {
     setSearchResults([]);
     setQuery('');
-    onBookSelect(book);
+    onBookSelect(book); // Set the selected book
+    navigate('/search'); // Navigate to the search page
   };
-
-  // Handle clicks outside of the dropdown
+  
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setSearchResults([]); // Clear search results when clicking outside
+      setSearchResults([]);
     }
   };
 
   useEffect(() => {
-    // Add event listener to the document
     document.addEventListener('mousedown', handleClickOutside);
-
-    // Clean up the event listener on component unmount
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -67,7 +72,7 @@ const NavigationBar = ({ onBookSelect }) => {
           <img src={logo} alt="BookHub" className="center-logo" />
         </Navbar.Brand>
 
-        <Form className="d-flex ms-3" ref={dropdownRef}> {/* Attach ref to Form */}
+        <Form className="d-flex ms-3" ref={dropdownRef} onSubmit={handleSubmit}>
           <FormControl
             type="search"
             placeholder="Search books or authors"
@@ -81,14 +86,14 @@ const NavigationBar = ({ onBookSelect }) => {
               {searchResults.map(book => (
                 <ListGroup.Item key={book.id} onClick={() => handleBookSelect(book)}>
                   <img 
-                    src={book.volumeInfo.imageLinks?.thumbnail || 'placeholder.jpg'} 
-                    alt={book.volumeInfo.title} 
+                    src={book.volumeInfo?.imageLinks?.thumbnail || 'placeholder.jpg'} 
+                    alt={book.volumeInfo?.title} 
                     className="search-book-image" 
                   />
                   <div>
-                    <h5>{book.volumeInfo.title}</h5>
-                    <p>By: {book.volumeInfo.authors?.join(', ') || 'Unknown'}</p>
-                    <p>Rating: {book.volumeInfo.averageRating || 'N/A'}</p>
+                    <h5>{book.volumeInfo?.title}</h5>
+                    <p>By: {book.volumeInfo?.authors?.join(', ') || 'Unknown'}</p>
+                    <p>Rating: {book.volumeInfo?.averageRating || 'N/A'}</p>
                   </div>
                 </ListGroup.Item>
               ))}
@@ -107,8 +112,16 @@ const NavigationBar = ({ onBookSelect }) => {
             <Nav.Link as={Link} to="/cart" onClick={handleLinkClick}>Cart</Nav.Link>
             <Nav.Link as={Link} to="/about" onClick={handleLinkClick}>About Us</Nav.Link>
             <Nav.Link as={Link} to="/contact" onClick={handleLinkClick}>Contact Us</Nav.Link>
-            <Nav.Link as={Link} to="/login" onClick={handleLinkClick}>Login</Nav.Link>
-            <Nav.Link className="red" as={Link} to="/signup" onClick={handleLinkClick}>Register</Nav.Link>
+            {user ? (
+              <>
+                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link as={Link} to="/login" onClick={handleLinkClick}>Login</Nav.Link>
+                <Nav.Link className="red" as={Link} to="/signup" onClick={handleLinkClick}>Register</Nav.Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
