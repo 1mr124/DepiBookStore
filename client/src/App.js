@@ -3,13 +3,18 @@ import Navbar from './components/Navbar';
 import Login from './components/Login'; 
 import SignUp from './components/SignUp';
 import Footer from './components/Footer'; 
-import BookDetails from './components/BookDetails'; // Import BookDetails
+import BookDetails from './components/BookDetails'; 
 import './App.css'; 
 import { Routes, Route, useLocation } from 'react-router-dom'; 
+import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './components/PrivateRoute'; // Import PrivateRoute
 
 // Dummy components for Books and Courses
 const Books = () => <div>Books Page</div>;
-const Courses = () => <div>Courses Page</div>;
+const Home = () => <div>Home Page</div>; // Assuming you have a Home component
+const Cart = () => <div>Cart Page</div>; 
+const About = () => <div>About</div>; 
+const Contact = () => <div>Contact</div>; 
 
 const App = () => {
   const location = useLocation();
@@ -19,21 +24,29 @@ const App = () => {
   const showFooter = location.pathname === '/login' || location.pathname === '/signup';
 
   return (
-    <div>
-      <Navbar onBookSelect={setSelectedBook} />
-      
-      <Routes>
-        <Route path="/" element={<Books />} />
-        <Route path="/books" element={<Books />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/search" element={<BookDetails selectedBook={selectedBook} />} /> {/* New route for search results */}
-        {/* Add other routes as needed */}
-      </Routes>
+    <AuthProvider> {/* Wrap the entire app with AuthProvider */}
+      <div>
+        <Navbar onBookSelect={setSelectedBook} />
+        
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
 
-      {showFooter && <Footer />}
-    </div>
+          {/* Protected Routes */}
+          <Route path="/" element={<PrivateRoute element={<Home />} />} />
+          <Route path="/books" element={<PrivateRoute element={<Books />} />} />
+          <Route path="/cart" element={<PrivateRoute element={<Cart />} />} />
+          <Route path="/search" element={<PrivateRoute><BookDetails selectedBook={selectedBook} /></PrivateRoute>} /> {/* Protecting search */}
+
+          {/* Add other routes as needed */}
+        </Routes>
+
+        {showFooter && <Footer />}
+      </div>
+    </AuthProvider>
   );
 };
 

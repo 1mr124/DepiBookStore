@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Container, Form, Button, Navbar, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../api/api'; 
-import logo from '../static/imgs/logo.png'; // Adjust path as necessary
 import googleLogo from '../static/imgs/GoogleLogo.svg'; // Adjust path as necessary
+import { useAuth } from '../context/AuthContext'; // Import the AuthContext
 import '../styles/auth.css'; // Adjust path as necessary
 
 const Login = () => {
@@ -15,6 +15,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate(); // Hook for redirecting after successful login
+  const { login } = useAuth(); // Correctly call useAuth to get login function
 
   // Handle form input change
   const handleChange = (e) => {
@@ -34,8 +35,7 @@ const Login = () => {
 
       // If login is successful
       if (response.status === 200) {
-        // Here you can save the token or user data to local storage/session storage
-        sessionStorage.setItem('token', response.data.token);
+        login(response.data.token); // Call the login function with the token
         setSuccess(true);
         setError(null);
         navigate('/'); // Redirect to home page or dashboard
@@ -49,7 +49,6 @@ const Login = () => {
 
   return (
     <div>
-
       {/* Login Form */}
       <Container className="d-flex align-items-center justify-content-center">
         <div className="login-form">
@@ -86,7 +85,7 @@ const Login = () => {
               <Form.Check type="checkbox" label="تذكرني" />
             </Form.Group>
 
-            <Button type="submit" variant="" className="w-100 buttonColor">دخول</Button>
+            <Button type="submit" className="w-100 buttonColor">دخول</Button>
 
             <div className="text-center mt-3">
               <Button variant="light" className="w-100">
