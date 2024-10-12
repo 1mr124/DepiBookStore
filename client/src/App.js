@@ -3,6 +3,8 @@ import NavigationBar from './components/NavigationBar';
 import Login from './components/Login'; 
 import SignUp from './components/SignUp';
 import Footer from './components/Footer'; 
+import AboutPage from './components/AboutPage'; 
+
 import BookDetails from './components/BookDetails'; 
 import './App.css'; 
 import { Routes, Route, useLocation } from 'react-router-dom'; 
@@ -12,7 +14,7 @@ import PrivateRoute from './components/PrivateRoute';
 const Books = () => <div>Books Page</div>;
 const Home = () => <div>Home Page</div>; 
 const Cart = () => <div>Cart Page</div>; 
-const About = () => <div>About</div>; 
+// const About = () => <div>About</div>; 
 const Contact = () => <div>Contact</div>; 
 
 const App = () => {
@@ -31,7 +33,7 @@ const App = () => {
           {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<Contact />} />
 
           {/* Protected Routes */}
