@@ -33,6 +33,7 @@ const BookDetails = ({ selectedBook }) => {
       bookId: selectedBook.id, // Assuming you have a unique ID for the book
       rating,
       review,
+      bookName: title
     };
 
     try {
