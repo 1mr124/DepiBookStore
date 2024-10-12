@@ -108,7 +108,7 @@ const NavigationBar = ({ onBookSelect }) => {
         <Navbar.Collapse id="navbarNav">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/" onClick={handleLinkClick}>Home</Nav.Link>
-            <Nav.Link as={Link} to="/books" onClick={handleLinkClick}>My Books</Nav.Link>
+            <Nav.Link as={Link} to="/books" onClick={handleLinkClick}>Books</Nav.Link>
             <Nav.Link as={Link} to="/cart" onClick={handleLinkClick}>Cart</Nav.Link>
             <Nav.Link as={Link} to="/about" onClick={handleLinkClick}>About Us</Nav.Link>
             <Nav.Link as={Link} to="/contact" onClick={handleLinkClick}>Contact Us</Nav.Link>
