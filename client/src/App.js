@@ -4,6 +4,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Footer from './components/Footer'; 
 import AboutPage from './components/AboutPage'; 
+import ContactUs from './components/ContactUs'; 
 
 import BookDetails from './components/BookDetails'; 
 import './App.css'; 
@@ -34,7 +35,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<ContactUs />} />
 
           {/* Protected Routes */}
           <Route path="/" element={<PrivateRoute element={<Home />} />} />

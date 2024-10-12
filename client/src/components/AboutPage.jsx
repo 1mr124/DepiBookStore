@@ -11,7 +11,12 @@ const About = () => {
       <Row>
         <Col md={6} className="mb-4">
           <Card>
-            <Card.Img variant="top" src="https://images.unsplash.com/photo-1600181982553-ce7d36051c01?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Book Community" />
+            <Card.Img 
+              variant="top" 
+              src="https://images.unsplash.com/photo-1600181982553-ce7d36051c01?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+              alt="Book Community" 
+              className="img-fluid" // Added class to make the image fluid
+            />
             <Card.Body>
               <Card.Title>Join Our Community</Card.Title>
               <Card.Text>
@@ -23,7 +28,12 @@ const About = () => {
         </Col>
         <Col md={6} className="mb-4">
           <Card>
-            <Card.Img variant="top" src="https://images.unsplash.com/photo-1535905496755-26ae35d0ae54?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Book Reviews" />
+            <Card.Img 
+              variant="top" 
+              src="https://images.unsplash.com/photo-1535905496755-26ae35d0ae54?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+              alt="Book Reviews" 
+              className="img-fluid" // Added class to make the image fluid
+            />
             <Card.Body>
               <Card.Title>Share Your Thoughts</Card.Title>
               <Card.Text>
