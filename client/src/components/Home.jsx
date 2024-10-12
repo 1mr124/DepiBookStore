@@ -64,25 +64,19 @@ const HomePage = () => {
           {error && <Alert variant="danger">{error}</Alert>}
           
           {/* Div for Buttons */}
-          <div className="mb-4">
-            <Row className="d-flex justify-content-center">
-              {userReviews.map((review) => (
-                <Col xs={12} sm={6} md={4} key={review._id} className="mb-3">
-                  <Card>
-                    <Card.Body>
-                      <Button
-                        variant="primary"
-                        className="w-100 text-left"
-                        onClick={() => handleBookClick(review)}
-                      >
-                        {review.bookName} {/* Displaying book name */}
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </div>
+<div className="mb-4 d-flex justify-content-center">
+  {userReviews.map((review) => (
+    <Button
+      key={review._id}
+      variant="primary"
+      className="me-2" // Adds space between buttons
+      onClick={() => handleBookClick(review)}
+    >
+      {review.bookName || "Unknown"} {/* Displaying book name */}
+    </Button>
+  ))}
+</div>
+
 
           {/* Div for Book Details */}
           {bookDetails && (
@@ -95,7 +89,7 @@ const HomePage = () => {
                   alt={bookDetails.volumeInfo.title} 
                 />
                 <Card.Body>
-                  <Card.Title>{bookDetails.volumeInfo.title}</Card.Title>
+                  <Card.Title>{bookDetails.volumeInfo.title || "Unknown"}</Card.Title>
                   <Card.Text>
                     <strong>Authors:</strong> {bookDetails.volumeInfo.authors?.join(', ') || 'Unknown'}<br />
                     <strong>Published Date:</strong> {bookDetails.volumeInfo.publishedDate || 'N/A'}<br />
