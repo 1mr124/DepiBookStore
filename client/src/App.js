@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import AboutPage from './components/AboutPage'; 
 import ContactUs from './components/ContactUs'; 
 import Home from './components/Home'; 
+import CartPage from './components/CartPage'; 
+
 
 import BookDetails from './components/BookDetails'; 
 import './App.css'; 
@@ -14,7 +16,6 @@ import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute'; 
 
 const Books = () => <div>Books Page</div>;
-const Cart = () => <div>Cart Page</div>; 
 
 const App = () => {
   const location = useLocation();
@@ -38,7 +39,7 @@ const App = () => {
           {/* Protected Routes */}
           <Route path="/" element={<PrivateRoute element={<Home />} />} />
           <Route path="/books" element={<PrivateRoute element={<Books />} />} />
-          <Route path="/cart" element={<PrivateRoute element={<Cart />} />} />
+          <Route path="/cart" element={<PrivateRoute element={<CartPage />} />} />
           <Route path="/search" element={<PrivateRoute element={<BookDetails selectedBook={selectedBook} />} />} /> {/* Pass selectedBook */}
         </Routes>
 
