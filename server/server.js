@@ -2,6 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
+const reviewRoutes = require('./routes/reviews');
+
+
 require('dotenv').config();
 
 const app = express();
@@ -18,6 +21,8 @@ app.use(cors({
   
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api', reviewRoutes);
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })

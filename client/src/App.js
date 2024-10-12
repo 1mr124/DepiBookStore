@@ -5,6 +5,7 @@ import SignUp from './components/SignUp';
 import Footer from './components/Footer'; 
 import AboutPage from './components/AboutPage'; 
 import ContactUs from './components/ContactUs'; 
+import Home from './components/Home'; 
 
 import BookDetails from './components/BookDetails'; 
 import './App.css'; 
@@ -13,10 +14,7 @@ import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute'; 
 
 const Books = () => <div>Books Page</div>;
-const Home = () => <div>Home Page</div>; 
 const Cart = () => <div>Cart Page</div>; 
-// const About = () => <div>About</div>; 
-const Contact = () => <div>Contact</div>; 
 
 const App = () => {
   const location = useLocation();

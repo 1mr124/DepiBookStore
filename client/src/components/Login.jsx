@@ -50,7 +50,7 @@ const Login = () => {
   return (
     <div>
       {/* Login Form */}
-      <Container className="d-flex align-items-center justify-content-center">
+      <Container className="d-flex align-items-center justify-content-center full-height">
         <div className="login-form">
           <Form onSubmit={handleSubmit}>
             <h2 className="text-center">دخول</h2>
