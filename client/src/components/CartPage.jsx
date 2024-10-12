@@ -4,7 +4,7 @@ import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { BsCart4 } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
-//Test
+//Test 2
 const CartPage = ({ cartItems = [] }) => {
   return (
     <Container
