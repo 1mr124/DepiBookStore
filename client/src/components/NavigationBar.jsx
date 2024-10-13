@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Navbar, Nav, Container, Form, FormControl, ListGroup } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchBooks } from '../api/publicApi'; // Import the fetchBooks function
-import logo from '../static/imgs/logo.png'; 
+import logo from '../static/imgs/Logo.png'; 
 import { useAuth } from '../context/AuthContext'; 
 import '../styles/apiSearch.css';
 
