@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, Button, Alert, Spinner } from 'react-bootstrap';
-import api from '../api/api'; // Your custom Axios instance
-import { fetchBooks } from '../api/publicApi'; // Import the fetchBooks function
+import { Container, Row, Col, Card, Button, Alert, Spinner, Form, InputGroup } from 'react-bootstrap';
+import { FaSearch, FaUser } from 'react-icons/fa'; // Import icons
+import api from '../api/api';
+import { fetchBooks } from '../api/publicApi';
 
 const HomePage = () => {
   const [userReviews, setUserReviews] = useState([]);
   const [bookDetails, setBookDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [openBookId, setOpenBookId] = useState(null); // Track the opened book ID
+  const [openBookId, setOpenBookId] = useState(null);
+  const [searchUsername, setSearchUsername] = useState('');
+  const [searchedReviews, setSearchedReviews] = useState([]);
 
+  // Fetch current user's reviews
   useEffect(() => {
     const fetchUserReviews = async () => {
       try {
-        const response = await api.get('/user'); // Use the correct API endpoint
+        const response = await api.get('/user');
         setUserReviews(response.data);
       } catch (error) {
         console.error('Error fetching user reviews:', error);
@@ -26,35 +30,55 @@ const HomePage = () => {
     fetchUserReviews();
   }, []);
 
-  const handleBookClick = async (review) => {
-    const bookId = review.bookId; // Assuming bookId is available in the review
+  // Handle search by username
+  const handleSearch = async () => {
+    try {
+      if (searchUsername.trim() === '') {
+        setError('Please enter a username to search.');
+        return;
+      }
+
+      // Make the GET request using the correct endpoint
+      const response = await api.get(`/reviews/username/${searchUsername}`);
+      
+      setSearchedReviews(response.data);
+      setError('');
+    } catch (error) {
+      console.error('Error fetching searched reviews:', error);
+      setSearchedReviews([]); // Clear the searched reviews on error
+      setError('Failed to fetch reviews for that user.');
+    }
+  };
+
+  // Handle clicking a book to view details
+  const handleBookClick = async (review, isFromSearch = false) => {
+    const bookId = review.bookId;
 
     if (openBookId === bookId) {
-      // If the book is already open, collapse it
       setOpenBookId(null);
-      setBookDetails(null); // Clear book details when collapsed
+      setBookDetails(null);
     } else {
-      // Fetch book details
       setOpenBookId(bookId);
       try {
-        const books = await fetchBooks(review.bookName); // Fetch book details using public API
+        const books = await fetchBooks(review.bookName);
         if (books.length > 0) {
-          setBookDetails(books[0]); // Set the first book details from the response
+          setBookDetails({ ...books[0], isFromSearch });
         } else {
           setError('No book details found.');
-          setBookDetails(null); // Clear previous details
+          setBookDetails(null);
         }
       } catch (err) {
         console.error('Error fetching book details:', err);
         setError('Failed to load book details.');
-        setBookDetails(null); // Clear book details on error
+        setBookDetails(null);
       }
     }
   };
 
   return (
     <Container className="d-flex flex-column full-height">
-      <h2 className="text-center mb-4 p-2">Your Reviews</h2>
+      <h2 className="text-center mb-4 p-2">User Dashboard</h2>
+
       {loading ? (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
@@ -63,47 +87,110 @@ const HomePage = () => {
         <>
           {error && <Alert variant="danger">{error}</Alert>}
           
-          {/* Div for Buttons */}
-<div className="mb-4 d-flex justify-content-center">
-  {userReviews.map((review) => (
-    <Button
-      key={review._id}
-      variant="primary"
-      className="me-2" // Adds space between buttons
-      onClick={() => handleBookClick(review)}
-    >
-      {review.bookName || "Unknown"} {/* Displaying book name */}
-    </Button>
-  ))}
-</div>
-
-
-          {/* Div for Book Details */}
-          {bookDetails && (
-            <div>
-              <Card className="mt-2">
-                <Card.Img 
-                  className='imgResult' 
-                  variant="top" 
-                  src={bookDetails.volumeInfo.imageLinks?.thumbnail || 'placeholder.jpg'} 
-                  alt={bookDetails.volumeInfo.title} 
-                />
+          <Row>
+            {/* Section for searching reviews by username */}
+            <Col md={6} className="mb-4">
+              <Card>
+                <Card.Header>
+                  <h5>
+                    <FaSearch className="me-2" /> Search User Reviews
+                  </h5>
+                </Card.Header>
                 <Card.Body>
-                  <Card.Title>{bookDetails.volumeInfo.title || "Unknown"}</Card.Title>
-                  <Card.Text>
-                    <strong>Authors:</strong> {bookDetails.volumeInfo.authors?.join(', ') || 'Unknown'}<br />
-                    <strong>Published Date:</strong> {bookDetails.volumeInfo.publishedDate || 'N/A'}<br />
-                    <strong>Average Rating:</strong> {bookDetails.volumeInfo.averageRating || 'N/A'}<br />
-                    <strong>Page Count:</strong> {bookDetails.volumeInfo.pageCount || 'N/A'}<br />
-                    <strong>Description:</strong> {bookDetails.volumeInfo.description || 'No description available.'}<br />
-                    <strong>Your Rating:</strong> {userReviews.find(review => review.bookId === openBookId)?.rating || 'No rating provided.'} {/* Display user rating */}
-                  </Card.Text>
+                  <InputGroup>
+                    <InputGroup.Text>
+                      <FaUser />
+                    </InputGroup.Text>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter username"
+                      value={searchUsername}
+                      onChange={(e) => setSearchUsername(e.target.value)}
+                    />
+                    <Button variant="primary" onClick={handleSearch}>
+                      Search
+                    </Button>
+                  </InputGroup>
 
-                  <h5>User Review</h5>
-                  <Card.Text>{userReviews.find(review => review.bookId === openBookId)?.review || 'No review provided.'}</Card.Text>
+                  {/* Display searched reviews */}
+                  {searchedReviews.length > 0 && (
+                    <div className="mt-4">
+                      <h6>Reviews by {searchUsername}:</h6>
+                      <div className="mb-4 d-flex flex-wrap">
+                        {searchedReviews.map((review) => (
+                          <Button
+                            key={review._id}
+                            variant="secondary"
+                            className="me-2"
+                            onClick={() => handleBookClick(review, true)}
+                          >
+                            {review.bookName || "Unknown"}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </Card.Body>
               </Card>
-            </div>
+            </Col>
+
+            {/* Section for current user's reviews */}
+            <Col md={6} className="mb-4">
+              <Card>
+                <Card.Header>
+                  <h5>Your Reviews</h5>
+                </Card.Header>
+                <Card.Body>
+                  <div className="mb-4 d-flex flex-wrap">
+                    {userReviews.map((review) => (
+                      <Button
+                        key={review._id}
+                        variant="primary"
+                        className="me-2"
+                        onClick={() => handleBookClick(review)}
+                      >
+                        {review.bookName || "Unknown"}
+                      </Button>
+                    ))}
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+
+          {/* Section to display book details */}
+          {bookDetails && (
+            <Row>
+              <Col md={12}>
+                <Card className="mt-2">
+                  <Card.Img
+                    className="imgResult"
+                    variant="top"
+                    src={bookDetails.volumeInfo.imageLinks?.thumbnail || 'placeholder.jpg'}
+                    alt={bookDetails.volumeInfo.title}
+                  />
+                  <Card.Body>
+                    <Card.Title>{bookDetails.volumeInfo.title || "Unknown"}</Card.Title>
+                    <Card.Text>
+                      <strong>Authors:</strong> {bookDetails.volumeInfo.authors?.join(', ') || 'Unknown'}<br />
+                      <strong>Published Date:</strong> {bookDetails.volumeInfo.publishedDate || 'N/A'}<br />
+                      <strong>Average Rating:</strong> {bookDetails.volumeInfo.averageRating || 'N/A'}<br />
+                      <strong>Page Count:</strong> {bookDetails.volumeInfo.pageCount || 'N/A'}<br />
+                      <strong>Description:</strong> {bookDetails.volumeInfo.description || 'No description available.'}<br />
+                      {/* Check if the book is from the search results or the user's reviews */}
+                      <strong>User's Rating:</strong> {bookDetails.isFromSearch
+                        ? searchedReviews.find((review) => review.bookId === openBookId)?.rating || 'No rating provided.'
+                        : userReviews.find((review) => review.bookId === openBookId)?.rating || 'No rating provided.'}
+                    </Card.Text>
+                    <h5>User Review</h5>
+                    <Card.Text>{bookDetails.isFromSearch
+                      ? searchedReviews.find((review) => review.bookId === openBookId)?.review || 'No review provided.'
+                      : userReviews.find((review) => review.bookId === openBookId)?.review || 'No review provided.'}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
           )}
         </>
       )}
