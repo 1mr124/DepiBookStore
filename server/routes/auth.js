@@ -66,5 +66,16 @@ router.post('/login', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
-
+router.get("/", async (req, res) => {
+  try {
+    // const books = await Book.find().populate('addedy', 'username email'); // Show User Added th post with books added
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Server error. Could not retrieve users." });
+  }
+});
 module.exports = router;
