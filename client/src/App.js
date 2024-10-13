@@ -7,6 +7,7 @@ import AboutPage from './components/AboutPage';
 import ContactUs from './components/ContactUs'; 
 import Home from './components/Home'; 
 import CartPage from './components/CartPage'; 
+import Book from './components/Book'; 
 
 
 import BookDetails from './components/BookDetails'; 
@@ -15,7 +16,6 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute'; 
 
-const Books = () => <div>Books Page</div>;
 
 const App = () => {
   const location = useLocation();
@@ -38,7 +38,7 @@ const App = () => {
 
           {/* Protected Routes */}
           <Route path="/" element={<PrivateRoute element={<Home />} />} />
-          <Route path="/books" element={<PrivateRoute element={<Books />} />} />
+          <Route path="/books" element={<PrivateRoute element={<Book />} />} />
           <Route path="/cart" element={<PrivateRoute element={<CartPage />} />} />
           <Route path="/search" element={<PrivateRoute element={<BookDetails selectedBook={selectedBook} />} />} /> {/* Pass selectedBook */}
         </Routes>
