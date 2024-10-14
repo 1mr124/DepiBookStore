@@ -1,123 +1,94 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+const path = require("path");
 const Book = require("../models/Book");
 const authenticateToken = require("../middleware/authenticateToken"); // Middleware for checking token
 
+// Set up multer for file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Change to your desired uploads directory
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({ storage: storage });
+
 // POST: /books/post - Submit a new Book (Protected route)
-router.post("/post", authenticateToken, async (req, res) => {
-  console.log(req.body);
+router.post("/post", authenticateToken, upload.single('coverImage'), async (req, res) => {
+  const { title, author, price, stock, description } = req.body;
+  const userId = req.user.userId; // Access the userId from token
 
-  const {
-    title,
-    author,
-    description,
-    category,
-    price,
-    stock,
-    publishedYear,
-    publisher,
-    rating,
-    coverImage,
-    isbn,
-  } = req.body;
-  // Ensure that the user is authenticated
-  const userId = req.user.userId; // Access the userId here
-  console.log(userId);
-
-  console.log("Posting...");
-
-  // Check if the userId is defined
   if (!userId) {
     return res.status(400).json({ message: 'User ID is required' });
-}
+  }
 
-  // Check that their is inputs
-  if (
-    !title &&
-    !author &&
-    !price &&
-    !description &&
-    !category &&
-    !stock &&
-    !publishedYear &&
-    !publisher &&
-    !rating &&
-    !coverImage &&
-    !isbn
-  ) {
-    return res
-      .status(400)
-      .json({ message: "No data entered. Please provide at least one field." });
+  // Mandatory fields check
+  if (!title || !author || !price || !stock) {
+    return res.status(400).json({ message: "Title, author, price, and stock are required fields." });
   }
-  // Check the mandatory inputs
-  if (!title || !author || !price) {
-    return res
-      .status(400)
-      .json({ message: "Title, author, and price are required fields." });
-  }
-  // Check the types of Inputs
-  if (
-    typeof title !== "string" ||
-    typeof author !== "string" ||
-    typeof price !== "number"
-  ) {
-    return res
-      .status(400)
-      .json({
-        message:
-          "Invalid input types. Title and author should be strings, and price should be a number.",
-      });
+
+  // Validate stock and price are positive numbers
+  if (price < 0 || stock < 0) {
+    return res.status(400).json({ message: "Price and stock must be positive values." });
   }
 
   try {
+    // Create a new book object
     const newBook = new Book({
       title,
       author,
-      description,
-      category,
       price,
       stock,
-      publishedYear,
-      publisher,
-      rating,
-      coverImage,
-      isbn,
-      addedBy: userId
+      description,
+      addedBy: userId,
     });
 
-    // save on DB
-    await newBook.save();
+    // Attach cover image path if provided
+    if (req.file) {
+      newBook.coverImage = req.file.path; // Save the file path if coverImage is uploaded
+    }
 
-    res
-      .status(201)
-      .json({ message: "Book added successfully!", book: newBook });
-    console.log("Book Added");
+    await newBook.save();
+    res.status(201).json({ message: "Book added successfully!", book: newBook });
   } catch (error) {
-    // Check the duplication
     if (error.code === 11000) {
-      return res
-        .status(400)
-        .json({
-          message:
-            "A book with the same ISBN or title and author already exists.",
-        });
+      return res.status(400).json({ message: "A book with the same title and author already exists." });
     }
     console.error(error);
     res.status(500).json({ message: "Server error. Could not add book." });
   }
 });
 
-// GET : books/              //Retrieve all posted books
-router.get("/", async (req, res) => {
+// GET : /books/search - Search for books by title or author
+router.get("/search", async (req, res) => {
+  const { query } = req.query; // `query` will be the search input
+  console.log(query);
+  
+
+  // Check if query is a valid string
+  if (!query || typeof query !== 'string') {
+    return res.status(400).json({ message: "Invalid search query." });
+  }
+
   try {
-    const books = await Book.find().populate('addedBy', 'username email'); // Show User Added th post with books added
-    /* const books = await Book.find(); Show Books only */
-    res.status(200).json(books);
+    const books = await Book.find({
+      $or: [
+        { title: { $regex: query, $options: 'i' } },
+        { author: { $regex: query, $options: 'i' } }
+      ]
+    });
+
+    console.log(books);
+    
+    res.json(books);
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({ message: "Server error. Could not retrieve books." });
+    res.status(500).json({ message: "Server error. Could not fetch books." });
   }
 });
 
