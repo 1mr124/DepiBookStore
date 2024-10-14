@@ -26,6 +26,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api', reviewRoutes);
 app.use('/books', bookRoutes);
 app.use('/profile',profileRoutes);
+app.use('/api/books', bookRoutes);
 
 
 // Connect to MongoDB
