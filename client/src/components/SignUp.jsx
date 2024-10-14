@@ -7,7 +7,8 @@ import '../styles/auth.css';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    name: '', 
+    name: '',
+    username: '', // Add username field to the formData state
     email: '',
     password: '',
     confirmPassword: '',
@@ -38,6 +39,7 @@ const SignUp = () => {
     try {
       const response = await api.post('http://localhost:3001/api/auth/signup', {
         name: formData.name,
+        username: formData.username, // Include username in the API request
         email: formData.email,
         password: formData.password,
       });
@@ -77,6 +79,16 @@ const SignUp = () => {
               type="text"
               placeholder="الاسم الكامل"
               value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group controlId="username"> {/* Add username input field */}
+            <Form.Control
+              type="text"
+              placeholder="اسم المستخدم"
+              value={formData.username}
               onChange={handleChange}
               required
             />
