@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button, Card, Spinner, Alert } from "react-bootstrap";
-import { FaSearch, FaShoppingCart } from "react-icons/fa";
-import BookPostForm from "./BookPostForm"; // Reuse the BookPostForm
+import {
+  Container, Row, Col, Form, Button, Card, Spinner, Alert, Modal
+} from "react-bootstrap";
+import { FaSearch, FaShoppingCart, FaPlusCircle, FaUpload } from "react-icons/fa";
+import BookPostForm from "./BookPostForm";
 
 const Book = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,6 +11,7 @@ const Book = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [showPostForm, setShowPostForm] = useState(false); // For toggling book post form
 
   // Handle book search
   const handleSearch = async (e) => {
@@ -19,7 +22,6 @@ const Book = () => {
     setBookData(null);
 
     try {
-      // Simulate a book search request (you would replace this with your actual API call)
       const response = await fetch(`/api/books/search?title=${searchQuery}`);
       const data = await response.json();
 
@@ -39,7 +41,6 @@ const Book = () => {
   const handleBuyBook = async (bookId) => {
     setLoading(true);
     try {
-      // Simulate buy request
       const response = await fetch(`/api/books/buy/${bookId}`, { method: "POST" });
       if (response.ok) {
         setSuccessMessage("Book purchased successfully!");
@@ -53,23 +54,17 @@ const Book = () => {
     }
   };
 
+  // Toggle Post Book Form
+  const togglePostForm = () => setShowPostForm(!showPostForm);
+
   return (
     <Container className="mt-5">
-
-      {/* Posting a Book Section */}
-      <Row className="mb-5">
-        <Col>
-          <Card className="p-4">
-            <h3 className="text-center">Post a Book for Sale</h3>
-            <BookPostForm />
-          </Card>
-        </Col>
-      </Row>
+      
 
       {/* Buying a Book Section */}
       <Row>
         <Col>
-          <Card className="p-4">
+          <Card className="p-4 custom-searchResult-margin">
             <h3 className="text-center mb-4">Search and Buy a Book</h3>
             {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
             {successMessage && <Alert variant="success">{successMessage}</Alert>}
@@ -79,6 +74,7 @@ const Book = () => {
               <Row>
                 <Col md={9}>
                   <Form.Group controlId="formSearch" className="mb-3">
+                    <Form.Label>Search by Title <span className="text-danger">*</span></Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Search for a book by title"
@@ -88,11 +84,12 @@ const Book = () => {
                     />
                   </Form.Group>
                 </Col>
+            
                 <Col md={3}>
-                  <Button
+                  <Button 
                     variant="primary"
                     type="submit"
-                    className="w-100"
+                    className="w-100 mt-4 "
                     disabled={loading}
                   >
                     {loading ? (
@@ -136,6 +133,35 @@ const Book = () => {
               </Card>
             )}
           </Card>
+        </Col>
+      </Row>
+      
+      <br/>
+
+      {/* Posting a Book Section */}
+      <Row className="mb-5">
+        <Col className="text-center">
+          <Button
+            variant="primary"
+            onClick={togglePostForm}
+            className="mb-4"
+          >
+            <FaPlusCircle /> Post a Book for Sale
+          </Button>
+
+          <Modal show={showPostForm} onHide={togglePostForm} centered>
+            <Modal.Header closeButton>
+              <Modal.Title>Post a Book</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <BookPostForm />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={togglePostForm}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Col>
       </Row>
     </Container>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Col, Row, Alert, Spinner } from "react-bootstrap";
-import { FaBook, FaDollarSign } from "react-icons/fa";
+import { FaBook, FaDollarSign, FaAsterisk } from "react-icons/fa";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import axios from "axios";
 
@@ -9,14 +9,9 @@ const BookPostForm = () => {
     title: "",
     author: "",
     description: "",
-    category: "",
     price: "",
     stock: "",
-    publishedYear: "",
-    publisher: "",
-    rating: "",
-    coverImage: "",
-    isbn: "",
+    coverImage: null, // For image upload
   });
 
   const [loading, setLoading] = useState(false);
@@ -24,7 +19,12 @@ const BookPostForm = () => {
   const [successMessage, setSuccessMessage] = useState("");
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if (name === "coverImage") {
+      setFormData({ ...formData, coverImage: e.target.files[0] }); // Handle image file upload
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -33,21 +33,34 @@ const BookPostForm = () => {
     setErrorMessage("");
     setSuccessMessage("");
 
+    // Ensure price and stock are not negative
+    if (formData.price < 0 || formData.stock < 0) {
+      setErrorMessage("Price and stock cannot be negative values.");
+      setLoading(false);
+      return;
+    }
+
     try {
-      const response = await axios.post("/books/post", formData); // API route for posting
+      const formDataObj = new FormData();
+      formDataObj.append("title", formData.title);
+      formDataObj.append("author", formData.author);
+      formDataObj.append("description", formData.description);
+      formDataObj.append("price", formData.price);
+      formDataObj.append("stock", formData.stock);
+      if (formData.coverImage) formDataObj.append("coverImage", formData.coverImage);
+
+      const response = await axios.post("/books/post", formDataObj, {
+        headers: { "Content-Type": "multipart/form-data" }, // Necessary for file upload
+      });
+
       setSuccessMessage("Book added successfully!");
       setFormData({
         title: "",
         author: "",
         description: "",
-        category: "",
         price: "",
         stock: "",
-        publishedYear: "",
-        publisher: "",
-        rating: "",
-        coverImage: "",
-        isbn: "",
+        coverImage: null,
       });
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "An error occurred");
@@ -57,11 +70,7 @@ const BookPostForm = () => {
   };
 
   return (
-    <div className="mt-5">
-      <h2 className="text-center mb-4">
-        <FaBook /> Post a Book for Sale
-      </h2>
-      
+    <div className="mt-4">
       {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
       {successMessage && <Alert variant="success">{successMessage}</Alert>}
 
@@ -69,7 +78,9 @@ const BookPostForm = () => {
         <Row>
           <Col md={6}>
             <Form.Group controlId="formTitle" className="mb-3">
-              <Form.Label>Title</Form.Label>
+              <Form.Label>
+                Title <FaAsterisk className="text-danger" />
+              </Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter book title"
@@ -100,7 +111,7 @@ const BookPostForm = () => {
           <Col md={6}>
             <Form.Group controlId="formPrice" className="mb-3">
               <Form.Label>
-                Price <FaDollarSign />
+                Price <FaDollarSign /> <FaAsterisk className="text-danger" />
               </Form.Label>
               <Form.Control
                 type="number"
@@ -115,97 +126,30 @@ const BookPostForm = () => {
 
           <Col md={6}>
             <Form.Group controlId="formStock" className="mb-3">
-              <Form.Label>Stock</Form.Label>
+              <Form.Label>
+                Stock <FaAsterisk className="text-danger" />
+              </Form.Label>
               <Form.Control
                 type="number"
                 placeholder="Enter stock quantity"
                 name="stock"
                 value={formData.stock}
                 onChange={handleChange}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col md={6}>
-            <Form.Group controlId="formCategory" className="mb-3">
-              <Form.Label>Category</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter category"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-              />
-            </Form.Group>
-          </Col>
-
-          <Col md={6}>
-            <Form.Group controlId="formPublishedYear" className="mb-3">
-              <Form.Label>Published Year</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter published year"
-                name="publishedYear"
-                value={formData.publishedYear}
-                onChange={handleChange}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col md={6}>
-            <Form.Group controlId="formPublisher" className="mb-3">
-              <Form.Label>Publisher</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter publisher"
-                name="publisher"
-                value={formData.publisher}
-                onChange={handleChange}
-              />
-            </Form.Group>
-          </Col>
-
-          <Col md={6}>
-            <Form.Group controlId="formRating" className="mb-3">
-              <Form.Label>Rating (1-5)</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter rating"
-                name="rating"
-                value={formData.rating}
-                onChange={handleChange}
-                min="1"
-                max="5"
+                required
               />
             </Form.Group>
           </Col>
         </Row>
 
         <Form.Group controlId="formCoverImage" className="mb-3">
-          <Form.Label>Cover Image URL</Form.Label>
+          <Form.Label>Cover Image</Form.Label>
           <Form.Control
-            type="text"
-            placeholder="Enter cover image URL"
+            type="file"
             name="coverImage"
-            value={formData.coverImage}
             onChange={handleChange}
+            accept="image/*"
           />
-        </Form.Group>
-
-        <Form.Group controlId="formISBN" className="mb-3">
-          <Form.Label>ISBN</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter ISBN"
-            name="isbn"
-            value={formData.isbn}
-            onChange={handleChange}
-            maxLength="13"
-          />
+          <Form.Text className="text-muted">Upload a cover image for the book</Form.Text>
         </Form.Group>
 
         <Form.Group controlId="formDescription" className="mb-3">
