@@ -2,6 +2,19 @@ const express = require("express");
 const router = express.Router();
 const Book = require("../models/Book");
 const authenticateToken = require("../middleware/authenticateToken"); // Middleware for checking token
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // وجهة حفظ الملفات
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname)); // إضافة timestamp لتجنب التكرار
+  }
+});
+
+const upload = multer({ storage: storage });
+
 
 // POST: /books/post - Submit a new Book (Protected route)
 router.post("/post", authenticateToken, async (req, res) => {
@@ -17,9 +30,10 @@ router.post("/post", authenticateToken, async (req, res) => {
     publishedYear,
     publisher,
     rating,
-    coverImage,
     isbn,
   } = req.body;
+  
+  const coverImage = req.file ? req.file.path : null;
   // Ensure that the user is authenticated
   const userId = req.user.userId; // Access the userId here
   console.log(userId);
@@ -87,7 +101,7 @@ router.post("/post", authenticateToken, async (req, res) => {
 
     // save on DB
     await newBook.save();
-
+    console.log("Saved");
     res
       .status(201)
       .json({ message: "Book added successfully!", book: newBook });
@@ -118,6 +132,24 @@ router.get("/", async (req, res) => {
     res
       .status(500)
       .json({ message: "Server error. Could not retrieve books." });
+  }
+});
+
+// GET Book By Id :
+router.get("/:id", authenticateToken, async (req, res) => {
+  const { id } = req.params; // Get the book ID from the URL parameters
+
+  try {
+    const book = await Book.findById(id).populate('addedBy', 'username email'); // Fetch book details from the database
+
+    if (!book) {
+      return res.status(404).json({ message: "Book not found." }); // Handle case where book is not found
+    }
+
+    res.status(200).json(book); // Return the book details
+  } catch (error) {
+    console.error("Error retrieving book:", error);
+    res.status(500).json({ message: "Server error. Could not retrieve book." });
   }
 });
 
