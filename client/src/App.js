@@ -7,6 +7,7 @@ import AboutPage from './components/AboutPage';
 import ContactUs from './components/ContactUs'; 
 import Home from './components/Home'; 
 import CartPage from './components/CartPage'; 
+import Profile from './components/Profile';
 import Book from './components/Book'; 
 
 
@@ -15,6 +16,7 @@ import './App.css';
 import { Routes, Route, useLocation } from 'react-router-dom'; 
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute'; 
+import EditBook from './components/EditBook';
 
 
 const App = () => {
@@ -41,6 +43,9 @@ const App = () => {
           <Route path="/books" element={<PrivateRoute element={<Book />} />} />
           <Route path="/cart" element={<PrivateRoute element={<CartPage />} />} />
           <Route path="/search" element={<PrivateRoute element={<BookDetails selectedBook={selectedBook} />} />} /> {/* Pass selectedBook */}
+          <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
+          <Route path="/edit-book/:id" element={<PrivateRoute element={<EditBook />} />} />
+
         </Routes>
 
         {showFooter && <Footer />}

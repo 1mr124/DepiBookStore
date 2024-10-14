@@ -112,6 +112,8 @@ const NavigationBar = ({ onBookSelect }) => {
             <Nav.Link as={Link} to="/cart" onClick={handleLinkClick}>Cart</Nav.Link>
             <Nav.Link as={Link} to="/about" onClick={handleLinkClick}>About Us</Nav.Link>
             <Nav.Link as={Link} to="/contact" onClick={handleLinkClick}>Contact Us</Nav.Link>
+            <Nav.Link as={Link} to="/profile" onClick={handleLinkClick}>Profile</Nav.Link>
+
             {user ? (
               <>
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>

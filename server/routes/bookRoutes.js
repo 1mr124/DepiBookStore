@@ -68,7 +68,6 @@ router.post("/post", authenticateToken, upload.single('coverImage'), async (req,
 router.get("/search", async (req, res) => {
   const { query } = req.query; // `query` will be the search input
   console.log(query);
-  
 
   // Check if query is a valid string
   if (!query || typeof query !== 'string') {
@@ -84,11 +83,30 @@ router.get("/search", async (req, res) => {
     });
 
     console.log(books);
-    
+
     res.json(books);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error. Could not fetch books." });
+  } // Closing bracket for the try-catch block
+}); // Closing bracket for the router.get method
+
+
+// GET Book By Id :
+router.get("/:id", authenticateToken, async (req, res) => {
+  const { id } = req.params; // Get the book ID from the URL parameters
+
+  try {
+    const book = await Book.findById(id).populate('addedBy', 'username email'); // Fetch book details from the database
+
+    if (!book) {
+      return res.status(404).json({ message: "Book not found." }); // Handle case where book is not found
+    }
+
+    res.status(200).json(book); // Return the book details
+  } catch (error) {
+    console.error("Error retrieving book:", error);
+    res.status(500).json({ message: "Server error. Could not retrieve book." });
   }
 });
 
