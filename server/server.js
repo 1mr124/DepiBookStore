@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const reviewRoutes = require('./routes/reviews');
+const bookRoutes = require('./routes/bookRoutes');
 
 
 require('dotenv').config();
@@ -22,12 +23,14 @@ app.use(cors({
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api', reviewRoutes);
+app.use('/books', bookRoutes);
 
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log(err));
+
 
 // Start the server
 const PORT = process.env.PORT || 3001;
