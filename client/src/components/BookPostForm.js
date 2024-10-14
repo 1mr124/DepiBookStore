@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button, Col, Row, Alert, Spinner } from "react-bootstrap";
 import { FaBook, FaDollarSign, FaAsterisk } from "react-icons/fa";
 import { AiOutlineCloudUpload } from "react-icons/ai";
-import axios from "axios";
+import api from '../api/api'; // Import your API instance
 
 const BookPostForm = () => {
   const [formData, setFormData] = useState({
@@ -49,19 +49,21 @@ const BookPostForm = () => {
       formDataObj.append("stock", formData.stock);
       if (formData.coverImage) formDataObj.append("coverImage", formData.coverImage);
 
-      const response = await axios.post("/books/post", formDataObj, {
+      const response = await api.post("/books/post", formDataObj, {
         headers: { "Content-Type": "multipart/form-data" }, // Necessary for file upload
       });
 
-      setSuccessMessage("Book added successfully!");
-      setFormData({
-        title: "",
-        author: "",
-        description: "",
-        price: "",
-        stock: "",
-        coverImage: null,
-      });
+      if (response.status === 201) {
+        setSuccessMessage("Book added successfully!");
+        setFormData({
+          title: "",
+          author: "",
+          description: "",
+          price: "",
+          stock: "",
+          coverImage: null,
+        });
+      }
     } catch (error) {
       setErrorMessage(error.response?.data?.message || "An error occurred");
     } finally {

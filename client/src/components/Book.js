@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import {
   Container, Row, Col, Form, Button, Card, Spinner, Alert, Modal
 } from "react-bootstrap";
-import { FaSearch, FaShoppingCart, FaPlusCircle, FaUpload } from "react-icons/fa";
+import { FaSearch, FaShoppingCart, FaPlusCircle } from "react-icons/fa";
 import BookPostForm from "./BookPostForm";
+import api from '../api/api'; // Import your API instance
 
 const Book = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [bookData, setBookData] = useState(null);
+  const [bookData, setBookData] = useState([]); // Change to an array
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -19,14 +20,22 @@ const Book = () => {
     setLoading(true);
     setErrorMessage("");
     setSuccessMessage("");
-    setBookData(null);
+    setBookData([]); // Reset bookData to an empty array
 
     try {
-      const response = await fetch(`/api/books/search?title=${searchQuery}`);
-      const data = await response.json();
+      // Ensure searchQuery is properly encoded
+      const response = await api.get(`/books/search?query=${encodeURIComponent(searchQuery)}`);
 
-      if (response.ok) {
-        setBookData(data);
+      if (response.status === 200) { // Check for successful response
+        const data = await response.data; // Access data directly from the response object
+        
+        // Check if data is an array and has at least one book
+        if (Array.isArray(data) && data.length > 0) {
+          setBookData(data); // Set bookData to the array of books
+        } else {
+          setErrorMessage("No books found.");
+          setBookData([]);
+        }
       } else {
         throw new Error("Book not found");
       }
@@ -41,8 +50,8 @@ const Book = () => {
   const handleBuyBook = async (bookId) => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/books/buy/${bookId}`, { method: "POST" });
-      if (response.ok) {
+      const response = await api.post(`/books/buy/${bookId}`); // Use api.post instead of fetch
+      if (response.status === 200) { // Check for successful response
         setSuccessMessage("Book purchased successfully!");
       } else {
         throw new Error("Unable to buy the book");
@@ -59,8 +68,6 @@ const Book = () => {
 
   return (
     <Container className="mt-5">
-      
-
       {/* Buying a Book Section */}
       <Row>
         <Col>
@@ -74,7 +81,7 @@ const Book = () => {
               <Row>
                 <Col md={9}>
                   <Form.Group controlId="formSearch" className="mb-3">
-                    <Form.Label>Search by Title <span className="text-danger">*</span></Form.Label>
+                    <Form.Label>Search by Title, Author <span className="text-danger">*</span></Form.Label>
                     <Form.Control
                       type="text"
                       placeholder="Search for a book by title"
@@ -84,12 +91,11 @@ const Book = () => {
                     />
                   </Form.Group>
                 </Col>
-            
                 <Col md={3}>
                   <Button 
                     variant="primary"
                     type="submit"
-                    className="w-100 mt-4 "
+                    className="w-100 mt-4"
                     disabled={loading}
                   >
                     {loading ? (
@@ -105,32 +111,47 @@ const Book = () => {
             </Form>
 
             {/* Display Search Results */}
-            {bookData && (
-              <Card className="mb-4">
-                <Card.Body>
-                  <Card.Title>{bookData.title}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">{bookData.author}</Card.Subtitle>
-                  <Card.Text>{bookData.description}</Card.Text>
-                  <Card.Text>
-                    <strong>Price: </strong> ${bookData.price}
-                  </Card.Text>
+            {bookData.length > 0 ? (
+              bookData.map((book) => (
+                <Card className="mb-4" key={book._id}>
+                  <Card.Body>
+                    <Card.Title>{book.title}</Card.Title>
+                    <Row className="mb-3">
+                      <Col md={6}>
+                        <Card.Subtitle className="mb-1 text-muted">
+                          <strong>Author:</strong> {book.author}
+                        </Card.Subtitle>
+                      </Col>
+                      <Col md={6}>
+                        <Card.Text className="mb-0">
+                          <strong>Price:</strong> ${book.price}
+                        </Card.Text>
+                      </Col>
+                    </Row>
+                    <Card.Text>
+                      <strong>Description:</strong>
+                    </Card.Text>
+                    <Card.Text className="text-muted">{book.description}</Card.Text>
 
-                  <Button
-                    variant="success"
-                    onClick={() => handleBuyBook(bookData._id)}
-                    disabled={loading}
-                    className="w-100"
-                  >
-                    {loading ? (
-                      <Spinner animation="border" size="sm" />
-                    ) : (
-                      <>
-                        <FaShoppingCart /> Buy Now
-                      </>
-                    )}
-                  </Button>
-                </Card.Body>
-              </Card>
+                    <Button
+                      variant="success"
+                      onClick={() => handleBuyBook(book._id)}
+                      disabled={loading}
+                      className="w-100"
+                    >
+                      {loading ? (
+                        <Spinner animation="border" size="sm" />
+                      ) : (
+                        <>
+                          <FaShoppingCart /> Buy Now
+                        </>
+                      )}
+                    </Button>
+                  </Card.Body>
+                </Card>
+              ))
+            ) : (
+              <Alert variant="warning">No books found.</Alert>
             )}
           </Card>
         </Col>
