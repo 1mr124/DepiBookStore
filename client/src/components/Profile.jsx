@@ -1,18 +1,22 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Card, Button, Spinner, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Spinner, Alert , Modal } from 'react-bootstrap';
 import axios from 'axios';
 // import { FaEdit, FaTrashAlt } from 'react-icons/fa'; // Import icons for editing and deleting
 import api from '../api/api';
 import { useNavigate } from 'react-router-dom';
 
 
+
 const Profile = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [selectedBook, setSelectedBook] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  
 
   // Fetch the user's books from the API
   useEffect(() => {
@@ -52,6 +56,28 @@ const Profile = () => {
     }
   };
 
+  // Fetch book details by id
+  const fetchBookDetails = async (bookId) => {
+    try {
+      const response = await api.get(`http://localhost:3001/books/${bookId}`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
+      setSelectedBook(response.data);
+      setShowModal(true);
+    } catch (error) {
+      console.error('Error fetching book details:', error);
+      setError('Failed to fetch book details.');
+    }
+  };
+
+  // Close the modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedBook(null);
+  };
+
   return (
     <Container className="mt-4">
       <h1 className="display-4 mt-5 text-center font-weight-bold" >My Books</h1>
@@ -74,13 +100,43 @@ const Profile = () => {
                       <strong>Price:</strong> ${book.price}<br />
                       <strong>Stock:</strong> {book.stock || 'N/A'}<br />
                     </Card.Text>
-                    <Button variant="primary" onClick={() => navigate(`/edit-book/${book._id}`)}>Edit</Button>
+                    <Button variant="primary" onClick={() => fetchBookDetails(book._id)}  >View Details</Button>
+                    <Button variant="primary" onClick={() => navigate(`/edit-book/${book._id}`)} className="ms-2">Edit</Button>
                     <Button variant="danger" onClick={() => handleDelete(book._id)} className="ms-2">Delete</Button>
                   </Card.Body>
                 </Card>
               </Col>
             ))}
           </Row>
+          {/* Display selected book details */}
+          <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>{selectedBook?.title}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {selectedBook && (
+                <>
+                  <img 
+                    src={selectedBook.coverImage || 'placeholder.jpg'} 
+                    alt={selectedBook.title} 
+                    className="img-fluid mb-3"
+                  />
+                  <p><strong>Author:</strong> {selectedBook.author}</p>
+                  <p><strong>Description:</strong> {selectedBook.description}</p>
+                  <p><strong>Category:</strong> {selectedBook.category}</p>
+                  <p><strong>Published Year:</strong> {selectedBook.publishedYear}</p>
+                  <p><strong>Publisher:</strong> {selectedBook.publisher}</p>
+                  <p><strong>Rating:</strong> {selectedBook.rating || 'N/A'}</p>
+                  <p><strong>ISBN:</strong> {selectedBook.isbn || 'N/A'}</p>
+                </>
+              )}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseModal}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </>
       )}
     </Container>
@@ -90,108 +146,3 @@ const Profile = () => {
 export default Profile;
 
 
-
-// const MyPosts = () => {
-//   const [books, setBooks] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState('');
-//   const [message, setMessage] = useState('');
-
-//   // Fetch current user's books (posts)
-//   useEffect(() => {
-//     const fetchUserBooks = async () => {
-//       try {
-//         const token = localStorage.getItem('token'); // Token fetched from local storage
-//         const response = await api.get('/profile', {
-//           headers: { Authorization: `Bearer ${token}` }
-//         });
-//         setBooks(response.data); // Set fetched books to state
-//       } catch (error) {
-//         console.error('Error fetching books:', error);
-//         setError('Failed to fetch your posts.');
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchUserBooks();
-//   }, []);
-
-//   // Handle delete book
-//   const deleteBook = async (id) => {
-//     try {
-//       const token = localStorage.getItem('token');
-//       await api.delete(`/profile/${id}`, {
-//         headers: { Authorization: `Bearer ${token}` }
-//       });
-//       setMessage('Book deleted successfully!');
-//       setBooks(books.filter((book) => book._id !== id)); // Update UI after deletion
-//     } catch (error) {
-//       console.error('Error deleting book:', error);
-//       setError('Failed to delete the book.');
-//     }
-//   };
-
-//   // Handle edit book
-//   const editBook = (id) => {
-//     // Redirect to the edit page for the book
-//     window.location.href = `/edit-book/${id}`;
-//   };
-
-//   return (
-//     <Container className="d-flex flex-column full-height">
-//       <h2 className="text-center mb-4 p-2">My Posts</h2>
-
-//       {loading ? (
-//         <Spinner animation="border" role="status">
-//           <span className="visually-hidden">Loading...</span>
-//         </Spinner>
-//       ) : (
-//         <>
-//           {error && <Alert variant="danger">{error}</Alert>}
-//           {message && <Alert variant="success">{message}</Alert>}
-
-//           <Row>
-//             {/* Display user books/posts */}
-//             {books.length > 0 ? (
-//               books.map((book) => (
-//                 <Col md={4} className="mb-4" key={book._id}>
-//                   <Card>
-//                     <Card.Img
-//                       variant="top"
-//                       src={book.coverImage || 'placeholder.jpg'}
-//                       alt={book.title}
-//                     />
-//                     <Card.Body>
-//                       <Card.Title>{book.title}</Card.Title>
-//                       <Card.Text>
-//                         <strong>Author:</strong> {book.author || 'Unknown'}<br />
-//                         <strong>Category:</strong> {book.category || 'Uncategorized'}<br />
-//                         <strong>Price:</strong> ${book.price || 'N/A'}<br />
-//                         <strong>Published:</strong> {book.publishedYear || 'N/A'}
-//                       </Card.Text>
-//                       <div className="d-flex justify-content-between">
-//                         <Button variant="primary" onClick={() => editBook(book._id)}>
-//                           <FaEdit /> Edit
-//                         </Button>
-//                         <Button variant="danger" onClick={() => deleteBook(book._id)}>
-//                           <FaTrashAlt /> Delete
-//                         </Button>
-//                       </div>
-//                     </Card.Body>
-//                   </Card>
-//                 </Col>
-//               ))
-//             ) : (
-//               <Col md={12}>
-//                 <Alert variant="info">You have no posts yet.</Alert>
-//               </Col>
-//             )}
-//           </Row>
-//         </>
-//       )}
-//     </Container>
-//   );
-// };
-
-// export default MyPosts;
