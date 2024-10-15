@@ -24,7 +24,7 @@ const App = () => {
   const [selectedBook, setSelectedBook] = useState(null); // Manage selected book state
   
   // Determine whether to show the footer
-  const showFooter = location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/contact' || location.pathname === '/about';
+  const showFooter = location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/contact';
 
   return (
     <AuthProvider> {/* Wrap the entire app with AuthProvider */}
