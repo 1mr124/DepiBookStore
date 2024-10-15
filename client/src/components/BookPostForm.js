@@ -49,7 +49,7 @@ const BookPostForm = () => {
       formDataObj.append("stock", formData.stock);
       if (formData.coverImage) formDataObj.append("coverImage", formData.coverImage);
 
-      const response = await api.post("http://localhost:3001/books/post", formDataObj, {
+      const response = await api.post("http://localhost:3001/api/books/post", formDataObj, {
         headers: { "Content-Type": "multipart/form-data" }, // Necessary for file upload
       });
 

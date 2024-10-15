@@ -1,23 +1,79 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button, Table, Modal, Form } from "react-bootstrap";
+import api from '../api/api'; // Import your API instance
 
 const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [selectedBookId, setSelectedBookId] = useState(null); // To store the ID of the book to be purchased
+  const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
 
   const handleCheckout = () => {
-    setShowModal(true);
+    if (cartItems.length > 0) {
+      setShowModal(true); // Show the modal when proceeding to checkout
+    } else {
+      alert("Your cart is empty. Please add items to your cart before checking out.");
+    }
   };
 
   const handleConfirm = async () => {
-    // Call the onCheckout function with the password
-    const success = await onCheckout(password);
-    if (success) {
-      setShowModal(false);  // Close modal if password is correct
-    } else {
-      setErrorMessage("Incorrect password. Please try again.");
+    console.log("Confirm button clicked");
+    console.log("Password entered:", password);  // Log the password
+  
+    try {
+      // Create a JSON payload with the password
+      const payload = { password };
+      
+      // Send the request as JSON
+      const response = await api.post("/books/validate-password", payload, {
+        headers: {
+          "Content-Type": "application/json",  // Set the content type to JSON
+          Authorization: `Bearer ${token}`,     // JWT token for authentication
+        },
+      });
+  
+      const result = response.data;  // Axios returns the result in `response.data`
+  
+      if (response.status === 200) {
+        console.log("Password validation success:", result.message);
+  
+        // Now you can proceed to update stock or finalize the purchase
+        const stockUpdateResponse = await api.post(`/books/buy/${selectedBookId}`, 
+        { quantity: 1 }, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          }
+        });
+  
+        const stockUpdateResult = stockUpdateResponse.data;
+  
+        if (stockUpdateResponse.status === 200) {
+          console.log("Checkout success:", stockUpdateResult.message);
+          setShowModal(false);  // Close the modal on success
+          setErrorMessage("");  // Clear any error message
+          onCheckout();  // Call the onCheckout function to refresh the cart or redirect
+        } else {
+          console.log("Checkout failed:", stockUpdateResult.message);
+          setErrorMessage(stockUpdateResult.message || "Something went wrong. Please try again.");
+        }
+      } else {
+        console.log("Password validation failed:", result.message);
+        setErrorMessage(result.message || "Invalid password. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      setErrorMessage("Server error. Please try again later.");
     }
+  };
+
+  
+  
+
+  const handleSelectBookForCheckout = (bookId) => {
+    setSelectedBookId(bookId);
+    setShowModal(true); // Show the modal for password input when a book is selected for checkout
   };
 
   return (
@@ -45,10 +101,13 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
                       <td>{item.author}</td>
                       <td>${item.price}</td>
                       <td>{item.quantity}</td>
-                      <td>${item.price * item.quantity}</td>
+                      <td>${(item.price * item.quantity).toFixed(2)}</td>
                       <td>
                         <Button variant="danger" onClick={() => onRemoveItem(item._id)}>
                           Remove
+                        </Button>
+                        <Button variant="success" onClick={() => handleSelectBookForCheckout(item._id)}>
+                          Buy
                         </Button>
                       </td>
                     </tr>
