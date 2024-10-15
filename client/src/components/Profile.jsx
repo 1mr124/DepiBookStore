@@ -6,6 +6,8 @@ import axios from 'axios';
 // import { FaEdit, FaTrashAlt } from 'react-icons/fa'; // Import icons for editing and deleting
 import api from '../api/api';
 import { useNavigate } from 'react-router-dom';
+import { FaSearch, FaShoppingCart, FaPlusCircle } from "react-icons/fa";
+import BookPostForm from "./BookPostForm";
 
 
 
@@ -15,6 +17,8 @@ const Profile = () => {
   const [error, setError] = useState('');
   const [selectedBook, setSelectedBook] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [showPostForm, setShowPostForm] = useState(false); // For toggling book post form
+  const [updatedBook, setUpdatedBook] = useState(null);
   const navigate = useNavigate();
   
 
@@ -72,15 +76,54 @@ const Profile = () => {
     }
   };
 
+  const handleEditClick = (bookId) => {
+    setSelectedBook(bookId);
+  };
+
+  const handleBookUpdated = (book) => {
+    setUpdatedBook(book);
+    setSelectedBook(null); // إغلاق نموذج التحرير بعد التحديث
+  };
+
   // Close the modal
   const handleCloseModal = () => {
     setShowModal(false);
     setSelectedBook(null);
   };
 
+  // Toggle Post Book Form
+  const togglePostForm = () => setShowPostForm(!showPostForm);
+
+
   return (
     <Container className="mt-4">
       <h1 className="display-4 mt-5 text-center font-weight-bold" >My Books</h1>
+      {/* <Button variant="primary" onClick={handleAddPost} className="mb-4">Add New Post</Button> */}
+      <Row className="mb-5">
+        <Col className="text-center">
+          <Button
+            variant="primary"
+            onClick={togglePostForm}
+            className="mb-4"
+          >
+            <FaPlusCircle /> Post a Book for Sale
+          </Button>
+
+          <Modal show={showPostForm} onHide={togglePostForm} centered>
+            <Modal.Header closeButton>
+              <Modal.Title>Post a Book</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <BookPostForm />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={togglePostForm}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        </Col>
+      </Row>
       {loading ? (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
@@ -92,7 +135,8 @@ const Profile = () => {
             {books.map((book) => (
               <Col md={4} key={book._id} className="mb-4">
                 <Card>
-                  <Card.Img variant="top" src={book.coverImage || 'placeholder.jpg'} />
+                  {console.log(book.coverImage)}
+                  <Card.Img style={{width: '100%',height: '200px',objectFit: 'cover'}} variant="top" src={`http://localhost:3001/${book.coverImage}` }  alt={book.title}/>
                   <Card.Body>
                     <Card.Title>{book.title}</Card.Title>
                     <Card.Text>
@@ -117,8 +161,8 @@ const Profile = () => {
               {selectedBook && (
                 <>
                   <img 
-                    src={selectedBook.coverImage || 'placeholder.jpg'} 
-                    alt={selectedBook.title} 
+                   src={`http://localhost:3001/${selectedBook.coverImage}`}
+                   alt={selectedBook.title}
                     className="img-fluid mb-3"
                   />
                   <p><strong>Author:</strong> {selectedBook.author}</p>

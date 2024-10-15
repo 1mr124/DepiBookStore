@@ -45,6 +45,7 @@ const App = () => {
           <Route path="/search" element={<PrivateRoute element={<BookDetails selectedBook={selectedBook} />} />} /> {/* Pass selectedBook */}
           <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
           <Route path="/edit-book/:id" element={<PrivateRoute element={<EditBook />} />} />
+          
 
         </Routes>
 

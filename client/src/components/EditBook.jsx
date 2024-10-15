@@ -49,21 +49,44 @@ const EditBook = () => {
   // Handle form input change
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setBook((prevBook) => ({
-      ...prevBook,
-      [name]: value,
-    }));
+    if (name === 'coverImage') {
+      setBook({
+        ...book,
+        coverImage: e.target.files[0], // Set the selected file
+      });
+    } else {
+      setBook({
+        ...book,
+        [name]: value,
+      });
+    }
+    // setBook((prevBook) => ({
+    //   ...prevBook,
+    //   [name]: value,
+    // }));
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formDataToSubmit = new FormData();
+    formDataToSubmit.append('title', book.title);
+    formDataToSubmit.append('description', book.description);
+    formDataToSubmit.append('price', book.price);
+    formDataToSubmit.append('stock', book.stock);
+
+    // If a new cover image is provided, append it
+    if (book.coverImage) {
+      formDataToSubmit.append('coverImage', book.coverImage);
+    }
+
     try {
       await api.put(`http://localhost:3001/profile/${id}`, book, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
       });
+      // onBookUpdated(response.data);
       alert('Book updated successfully!');
       navigate('/profile'); // Redirect to My Posts after updating
     } catch (error) {
@@ -191,10 +214,9 @@ const EditBook = () => {
             <Form.Group controlId="formCoverImage" className="mb-3">
               <Form.Label>Cover Image URL</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Enter cover image URL"
-                name="coverImage"
-                value={book.coverImage}
+                type="file" 
+                name="coverImage" 
+                accept="image/*" 
                 onChange={handleChange}
               />
             </Form.Group>

@@ -6,6 +6,7 @@ import { FaSearch, FaShoppingCart, FaPlusCircle } from "react-icons/fa";
 import BookPostForm from "./BookPostForm";
 import api from '../api/api'; // Import your API instance
 
+
 const Book = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [bookData, setBookData] = useState([]); // Change to an array
