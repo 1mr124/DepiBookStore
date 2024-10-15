@@ -81,12 +81,12 @@ const EditBook = () => {
     }
 
     try {
-      await api.put(`http://localhost:3001/profile/${id}`, book, {
+      await api.put(`http://localhost:3001/profile/${id}`, formDataToSubmit, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'multipart/form-data',  // Ensure multipart data is being sent
         }
       });
-      // onBookUpdated(response.data);
       alert('Book updated successfully!');
       navigate('/profile'); // Redirect to My Posts after updating
     } catch (error) {
