@@ -1,50 +1,98 @@
-import React from 'react';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
-import { BsCart4 } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Container, Row, Col, Button, Table, Modal, Form } from "react-bootstrap";
 
-const CartPage = ({ cartItems = [] }) => {
+const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleCheckout = () => {
+    setShowModal(true);
+  };
+
+  const handleConfirm = async () => {
+    // Call the onCheckout function with the password
+    const success = await onCheckout(password);
+    if (success) {
+      setShowModal(false);  // Close modal if password is correct
+    } else {
+      setErrorMessage("Incorrect password. Please try again.");
+    }
+  };
+
   return (
-    <Container
-      className="d-flex flex-column justify-content-center align-items-center min-vh-100">
-      <h1 className="my-4 text-center">Shopping Cart</h1>
-      {cartItems.length === 0 ? (
-        <div className="text-center my-5">
-          <BsCart4 size={50} />
-          <h2>Your Cart is Empty</h2>
-          <p>Looks like you haven't added anything to your cart yet.</p>
-          <Link to="/books">
-            <Button variant="primary">Browse Books</Button>
-          </Link>
-        </div>
-      ) : (
-        <>
-          <Row>
-            {cartItems.map((item, index) => (
-              <Col key={index} md={4} lg={3} className="mb-4">
-                <Card>
-                  <Card.Img variant="top" src={item.image} alt={item.title} />
-                  <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
-                    <Card.Text>
-                      <strong>Author:</strong> {item.author}
-                    </Card.Text>
-                    <Card.Text>
-                      <strong>Price:</strong> ${item.price}
-                    </Card.Text>
-                    <Button variant="danger">Remove from Cart</Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-          <div className="text-center my-4">
-            <Button variant="success" size="lg">
-              Proceed to Checkout
-            </Button>
-          </div>
-        </>
-      )}
+    <Container className="custom-searchResult-margin">
+      <Row>
+        <Col>
+          <h3>Your Cart</h3>
+          {cartItems.length > 0 ? (
+            <>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cartItems.map((item) => (
+                    <tr key={item._id}>
+                      <td>{item.title}</td>
+                      <td>{item.author}</td>
+                      <td>${item.price}</td>
+                      <td>{item.quantity}</td>
+                      <td>${item.price * item.quantity}</td>
+                      <td>
+                        <Button variant="danger" onClick={() => onRemoveItem(item._id)}>
+                          Remove
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+              <Button variant="success" onClick={handleCheckout}>
+                Proceed to Checkout
+              </Button>
+            </>
+          ) : (
+            <p>Your cart is empty</p>
+          )}
+        </Col>
+      </Row>
+
+      {/* Password Confirmation Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Checkout</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+              />
+            </Form.Group>
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleConfirm}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };

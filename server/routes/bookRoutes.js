@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const path = require("path");
+const bcrypt = require("bcrypt");
 const Book = require("../models/Book");
+const User = require("../models/User"); // Make sure the User model is imported
 const authenticateToken = require("../middleware/authenticateToken"); // Middleware for checking token
 
 // Set up multer for file uploads
@@ -15,6 +17,7 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
   }
 });
+
 // Filter to accept image files only
 const fileFilter = (req, file, cb) => {
   const allowedFileTypes = /jpeg|jpg|png/;
@@ -81,10 +84,9 @@ router.post("/post", authenticateToken, upload.single('coverImage'), async (req,
   }
 });
 
-// GET : /books/search - Search for books by title or author
+// GET: /books/search - Search for books by title or author
 router.get("/search", async (req, res) => {
   const { query } = req.query; // `query` will be the search input
-  console.log(query);
 
   // Check if query is a valid string
   if (!query || typeof query !== 'string') {
@@ -99,17 +101,14 @@ router.get("/search", async (req, res) => {
       ]
     });
 
-    console.log(books);
-
     res.json(books);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error. Could not fetch books." });
-  } // Closing bracket for the try-catch block
-}); // Closing bracket for the router.get method
+  }
+});
 
-
-// GET Book By Id :
+// GET: /books/:id - Get Book By Id (with token authentication)
 router.get("/:id", authenticateToken, async (req, res) => {
   const { id } = req.params; // Get the book ID from the URL parameters
 
@@ -124,6 +123,48 @@ router.get("/:id", authenticateToken, async (req, res) => {
   } catch (error) {
     console.error("Error retrieving book:", error);
     res.status(500).json({ message: "Server error. Could not retrieve book." });
+  }
+});
+
+// POST: /books/buy/:id - Handle checkout with password validation and reduce stock
+router.post("/buy/:id", authenticateToken, async (req, res) => {
+  const { id } = req.params; // Book ID
+  const { password } = req.body; // User password from the request body
+  const userId = req.user.userId; // User ID from the token
+
+  if (!password) {
+    return res.status(400).json({ message: "Password is required." });
+  }
+
+  try {
+    // Fetch the user from the database (assuming you have a User model)
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    // Check if the password matches (assuming you're using bcrypt for hashing)
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid password." });
+    }
+
+    // Find the book by its ID
+    const book = await Book.findById(id);
+    if (!book || book.stock <= 0) {
+      return res.status(400).json({ message: "Insufficient stock for this book." });
+    }
+
+    // Decrease the stock of the book
+    book.stock -= 1;
+    await book.save();
+
+    // You can also handle additional logic like adding the book to the user's purchase history
+
+    res.status(200).json({ message: "Purchase successful. Stock updated." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error. Could not complete the purchase." });
   }
 });
 
