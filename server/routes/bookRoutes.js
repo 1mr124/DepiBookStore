@@ -15,8 +15,25 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
   }
 });
+// Filter to accept image files only
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = /jpeg|jpg|png/;
+  const extname = allowedFileTypes.test(path.extname(file.originalname).toLowerCase());
+  const mimetype = allowedFileTypes.test(file.mimetype);
 
-const upload = multer({ storage: storage });
+  if (extname && mimetype) {
+    return cb(null, true);
+  } else {
+    cb(new Error('Only images are allowed'));
+  }
+};
+
+// Middleware to handle image upload
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1024 * 1024 * 5 }, // Max size 5MB
+  fileFilter: fileFilter
+});
 
 // POST: /books/post - Submit a new Book (Protected route)
 router.post("/post", authenticateToken, upload.single('coverImage'), async (req, res) => {

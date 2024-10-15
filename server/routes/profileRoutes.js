@@ -1,7 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 const Book = require('../models/Book'); // نموذج الكتاب
 const authenticateToken = require("../middleware/authenticateToken"); // Middleware for checking token
+
+// MULTER FOR UPLOADING IMAGES : 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); 
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname); 
+  },
+});
+
+const upload = multer({ storage });
 
 // GET /    To get all Authenricated User Posts
 router.get('/', authenticateToken, async (req, res) => {
@@ -41,11 +54,11 @@ router.delete('/:id', authenticateToken, async (req, res) => {
   }
 });
 
-// 3. تعديل بيانات الكتاب بناءً على معرف الكتاب
-router.put('/:id', authenticateToken, async (req, res) => {
-  const { title, author, description, category, price, stock, publishedYear, publisher, rating, coverImage, isbn } = req.body;
 
-  // بناء الجسم المحدث
+// PUT (Update book by id)
+router.put('/:id', authenticateToken, upload.single('coverImage'), async (req, res) => {
+  const { title, author, description, category, price, stock, publishedYear, publisher, rating, isbn } = req.body;
+
   const updatedBook = {};
   if (title) updatedBook.title = title;
   if (author) updatedBook.author = author;
@@ -56,18 +69,16 @@ router.put('/:id', authenticateToken, async (req, res) => {
   if (publishedYear) updatedBook.publishedYear = publishedYear;
   if (publisher) updatedBook.publisher = publisher;
   if (rating) updatedBook.rating = rating;
-  if (coverImage) updatedBook.coverImage = coverImage;
+  if (req.file) updatedBook.coverImage = req.file.path; 
   if (isbn) updatedBook.isbn = isbn;
 
   try {
     let book = await Book.findById(req.params.id);
 
-    // تأكد أن الكتاب موجود ويخص المستخدم الحالي
     if (!book) {
       return res.status(404).json({ msg: 'Book not found' });
     }
 
-    // تحديث الكتاب
     book = await Book.findByIdAndUpdate(req.params.id, { $set: updatedBook }, { new: true });
 
     res.json(book);
