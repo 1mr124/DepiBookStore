@@ -110,9 +110,8 @@ const NavigationBar = ({ onBookSelect }) => {
             <Nav.Link as={Link} to="/" onClick={handleLinkClick}>Home</Nav.Link>
             <Nav.Link as={Link} to="/books" onClick={handleLinkClick}>Books</Nav.Link>
             <Nav.Link as={Link} to="/cart" onClick={handleLinkClick}>Cart</Nav.Link>
-            <Nav.Link as={Link} to="/about" onClick={handleLinkClick}>About Us</Nav.Link>
-            <Nav.Link as={Link} to="/contact" onClick={handleLinkClick}>Contact Us</Nav.Link>
             <Nav.Link as={Link} to="/profile" onClick={handleLinkClick}>Profile</Nav.Link>
+            <Nav.Link as={Link} to="/contact" onClick={handleLinkClick}>Contact Us</Nav.Link>
 
             {user ? (
               <>
@@ -120,6 +119,7 @@ const NavigationBar = ({ onBookSelect }) => {
               </>
             ) : (
               <>
+                <Nav.Link as={Link} to="/about" onClick={handleLinkClick}>About Us</Nav.Link>
                 <Nav.Link as={Link} to="/login" onClick={handleLinkClick}>Login</Nav.Link>
                 <Nav.Link className="red" as={Link} to="/signup" onClick={handleLinkClick}>Register</Nav.Link>
               </>
