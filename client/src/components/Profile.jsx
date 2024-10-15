@@ -51,7 +51,7 @@ const Profile = () => {
 
   const fetchBookDetails = async (bookId) => {
     try {
-      const response = await api.get(`http://localhost:3001/books/${bookId}`, {
+      const response = await api.get(`http://localhost:3001/api/books/${bookId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
