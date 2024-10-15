@@ -1,50 +1,165 @@
-import React from 'react';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
-import { BsCart4 } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Container, Row, Col, Button, Table, Modal, Form, Toast } from "react-bootstrap";
+import api from '../api/api'; // Import your API instance
 
-const CartPage = ({ cartItems = [] }) => {
+const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showToast, setShowToast] = useState(false); // State for showing success toast
+  const [selectedBookId, setSelectedBookId] = useState(null); // To store the ID of the book to be purchased
+  const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
+
+  const handleCheckout = () => {
+    if (cartItems.length > 0) {
+      setShowModal(true); // Show the modal when proceeding to checkout
+    } else {
+      setErrorMessage("Your cart is empty. Please add items to your cart before checking out.");
+    }
+  };
+
+  const handleConfirm = async () => {
+    console.log("Confirm button clicked");
+    console.log("Password entered:", password);  // Log the password
+  
+    try {
+      // Create a JSON payload with the password
+      const payload = { password };
+      
+      // Send the request as JSON
+      const response = await api.post("/books/validate-password", payload, {
+        headers: {
+          "Content-Type": "application/json",  // Set the content type to JSON
+          Authorization: `Bearer ${token}`,     // JWT token for authentication
+        },
+      });
+  
+      const result = response.data;  // Axios returns the result in `response.data`
+  
+      if (response.status === 200) {
+        console.log("Password validation success:", result.message);
+  
+        // Now you can proceed to update stock or finalize the purchase
+        const stockUpdateResponse = await api.post(`/books/buy/${selectedBookId}`, 
+        { quantity: 1 }, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          }
+        });
+  
+        const stockUpdateResult = stockUpdateResponse.data;
+  
+        if (stockUpdateResponse.status === 200) {
+          console.log("Checkout success:", stockUpdateResult.message);
+          setShowModal(false);  // Close the modal on success
+          setErrorMessage("");  // Clear any error message
+          setShowToast(true); // Show success toast
+          onRemoveItem(selectedBookId); // Remove the book from the cart
+          onCheckout();  // Call the onCheckout function to refresh the cart or redirect
+        } else {
+          console.log("Checkout failed:", stockUpdateResult.message);
+          setErrorMessage(stockUpdateResult.message || "Something went wrong. Please try again.");
+        }
+      } else {
+        console.log("Password validation failed:", result.message);
+        setErrorMessage(result.message || "Invalid password. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      setErrorMessage("Server error. Please try again later.");
+    }
+  };
+
+  const handleSelectBookForCheckout = (bookId) => {
+    setSelectedBookId(bookId);
+    setShowModal(true); // Show the modal for password input when a book is selected for checkout
+  };
+
   return (
-    <Container
-      className="d-flex flex-column justify-content-center align-items-center min-vh-100">
-      <h1 className="my-4 text-center">Shopping Cart</h1>
-      {cartItems.length === 0 ? (
-        <div className="text-center my-5">
-          <BsCart4 size={50} />
-          <h2>Your Cart is Empty</h2>
-          <p>Looks like you haven't added anything to your cart yet.</p>
-          <Link to="/books">
-            <Button variant="primary">Browse Books</Button>
-          </Link>
-        </div>
-      ) : (
-        <>
-          <Row>
-            {cartItems.map((item, index) => (
-              <Col key={index} md={4} lg={3} className="mb-4">
-                <Card>
-                  <Card.Img variant="top" src={item.image} alt={item.title} />
-                  <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
-                    <Card.Text>
-                      <strong>Author:</strong> {item.author}
-                    </Card.Text>
-                    <Card.Text>
-                      <strong>Price:</strong> ${item.price}
-                    </Card.Text>
-                    <Button variant="danger">Remove from Cart</Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-          <div className="text-center my-4">
-            <Button variant="success" size="lg">
-              Proceed to Checkout
-            </Button>
-          </div>
-        </>
-      )}
+    <Container className="custom-searchResult-margin">
+      <Row>
+        <Col>
+          <h3>Your Cart</h3>
+          {cartItems.length > 0 ? (
+            <>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cartItems.map((item) => (
+                    <tr key={item._id}>
+                      <td>{item.title}</td>
+                      <td>{item.author}</td>
+                      <td>${item.price}</td>
+                      <td>{item.quantity}</td>
+                      <td>${(item.price * item.quantity).toFixed(2)}</td>
+                      <td>
+                        <Button variant="danger" onClick={() => onRemoveItem(item._id)}>
+                          Remove
+                        </Button>
+                        <Button variant="success" onClick={() => handleSelectBookForCheckout(item._id)}>
+                          Buy
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+              <Button variant="success" onClick={handleCheckout}>
+                Proceed to Checkout
+              </Button>
+              {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>} {/* Display error message */}
+            </>
+          ) : (
+            <p>Your cart is empty</p>
+          )}
+        </Col>
+      </Row>
+
+      {/* Password Confirmation Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Checkout</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+              />
+            </Form.Group>
+            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleConfirm}>
+            Confirm
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Success Toast for Purchase Confirmation */}
+      <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide style={{ position: 'absolute', top: '100px', right: '20px' }}>
+        <Toast.Body>
+          <span role="img" aria-label="check">✅</span> Purchase successful! Thank you for your order.
+        </Toast.Body>
+      </Toast>
     </Container>
   );
 };

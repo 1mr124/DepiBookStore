@@ -6,13 +6,12 @@ import { FaSearch, FaShoppingCart, FaPlusCircle } from "react-icons/fa";
 import BookPostForm from "./BookPostForm";
 import api from '../api/api'; // Import your API instance
 
-
-const Book = () => {
+const Book = ({ cartItems, setCartItems }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [bookData, setBookData] = useState([]); // Change to an array
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState(""); // Track success message
   const [showPostForm, setShowPostForm] = useState(false); // For toggling book post form
 
   // Handle book search
@@ -24,15 +23,13 @@ const Book = () => {
     setBookData([]); // Reset bookData to an empty array
 
     try {
-      // Ensure searchQuery is properly encoded
       const response = await api.get(`/books/search?query=${encodeURIComponent(searchQuery)}`);
 
-      if (response.status === 200) { // Check for successful response
-        const data = await response.data; // Access data directly from the response object
-        
-        // Check if data is an array and has at least one book
+      if (response.status === 200) {
+        const data = await response.data;
+
         if (Array.isArray(data) && data.length > 0) {
-          setBookData(data); // Set bookData to the array of books
+          setBookData(data);
         } else {
           setErrorMessage("No books found.");
           setBookData([]);
@@ -47,20 +44,28 @@ const Book = () => {
     }
   };
 
-  // Handle book buy request
-  const handleBuyBook = async (bookId) => {
-    setLoading(true);
-    try {
-      const response = await api.post(`/books/buy/${bookId}`); // Use api.post instead of fetch
-      if (response.status === 200) { // Check for successful response
-        setSuccessMessage("Book purchased successfully!");
+  // Handle adding book to cart
+  const handleAddToCart = (bookId) => {
+    const selectedBook = bookData.find(book => book._id === bookId);
+    
+    if (selectedBook) {
+      // Check if the book is already in the cart
+      const existingBook = cartItems.find(item => item._id === selectedBook._id);
+      if (existingBook) {
+        // Update the quantity if the book already exists in the cart
+        setCartItems(cartItems.map(item => 
+          item._id === selectedBook._id ? { ...item, quantity: item.quantity + 1 } : item
+        ));
       } else {
-        throw new Error("Unable to buy the book");
+        // Add the book to the cart with quantity 1
+        setCartItems([...cartItems, { ...selectedBook, quantity: 1 }]);
       }
-    } catch (error) {
-      setErrorMessage(error.message || "An error occurred while buying the book");
-    } finally {
-      setLoading(false);
+      
+      // Show success message
+      setSuccessMessage(`"${selectedBook.title}" has been added to the cart.`);
+      
+      // Hide the success message after 3 seconds
+      setTimeout(() => setSuccessMessage(""), 3000);
     }
   };
 
@@ -69,15 +74,13 @@ const Book = () => {
 
   return (
     <Container className="mt-5">
-      {/* Buying a Book Section */}
       <Row>
         <Col>
           <Card className="p-4 custom-searchResult-margin">
             <h3 className="text-center mb-4">Search and Buy a Book</h3>
             {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-            {successMessage && <Alert variant="success">{successMessage}</Alert>}
+            {successMessage && <Alert variant="success">{successMessage}</Alert>} {/* Success alert */}
 
-            {/* Book Search Form */}
             <Form onSubmit={handleSearch} className="mb-4">
               <Row>
                 <Col md={9}>
@@ -111,7 +114,6 @@ const Book = () => {
               </Row>
             </Form>
 
-            {/* Display Search Results */}
             {bookData.length > 0 ? (
               bookData.map((book) => (
                 <Card className="mb-4" key={book._id}>
@@ -134,55 +136,36 @@ const Book = () => {
                     </Card.Text>
                     <Card.Text className="text-muted">{book.description}</Card.Text>
 
-                    <Button
+                    <Button 
                       variant="success"
-                      onClick={() => handleBuyBook(book._id)}
-                      disabled={loading}
-                      className="w-100"
+                      className="mt-2"
+                      onClick={() => handleAddToCart(book._id)} // Trigger add to cart
                     >
-                      {loading ? (
-                        <Spinner animation="border" size="sm" />
-                      ) : (
-                        <>
-                          <FaShoppingCart /> Buy Now
-                        </>
-                      )}
+                      <FaShoppingCart /> Add to Cart
                     </Button>
                   </Card.Body>
                 </Card>
               ))
             ) : (
-              <Alert variant="warning">No books found.</Alert>
+              <p className="text-muted">No books to display</p>
             )}
           </Card>
-        </Col>
-      </Row>
-      
-      <br/>
 
-      {/* Posting a Book Section */}
-      <Row className="mb-5">
-        <Col className="text-center">
-          <Button
+          <Button 
             variant="primary"
+            className="mt-3"
             onClick={togglePostForm}
-            className="mb-4"
           >
-            <FaPlusCircle /> Post a Book for Sale
+            <FaPlusCircle /> Post a Book
           </Button>
 
-          <Modal show={showPostForm} onHide={togglePostForm} centered>
+          <Modal show={showPostForm} onHide={togglePostForm}>
             <Modal.Header closeButton>
-              <Modal.Title>Post a Book</Modal.Title>
+              <Modal.Title>Post a New Book</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <BookPostForm />
+              <BookPostForm onClose={togglePostForm} />
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={togglePostForm}>
-                Close
-              </Button>
-            </Modal.Footer>
           </Modal>
         </Col>
       </Row>
