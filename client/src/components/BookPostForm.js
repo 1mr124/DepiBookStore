@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Col, Row, Alert, Spinner } from "react-bootstrap";
-import { FaBook, FaDollarSign, FaAsterisk } from "react-icons/fa";
+import {  FaDollarSign, FaAsterisk } from "react-icons/fa";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import api from '../api/api'; // Import your API instance
 

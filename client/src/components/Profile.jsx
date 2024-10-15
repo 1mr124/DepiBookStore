@@ -2,11 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button, Spinner, Alert , Modal } from 'react-bootstrap';
-import axios from 'axios';
-// import { FaEdit, FaTrashAlt } from 'react-icons/fa'; // Import icons for editing and deleting
 import api from '../api/api';
 import { useNavigate } from 'react-router-dom';
-import { FaSearch, FaShoppingCart, FaPlusCircle } from "react-icons/fa";
+import { FaPlusCircle } from "react-icons/fa";
 import BookPostForm from "./BookPostForm";
 
 
