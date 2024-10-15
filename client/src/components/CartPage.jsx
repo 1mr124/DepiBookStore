@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Button, Table, Modal, Form } from "react-bootstrap";
+import { Container, Row, Col, Button, Table, Modal, Form, Toast } from "react-bootstrap";
 import api from '../api/api'; // Import your API instance
 
 const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [showToast, setShowToast] = useState(false); // State for showing success toast
   const [selectedBookId, setSelectedBookId] = useState(null); // To store the ID of the book to be purchased
   const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
 
@@ -13,7 +14,7 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
     if (cartItems.length > 0) {
       setShowModal(true); // Show the modal when proceeding to checkout
     } else {
-      alert("Your cart is empty. Please add items to your cart before checking out.");
+      setErrorMessage("Your cart is empty. Please add items to your cart before checking out.");
     }
   };
 
@@ -53,6 +54,8 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
           console.log("Checkout success:", stockUpdateResult.message);
           setShowModal(false);  // Close the modal on success
           setErrorMessage("");  // Clear any error message
+          setShowToast(true); // Show success toast
+          onRemoveItem(selectedBookId); // Remove the book from the cart
           onCheckout();  // Call the onCheckout function to refresh the cart or redirect
         } else {
           console.log("Checkout failed:", stockUpdateResult.message);
@@ -67,9 +70,6 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
       setErrorMessage("Server error. Please try again later.");
     }
   };
-
-  
-  
 
   const handleSelectBookForCheckout = (bookId) => {
     setSelectedBookId(bookId);
@@ -117,6 +117,7 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
               <Button variant="success" onClick={handleCheckout}>
                 Proceed to Checkout
               </Button>
+              {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>} {/* Display error message */}
             </>
           ) : (
             <p>Your cart is empty</p>
@@ -152,6 +153,13 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Success Toast for Purchase Confirmation */}
+      <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide style={{ position: 'absolute', top: '20px', right: '20px' }}>
+        <Toast.Body>
+          <span role="img" aria-label="check">✅</span> Purchase successful! Thank you for your order.
+        </Toast.Body>
+      </Toast>
     </Container>
   );
 };
