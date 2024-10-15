@@ -29,7 +29,8 @@ const App = () => {
   // Function to handle checkout
   const handleCheckout = () => {
     // Implement your checkout logic here
-    alert("Proceeding to checkout");
+    console.log("Proceeding to checkout");
+    
   };
 
   // Determine whether to show the footer

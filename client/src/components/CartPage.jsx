@@ -155,7 +155,7 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
       </Modal>
 
       {/* Success Toast for Purchase Confirmation */}
-      <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide style={{ position: 'absolute', top: '20px', right: '20px' }}>
+      <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide style={{ position: 'absolute', top: '100px', right: '20px' }}>
         <Toast.Body>
           <span role="img" aria-label="check">✅</span> Purchase successful! Thank you for your order.
         </Toast.Body>
