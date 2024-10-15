@@ -19,7 +19,9 @@ const upload = multer({ storage });
 // GET /    To get all Authenricated User Posts
 router.get('/', authenticateToken, async (req, res) => {
   try {
-    const books = await Book.find({ user: req.user._id });
+    const userId = req.user.userId; // Get user ID from the token
+    
+    const books = await Book.find({ user: userId });
     console.log(books);
     if (!books) {
       return res.status(404).json({ msg: 'No books found for this user.' });
