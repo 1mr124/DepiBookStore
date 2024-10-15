@@ -97,7 +97,8 @@ router.get("/search", async (req, res) => {
       $or: [
         { title: { $regex: query, $options: 'i' } },
         { author: { $regex: query, $options: 'i' } }
-      ]
+      ],
+      stock: { $gt: 0 } // Only include books with stock greater than 0
     });
 
     res.json(books);
@@ -106,6 +107,7 @@ router.get("/search", async (req, res) => {
     res.status(500).json({ message: "Server error. Could not fetch books." });
   }
 });
+
 
 // GET: /books/:id - Get Book By Id (with token authentication)
 router.get("/:id", authenticateToken, async (req, res) => {
