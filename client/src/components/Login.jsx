@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Container, Form, Button, Alert } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import api from '../api/api'; 
-import googleLogo from '../static/imgs/GoogleLogo.svg'; // Adjust path as necessary
-import { useAuth } from '../context/AuthContext'; // Import the AuthContext
-import '../styles/auth.css'; // Adjust path as necessary
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import api from "../api/api";
+// import googleLogo from '../static/imgs/GoogleLogo.svg'; // Adjust path as necessary
+import { useAuth } from "../context/AuthContext"; // Import the AuthContext
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import "../styles/auth.css"; // Adjust path as necessary
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
-  
+
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate(); // Hook for redirecting after successful login
@@ -26,9 +26,9 @@ const Login = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
-      const response = await api.post('http://localhost:3001/api/auth/login', {
+      const response = await api.post("http://localhost:3001/api/auth/login", {
         email: formData.email,
         password: formData.password,
       });
@@ -38,66 +38,93 @@ const Login = () => {
         login(response.data.token); // Call the login function with the token
         setSuccess(true);
         setError(null);
-        navigate('/'); // Redirect to home page or dashboard
+        navigate("/"); // Redirect to home page or dashboard
       }
     } catch (err) {
       // Handle error
-      setError(err.response?.data?.message || 'An error occurred during login');
+      setError(err.response?.data?.message || "An error occurred during login");
       setSuccess(false);
     }
   };
 
   return (
     <div>
-      {/* Login Form */}
-      <Container className="d-flex align-items-center justify-content-center full-height">
-        <div className="login-form">
-          <Form onSubmit={handleSubmit}>
-            <h2 className="text-center">دخول</h2>
+      {/* Two-column layout with image on the left and form on the right */}
+      <Container fluid className="d-flex full-height">
+        <Row className="w-100">
+          {/* Left Column: Background Image */}
+          <Col
+            md={6}
+            className="d-none d-md-flex bg-image-container align-items-center justify-content-center"
+          >
+            {/* This column has no content, background image is applied via CSS */}
+          </Col>
+          {/* Right Column: Login Form */}
+          <Col
+            md={6}
+            className="d-flex align-items-center justify-content-center"
+          >
+            <div className="login-form">
+              <Form onSubmit={handleSubmit}>
+                <h2 className="text-center my-2 ">Welcome to Book Store</h2>
 
-            {error && <Alert variant="danger">{error}</Alert>}
-            {success && <Alert variant="success">تم تسجيل الدخول بنجاح!</Alert>}
+                {/* Display error and success messages */}
+                {error && <Alert variant="danger">{error}</Alert>}
+                {success && <Alert variant="success">Login successful!</Alert>}
 
-            <Form.Group controlId="email">
-              <Form.Control
-                type="email"
-                placeholder="الايميل"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
+                {/* Email Input */}
+                <Form.Group controlId="email">
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="my-4 py-2"
+                  />
+                </Form.Group>
 
-            <Form.Group controlId="password">
-              <Form.Control
-                type="password"
-                placeholder="كلمة المرور (باللغة الانجليزية)"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-              <Form.Text className="text-right">
-                <Link to="/resetPass" className="forgot-password">نسيت كلمة المرور؟</Link>
-              </Form.Text>
-            </Form.Group>
+                {/* Password Input */}
+                <Form.Group controlId="password">
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                    className="my-4 py-2"
+                  />
 
-            <Form.Group controlId="rememberMe" className="customRememberMe">
-              <Form.Check type="checkbox" label="تذكرني" />
-            </Form.Group>
+                  {/* Remember Me Checkbox */}
+                  <Form.Group
+                    controlId="rememberMe"
+                    className="customRememberMe"
+                  >
+                    <Form.Check type="checkbox" label="Remember Me" />
+                    <Link to="/resetPass" className="forgot-password">
+                      Forgot Password?
+                    </Link>
+                  </Form.Group>
 
-            <Button type="submit" className="w-100 buttonColor">دخول</Button>
+                  {/* <Form.Text className="text-right">
+                    
+                  </Form.Text> */}
+                </Form.Group>
 
-            <div className="text-center mt-3">
-              <Button variant="light" className="w-100">
-                <img src={googleLogo} alt="Google" /> الدخول باستخدام حساب جوجل
-              </Button>
+                {/* Submit Button */}
+                <Button type="submit" className="w-100 button-color">
+                  Log in
+                </Button>
+
+                {/* Link to Signup */}
+                <p className="text-center mt-3">Don't have an account? </p>
+                <Link to="/signup" className="signup">
+                  Create a new account
+                </Link>
+              </Form>
             </div>
-
-            <p className="text-center mt-3">
-              هل تريد تسجيل حساب جديد؟ <Link to="/signup">إنشاء حساب جديد</Link>
-            </p>
-          </Form>
-        </div>
+          </Col>
+        </Row>
       </Container>
     </div>
   );

@@ -1,50 +1,30 @@
-.search-dropdown {
-    position: absolute;
-    margin-top: 50px;
-    background-color: white;
-    width: 50%;
-    max-height: 300px;
-    overflow-y: auto;
-    z-index: 1000;
-    border: 1px solid #ccc;
-  }
-  
-.search-dropdown img {
-width: 40px;
-margin-right: 10px;
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+.nav-color {
+  background-color: #3c486b;
+  color: #fff;
 }
-
-.search-dropdown h5 {
-margin: 0;
-font-size: 16px;
-}
-
-.search-dropdown p {
-margin: 0;
-font-size: 14px;
-color: gray;
-}
-
-.search-dropdown .list-group-item {
-display: flex;
-align-items: center;
-padding: 10px;
-cursor: pointer;
-}
-
-.search-book-image {
-width: 40px;
-margin-right: 10px;
-}
-
-
-.imgResult{
-    width: 30% !important;
-    height: 50%;
-    margin: auto;
+.imgResult {
+  width: 30% !important;
+  height: 50%;
+  margin: auto;
 }
 
 .custom-searchResult-margin {
-    margin-top: 100px !important; 
+  margin-top: 100px !important;
 }
-  
+
+.search-dropdown {
+  position: absolute; 
+}
+
+.center-logo {
+  height: 70px; 
+  width: 70px;
+  margin-left: 40px;
+}
+.nav-size {
+  font-size: 20px;
+  font-family: "Playfair Display", serif;
+  color: #fff;
+}

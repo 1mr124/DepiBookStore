@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NavigationBar from './components/NavigationBar'; 
 import Login from './components/Login'; 
 import SignUp from './components/SignUp';
-import Footer from './components/Footer'; 
+// import Footer from './components/Footer'; 
 import AboutPage from './components/AboutPage'; 
 import ContactUs from './components/ContactUs'; 
 import Home from './components/Home'; 
@@ -69,7 +69,7 @@ const App = () => {
           <Route path="/edit-book/:id" element={<PrivateRoute element={<EditBook />} />} />
         </Routes>
 
-        {showFooter && <Footer />}
+        {/* {showFooter && <Footer />} */}
       </div>
     </AuthProvider>
   );
