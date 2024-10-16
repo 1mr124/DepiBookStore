@@ -85,20 +85,23 @@ router.post("/post", authenticateToken, upload.single('coverImage'), async (req,
 });
 
 // GET: /books/search - Search for books by title or author
-router.get("/search", async (req, res) => {
+router.get("/search", authenticateToken , async (req, res) => {
   const { query } = req.query; // `query` will be the search input
-
+  
   if (!query || typeof query !== 'string') {
     return res.status(400).json({ message: "Invalid search query." });
   }
 
   try {
+    const userId = req.user ? req.user.userId : null; // Safely access user ID, handle if undefined
     const books = await Book.find({
       $or: [
         { title: { $regex: query, $options: 'i' } },
         { author: { $regex: query, $options: 'i' } }
       ],
-      stock: { $gt: 0 } // Only include books with stock greater than 0
+      stock: { $gt: 0 }, // Only include books with stock greater than 0
+      addedBy: { $ne: userId } // Exclude books added by the current user
+
     });
 
     res.json(books);
