@@ -143,6 +143,8 @@ const Profile = () => {
                   <p><strong>Category:</strong> {selectedBook.category}</p>
                   <p><strong>Published Year:</strong> {selectedBook.publishedYear}</p>
                   <p><strong>Publisher:</strong> {selectedBook.publisher}</p>
+                  <p><strong>Price:</strong> {selectedBook.price}</p>
+                  <p><strong>Stock:</strong> {selectedBook.stock}</p>
                   <p><strong>Rating:</strong> {selectedBook.rating || 'N/A'}</p>
                   <p><strong>ISBN:</strong> {selectedBook.isbn || 'N/A'}</p>
                 </>
