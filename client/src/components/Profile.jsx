@@ -56,7 +56,6 @@ const Profile = () => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
       });
-      console.log(response.data);
       
       setSelectedBook(response.data);
       setShowModal(true);
