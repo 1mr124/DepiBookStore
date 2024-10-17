@@ -1,13 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 // import { Navbar, Nav, Container, Form, FormControl, ListGroup } from 'react-bootstrap';
-import {
-  Navbar,
-  Nav,
-  Container,
-  Form,
-  FormControl,
-  ListGroup,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, Form, FormControl, ListGroup} from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchBooks } from "../api/publicApi"; // Import the fetchBooks function
 import logo from "../static/imgs/Logo.png";
@@ -151,11 +144,10 @@ const NavigationBar = ({ onBookSelect }) => {
                   Login
                 </Nav.Link>
                 <Nav.Link
-                  className="red"
+                  className="red px-3"
                   as={Link}
                   to="/signup"
                   onClick={handleLinkClick}
-                  className="px-3"
                 >
                   Register
                 </Nav.Link>
@@ -164,47 +156,34 @@ const NavigationBar = ({ onBookSelect }) => {
           </Nav>
 
           {/* Search Form on the right */}
-          <Form
-            className="d-flex ms-3"
-            ref={dropdownRef}
-            onSubmit={handleSubmit}
-          >
-            <FormControl
-              type="search"
-              placeholder="Search books or authors"
-              className="me-4"
-              aria-label="Search"
-              value={query}
-              onChange={handleInputChange}
-            />
-            {/* Search Dropdown */}
-            {searchResults.length > 0 && (
-              <ListGroup className="search-dropdown">
-                {searchResults.map((book) => (
-                  <ListGroup.Item
-                    key={book.id}
-                    onClick={() => handleBookSelect(book)}
-                  >
-                    <img
-                      src={
-                        book.volumeInfo?.imageLinks?.thumbnail ||
-                        "placeholder.jpg"
-                      }
-                      alt={book.volumeInfo?.title}
-                      className="search-book-image"
-                    />
-                    <div>
-                      <h5>{book.volumeInfo?.title}</h5>
-                      <p>
-                        By: {book.volumeInfo?.authors?.join(", ") || "Unknown"}
-                      </p>
-                      <p>Rating: {book.volumeInfo?.averageRating || "N/A"}</p>
-                    </div>
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
-            )}
-          </Form>
+          <Form className="d-flex ms-3" ref={dropdownRef} onSubmit={handleSubmit}>
+          <FormControl
+            type="search"
+            placeholder="Search books or authors"
+            className="me-2 searchInput"
+            aria-label="Search"
+            value={query}
+            onChange={handleInputChange}
+          />
+          {searchResults.length > 0 && (
+            <ListGroup className="search-dropdown me-2">
+              {searchResults.map(book => (
+                <ListGroup.Item key={book.id} onClick={() => handleBookSelect(book)}>
+                  <img 
+                    src={book.volumeInfo?.imageLinks?.thumbnail || 'placeholder.jpg'} 
+                    alt={book.volumeInfo?.title} 
+                    className="search-book-image" 
+                  />
+                  <div>
+                    <h5>{book.volumeInfo?.title}</h5>
+                    <p>By: {book.volumeInfo?.authors?.join(', ') || 'Unknown'}</p>
+                    <p>Rating: {book.volumeInfo?.averageRating || 'N/A'}</p>
+                  </div>
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          )}
+        </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
