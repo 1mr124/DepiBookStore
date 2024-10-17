@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap'
 import Rating from 'react-rating'; // Import the rating package
 import { FaStar } from 'react-icons/fa'; // Import star icons from react-icons
 import api from '../api/api'; // Import the custom Axios instance
-import '../styles/apiSearch.css'; 
+import '../styles/apiSearch.css';
 
 const BookDetails = ({ selectedBook }) => {
   const [rating, setRating] = useState(0);
@@ -27,7 +27,7 @@ const BookDetails = ({ selectedBook }) => {
 
   const submitReview = async (e) => {
     e.preventDefault();
-    
+
     // Prepare the review data
     const reviewData = {
       bookId: selectedBook.id, // Assuming you have a unique ID for the book
@@ -53,70 +53,76 @@ const BookDetails = ({ selectedBook }) => {
   };
 
   return (
-    <Container className="mt-5 mb-5">
-      <Row className="justify-content-md-center custom-searchResult-margin">
+    <div className="container-fluid con">
+      <Row className="justify-content-md-center">
         <Col md={8}>
           {/* Book Information */}
-          <Card className="mb-4">
-            <Card.Img className='imgResult' variant="top" src={imageLinks?.thumbnail || 'placeholder.jpg'} alt={title} />
-            <Card.Body>
-              <Card.Title>{title}</Card.Title>
-              <Card.Text>
-                <strong>Authors:</strong> {authors?.join(', ') || 'Unknown'}
-              </Card.Text>
-              <Card.Text>
-                <strong>Published Date:</strong> {publishedDate || 'N/A'}
-              </Card.Text>
-              <Card.Text>
-                <strong>Average Rating:</strong> {averageRating || 'N/A'}
-              </Card.Text>
-              <Card.Text>
-                <strong>Page Count:</strong> {pageCount || 'N/A'}
-              </Card.Text>
-              <Card.Text>
-                <strong>Description:</strong> {description || 'No description available.'}
-              </Card.Text>
-            </Card.Body>
-          </Card>
+          <Card style={{ backgroundColor: "#fefefe", margin: "7rem auto 3rem" }}>
+            <Card.Title className="w-100 text-center" style={{ color: '#3C486B', fontSize: '2.5rem', fontWeight:'bold', margin:"1rem 0" }}>{title}</Card.Title>
+            <div className='CardCon'>
+              <div className='ImgCon'>
+                <img className='imgResult' src={imageLinks?.thumbnail || 'placeholder.jpg'} alt={title} />
+              </div>
+              <div className='BookDataCon'>
+                <Card.Body>
+                  <Card.Text style={{ fontSize:"1.1rem" }}>
+                    <strong>Authors:</strong> {authors?.join(', ') || 'Unknown'}
+                  </Card.Text>
+                  <Card.Text style={{ fontSize:"1.1rem" }}>
+                    <strong>Published Date:</strong> {publishedDate || 'N/A'}
+                  </Card.Text>
+                  <Card.Text style={{ fontSize:"1.1rem" }}>
+                    <strong>Average Rating:</strong> {averageRating || 'N/A'}
+                  </Card.Text>
+                  <Card.Text style={{ fontSize:"1.1rem" }}>
+                    <strong>Page Count:</strong> {pageCount || 'N/A'}
+                  </Card.Text>
+                  <Card.Text style={{ fontSize:"1.1rem", textAlign: 'justify' }}>
+                    <strong>Description:</strong><br/> {description || 'No description available.'}
+                  </Card.Text>
+                </Card.Body>
+                {/* Review Form */}
+                <Card className='m-3'>
+                  <Card.Body>
+                    <h5 style={{ color: "#3C486B", fontWeight: "bold" }}>Submit Your Review</h5>
+                    {successMessage && <Alert variant="success">{successMessage}</Alert>}
+                    {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+                    <Form onSubmit={submitReview}>
+                      <Form.Group controlId="rating" className="mb-3">
+                        <Form.Label style={{ fontSize:"1.1rem" }}>Rating (out of 5)</Form.Label>
+                        <Rating
+                          emptySymbol={<FaStar color="lightgray" />} // Empty stars
+                          fullSymbol={<FaStar color="gold" />} // Filled stars
+                          fractions={2} // Allow half-star ratings
+                          initialRating={rating}
+                          onChange={(rate) => setRating(rate)} // Update rating on change
+                        />
+                      </Form.Group>
 
-          {/* Review Form */}
-          <Card>
-            <Card.Body>
-              <h5>Submit Your Review</h5>
-              {successMessage && <Alert variant="success">{successMessage}</Alert>}
-              {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-              <Form onSubmit={submitReview}>
-                <Form.Group controlId="rating" className="mb-3">
-                  <Form.Label>Rating (out of 5)</Form.Label>
-                  <Rating
-                    emptySymbol={<FaStar color="lightgray" />} // Empty stars
-                    fullSymbol={<FaStar color="gold" />} // Filled stars
-                    fractions={2} // Allow half-star ratings
-                    initialRating={rating}
-                    onChange={(rate) => setRating(rate)} // Update rating on change
-                  />
-                </Form.Group>
+                      <Form.Group controlId="review" className="mb-3">
+                        <Form.Label style={{ fontSize:"1.1rem" }}>Review</Form.Label>
+                        <Form.Control
+                          as="textarea"
+                          style={{ resize: "none"}}
+                          rows={3}
+                          value={review}
+                          onChange={(e) => setReview(e.target.value)}
+                          required
+                        />
+                      </Form.Group>
 
-                <Form.Group controlId="review" className="mb-3">
-                  <Form.Label>Review</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    value={review}
-                    onChange={(e) => setReview(e.target.value)}
-                    required
-                  />
-                </Form.Group>
-
-                <Button variant="primary" type="submit">
-                  Submit Review
-                </Button>
-              </Form>
-            </Card.Body>
+                      <button className="bttn mb-4" type="submit">
+                        Submit Review
+                      </button>
+                    </Form>
+                  </Card.Body>
+                </Card>
+              </div>
+            </div>
           </Card>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 
