@@ -1,105 +1,95 @@
 import React, { useState } from 'react';
-import { Container, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Alert, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import { FaGoogle, FaUser, FaLock, FaCheckCircle } from 'react-icons/fa';
 import api from '../api/api'; 
-import googleLogo from '../static/imgs/GoogleLogo.svg'; // Adjust path as necessary
-import { useAuth } from '../context/AuthContext'; // Import the AuthContext
+import { useAuth } from '../context/AuthContext'; 
 import '../styles/auth.css'; // Adjust path as necessary
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-  
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const navigate = useNavigate(); // Hook for redirecting after successful login
-  const { login } = useAuth(); // Correctly call useAuth to get login function
+  const navigate = useNavigate();
+  const { login } = useAuth(); 
 
-  // Handle form input change
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     try {
       const response = await api.post('http://localhost:3001/api/auth/login', {
         email: formData.email,
         password: formData.password,
       });
 
-      // If login is successful
       if (response.status === 200) {
-        login(response.data.token); // Call the login function with the token
+        login(response.data.token);
         setSuccess(true);
         setError(null);
-        navigate('/'); // Redirect to home page or dashboard
+        navigate('/');
       }
     } catch (err) {
-      // Handle error
-      setError(err.response?.data?.message || 'An error occurred during login');
+      setError(err.response?.data?.message || 'Error during login');
       setSuccess(false);
     }
   };
 
   return (
-    <div>
-      {/* Login Form */}
-      <Container className="d-flex align-items-center justify-content-center full-height">
-        <div className="login-form">
-          <Form onSubmit={handleSubmit}>
-            <h2 className="text-center">دخول</h2>
+    <Container className="d-flex justify-content-center">
+      <Row className="w-100">
+        <Col md={6} className="mx-auto">
+          <div className="login-form p-4 shadow rounded bg-dark text-light centerIt">
+            <h3 className="text-center mb-4">Login to BookHub</h3>
 
             {error && <Alert variant="danger">{error}</Alert>}
-            {success && <Alert variant="success">تم تسجيل الدخول بنجاح!</Alert>}
+            {success && <Alert variant="success"><FaCheckCircle /> Login successful!</Alert>}
 
-            <Form.Group controlId="email">
-              <Form.Control
-                type="email"
-                placeholder="الايميل"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="email" className="mb-3">
+                <Form.Label><FaUser className="me-2" />Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="bg-dark text-light"
+                />
+              </Form.Group>
 
-            <Form.Group controlId="password">
-              <Form.Control
-                type="password"
-                placeholder="كلمة المرور (باللغة الانجليزية)"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-              <Form.Text className="text-right">
-                <Link to="/resetPass" className="forgot-password">نسيت كلمة المرور؟</Link>
-              </Form.Text>
-            </Form.Group>
+              <Form.Group controlId="password" className="mb-3">
+                <Form.Label><FaLock className="me-2" />Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter your password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  className="bg-dark text-light"
+                />
+              </Form.Group>
 
-            <Form.Group controlId="rememberMe" className="customRememberMe">
-              <Form.Check type="checkbox" label="تذكرني" />
-            </Form.Group>
+              <div className="d-flex justify-content-between align-items-center">
+                <Form.Check type="checkbox" label="Remember me" />
+                <Link to="/resetPass" className="text-light small">Forgot Password?</Link>
+              </div>
 
-            <Button type="submit" className="w-100 buttonColor">دخول</Button>
-
-            <div className="text-center mt-3">
-              <Button variant="light" className="w-100">
-                <img src={googleLogo} alt="Google" /> الدخول باستخدام حساب جوجل
+              <Button type="submit" className="w-100 mt-3 btn-primary">
+                Login
               </Button>
-            </div>
 
-            <p className="text-center mt-3">
-              هل تريد تسجيل حساب جديد؟ <Link to="/signup">إنشاء حساب جديد</Link>
-            </p>
-          </Form>
-        </div>
-      </Container>
-    </div>
+              <p className="text-center mt-3">
+                New to BookHub? <Link to="/signup" className="text-primary">Create an account</Link>
+              </p>
+            </Form>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

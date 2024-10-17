@@ -63,10 +63,6 @@ input::placeholder {
 
 /* Sign Up Form Container */
 
-.login-form input {
-    margin: 10px 0;
-}
-
 
 
 
@@ -76,3 +72,8 @@ input::placeholder {
 .full-height {
     height: calc(100vh - 400px); /* Adjust the height based on your navbar */
   }
+
+.centerIt{
+    margin-left: auto;
+    margin-right: auto;
+}
