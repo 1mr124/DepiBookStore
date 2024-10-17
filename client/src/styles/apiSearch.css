@@ -2,43 +2,43 @@
     position: absolute;
     margin-top: 50px;
     background-color: white;
-    width: 50%;
+    width: 97%; /* Increase width */
     max-height: 300px;
     overflow-y: auto;
     z-index: 1000;
     border: 1px solid #ccc;
-  }
-  
+    border-radius: 5px; /* Add border radius for a softer look */
+}
+
 .search-dropdown img {
-width: 40px;
-margin-right: 10px;
+    width: 40px;
+    margin-right: 10px;
 }
 
 .search-dropdown h5 {
-margin: 0;
-font-size: 16px;
+    margin: 0;
+    font-size: 16px;
 }
 
 .search-dropdown p {
-margin: 0;
-font-size: 14px;
-color: gray;
+    margin: 0;
+    font-size: 14px;
+    color: gray;
 }
 
 .search-dropdown .list-group-item {
-display: flex;
-align-items: center;
-padding: 10px;
-cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
 }
 
 .search-book-image {
-width: 40px;
-margin-right: 10px;
+    width: 40px;
+    margin-right: 10px;
 }
 
-
-.imgResult{
+.imgResult {
     width: 30% !important;
     height: 50%;
     margin: auto;
@@ -47,4 +47,21 @@ margin-right: 10px;
 .custom-searchResult-margin {
     margin-top: 100px !important; 
 }
-  
+
+/* Increase the search input field height and width */
+.search-input {
+    width: 40%; /* Ensure it takes full width */
+    padding: 12px; /* Increase padding for a taller input */
+    border-radius: 30px; /* Keep the same border-radius */
+}
+
+/* Increase the search button size */
+.search-button {
+    padding: 10px 15px; /* Adjust padding for a larger button */
+    border-radius: 30px; /* Keep the same border-radius */
+    font-size: 16px; /* Adjust font size for better visibility */
+}
+
+
+.search-input::placeholder {
+    text-align: left;}
