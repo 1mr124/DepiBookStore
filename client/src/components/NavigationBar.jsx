@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Navbar, Nav, Container, Form, FormControl, ListGroup } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { fetchBooks } from '../api/publicApi'; // Import the fetchBooks function
-import logo from '../static/imgs/Logo.png'; 
+import { fetchBooks } from '../api/publicApi'; 
 import { useAuth } from '../context/AuthContext'; 
+import { FaUser, FaShoppingCart, FaSearch, FaSignOutAlt, FaSignInAlt } from 'react-icons/fa';
+import logo from '../static/imgs/Logo.png';
 import '../styles/apiSearch.css';
 
 const NavigationBar = ({ onBookSelect }) => {
@@ -12,7 +13,7 @@ const NavigationBar = ({ onBookSelect }) => {
   const [expanded, setExpanded] = useState(false);
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const { user, logout } = useAuth(); 
+  const { user, logout } = useAuth();
 
   const handleLinkClick = () => {
     setExpanded(false);
@@ -48,8 +49,8 @@ const NavigationBar = ({ onBookSelect }) => {
   const handleBookSelect = (book) => {
     setSearchResults([]);
     setQuery('');
-    onBookSelect(book); // Set the selected book
-    navigate('/search'); // Navigate to the search page
+    onBookSelect(book);
+    navigate('/search');
   };
   
   const handleClickOutside = (event) => {
@@ -66,17 +67,23 @@ const NavigationBar = ({ onBookSelect }) => {
   }, []);
 
   return (
-    <Navbar variant="dark" expand="xl" fixed="top" expanded={expanded}>
+    <Navbar 
+      variant="dark" 
+      expand="xl" 
+      fixed="top" 
+      expanded={expanded} 
+      style={{ backgroundColor: '#1a1a1a', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)' }}
+    >
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">
-          <img src={logo} alt="BookHub" className="center-logo" />
+        <Navbar.Brand as={Link} to="/" onClick={handleLinkClick}>
+          <img src={logo} alt="BookHub" className="center-logo" style={{ height: '40px' }} />
         </Navbar.Brand>
 
-        <Form className="d-flex ms-3" ref={dropdownRef} onSubmit={handleSubmit}>
+        <Form className="d-flex ms-3 position-relative search-input" ref={dropdownRef} onSubmit={handleSubmit}>
           <FormControl
             type="search"
             placeholder="Search books or authors"
-            className="me-2"
+            className="me-2 search-input"
             aria-label="Search"
             value={query}
             onChange={handleInputChange}
@@ -84,7 +91,11 @@ const NavigationBar = ({ onBookSelect }) => {
           {searchResults.length > 0 && (
             <ListGroup className="search-dropdown">
               {searchResults.map(book => (
-                <ListGroup.Item key={book.id} onClick={() => handleBookSelect(book)}>
+                <ListGroup.Item 
+                  key={book.id} 
+                  onClick={() => handleBookSelect(book)}
+                  className="search-result-item"
+                >
                   <img 
                     src={book.volumeInfo?.imageLinks?.thumbnail || 'placeholder.jpg'} 
                     alt={book.volumeInfo?.title} 
@@ -92,8 +103,8 @@ const NavigationBar = ({ onBookSelect }) => {
                   />
                   <div>
                     <h5>{book.volumeInfo?.title}</h5>
-                    <p>By: {book.volumeInfo?.authors?.join(', ') || 'Unknown'}</p>
-                    <p>Rating: {book.volumeInfo?.averageRating || 'N/A'}</p>
+                    <p className="search-author">By: {book.volumeInfo?.authors?.join(', ') || 'Unknown'}</p>
+                    <p className="search-rating">Rating: {book.volumeInfo?.averageRating || 'N/A'}</p>
                   </div>
                 </ListGroup.Item>
               ))}
@@ -104,24 +115,31 @@ const NavigationBar = ({ onBookSelect }) => {
         <Navbar.Toggle 
           aria-controls="navbarNav" 
           onClick={() => setExpanded(expanded ? false : "expanded")} 
+          style={{ borderColor: '#555' }}
         />
+        
         <Navbar.Collapse id="navbarNav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/" onClick={handleLinkClick}>Home</Nav.Link>
-            <Nav.Link as={Link} to="/books" onClick={handleLinkClick}>Books</Nav.Link>
-            <Nav.Link as={Link} to="/cart" onClick={handleLinkClick}>Cart</Nav.Link>
-            <Nav.Link as={Link} to="/profile" onClick={handleLinkClick}>Profile</Nav.Link>
-            <Nav.Link as={Link} to="/contact" onClick={handleLinkClick}>Contact Us</Nav.Link>
-
+            <Nav.Link as={Link} to="/" onClick={handleLinkClick} className="text-white">Home</Nav.Link>
+            <Nav.Link as={Link} to="/books" onClick={handleLinkClick} className="text-white">Books</Nav.Link>
+            <Nav.Link as={Link} to="/cart" onClick={handleLinkClick} className="text-white">
+              <FaShoppingCart style={{ marginRight: '5px' }} />Cart
+            </Nav.Link>
+            <Nav.Link as={Link} to="/profile" onClick={handleLinkClick} className="text-white">
+              <FaUser style={{ marginRight: '5px' }} />Profile
+            </Nav.Link>
             {user ? (
-              <>
-                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
-              </>
+              <Nav.Link onClick={handleLogout} className="text-danger">
+                <FaSignOutAlt style={{ marginRight: '5px' }} />Logout
+              </Nav.Link>
             ) : (
               <>
-                <Nav.Link as={Link} to="/about" onClick={handleLinkClick}>About Us</Nav.Link>
-                <Nav.Link as={Link} to="/login" onClick={handleLinkClick}>Login</Nav.Link>
-                <Nav.Link className="red" as={Link} to="/signup" onClick={handleLinkClick}>Register</Nav.Link>
+                <Nav.Link as={Link} to="/login" onClick={handleLinkClick} className="text-white">
+                  <FaSignInAlt style={{ marginRight: '5px' }} />Login
+                </Nav.Link>
+                <Nav.Link as={Link} to="/signup" onClick={handleLinkClick} className="text-danger">
+                  Register
+                </Nav.Link>
               </>
             )}
           </Nav>

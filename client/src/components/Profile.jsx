@@ -56,6 +56,7 @@ const Profile = () => {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
       });
+      
       setSelectedBook(response.data);
       setShowModal(true);
     } catch (error) {
@@ -140,11 +141,10 @@ const Profile = () => {
                   />
                   <p><strong>Author:</strong> {selectedBook.author}</p>
                   <p><strong>Description:</strong> {selectedBook.description}</p>
-                  <p><strong>Category:</strong> {selectedBook.category}</p>
-                  <p><strong>Published Year:</strong> {selectedBook.publishedYear}</p>
-                  <p><strong>Publisher:</strong> {selectedBook.publisher}</p>
-                  <p><strong>Rating:</strong> {selectedBook.rating || 'N/A'}</p>
-                  <p><strong>ISBN:</strong> {selectedBook.isbn || 'N/A'}</p>
+                  <p><strong>Stock:</strong> {selectedBook.stock}</p>
+                  <p><strong>Price:</strong> {selectedBook.price}</p>
+
+
                 </>
               )}
             </Modal.Body>
