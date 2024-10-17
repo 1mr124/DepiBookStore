@@ -1,32 +1,36 @@
 import React from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form } from 'react-bootstrap';
+import "../styles/profile.css";
+
 
 const ContactUs = () => {
   return (
-    <Container className="d-flex align-items-center justify-content-center vh-100">
-      <Row className="w-100">
+    // <Container className="d-flex align-items-center justify-content-center vh-100">
+    // <Container style={{ backgroundColor: "#eee", height: "60vh", border: "1px solid #ccc", borderRadius: "25px", position: 'absolute', bottom: "1rem" }}>
+    <Container style={{ backgroundColor: "#eee", height: "60vh", border: "1px solid #ccc", borderRadius: "25px", marginTop:"12rem"}}>
+        <h1 className="text-center" style={{ color: '#3C486B', marginTop: "2rem" }}>Contact Us</h1>
+      <Row className="w-100 d-flex align-items-center justify-content-center">
         <Col md={6}>
-          <h1 className="text-center mb-4">Contact Us</h1>
           <h3>Get in Touch</h3>
           <p>If you have any questions, feel free to reach out to us using the form below.</p>
         </Col>
         <Col md={6}>
-          <Form>
+          <Form style={{ marginTop: "2rem" }}>
             <Form.Group controlId="formName">
-              <Form.Label>Name</Form.Label>
+              <Form.Label style={{ fontSize: "1.1rem", color: '#3C486B' }}>Name</Form.Label>
               <Form.Control type="text" placeholder="Enter your name" required />
             </Form.Group>
             <Form.Group controlId="formEmail">
-              <Form.Label>Email</Form.Label>
+              <Form.Label style={{ fontSize: "1.1rem", color: '#3C486B', marginTop: "1rem" }}>Email</Form.Label>
               <Form.Control type="email" placeholder="Enter your email" required />
             </Form.Group>
             <Form.Group controlId="formMessage">
-              <Form.Label>Message</Form.Label>
-              <Form.Control as="textarea" rows={5} placeholder="Your message" required />
+              <Form.Label style={{ fontSize: "1.1rem", color: '#3C486B', marginTop: "1rem" }}>Message</Form.Label>
+              <Form.Control as="textarea" rows={5} style={{ resize: "none" }} placeholder="Your message" required />
             </Form.Group>
-            <Button variant="primary" type="submit" className="mt-3">
+            <button className="bttn mb-4 mt-3" type="submit">
               Submit
-            </Button>
+            </button>
           </Form>
         </Col>
       </Row>
