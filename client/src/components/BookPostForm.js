@@ -3,6 +3,7 @@ import { Form, Button, Col, Row, Alert, Spinner } from "react-bootstrap";
 import {  FaDollarSign, FaAsterisk } from "react-icons/fa";
 import { AiOutlineCloudUpload } from "react-icons/ai";
 import api from '../api/api'; // Import your API instance
+import "../styles/profile.css";
 
 const BookPostForm = () => {
   const [formData, setFormData] = useState({
@@ -80,7 +81,7 @@ const BookPostForm = () => {
         <Row>
           <Col md={6}>
             <Form.Group controlId="formTitle" className="mb-3">
-              <Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>
                 Title <FaAsterisk className="text-danger" />
               </Form.Label>
               <Form.Control
@@ -96,7 +97,7 @@ const BookPostForm = () => {
 
           <Col md={6}>
             <Form.Group controlId="formAuthor" className="mb-3">
-              <Form.Label>Author</Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Author</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter author's name"
@@ -112,7 +113,7 @@ const BookPostForm = () => {
         <Row>
           <Col md={6}>
             <Form.Group controlId="formPrice" className="mb-3">
-              <Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>
                 Price <FaDollarSign /> <FaAsterisk className="text-danger" />
               </Form.Label>
               <Form.Control
@@ -128,7 +129,7 @@ const BookPostForm = () => {
 
           <Col md={6}>
             <Form.Group controlId="formStock" className="mb-3">
-              <Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>
                 Stock <FaAsterisk className="text-danger" />
               </Form.Label>
               <Form.Control
@@ -144,7 +145,7 @@ const BookPostForm = () => {
         </Row>
 
         <Form.Group controlId="formCoverImage" className="mb-3">
-          <Form.Label>Cover Image</Form.Label>
+          <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Cover Image</Form.Label>
           <Form.Control
             type="file"
             name="coverImage"
@@ -155,9 +156,10 @@ const BookPostForm = () => {
         </Form.Group>
 
         <Form.Group controlId="formDescription" className="mb-3">
-          <Form.Label>Description</Form.Label>
+          <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Description</Form.Label>
           <Form.Control
             as="textarea"
+            style = {{ resize: 'none' }}
             rows={3}
             placeholder="Enter book description"
             name="description"
@@ -166,11 +168,10 @@ const BookPostForm = () => {
           />
         </Form.Group>
 
-        <Button
-          variant="primary"
+        <button
+          className="bttn mb-4 mt-3 w-100"
           type="submit"
           disabled={loading}
-          className="mt-3 w-100"
         >
           {loading ? (
             <>
@@ -181,7 +182,7 @@ const BookPostForm = () => {
               <AiOutlineCloudUpload /> Post Book
             </>
           )}
-        </Button>
+        </button>
       </Form>
     </div>
   );

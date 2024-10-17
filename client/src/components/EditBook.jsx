@@ -1,10 +1,8 @@
-// src/components/EditBook.js
-
 import React, { useEffect, useState } from 'react';
 import { Container, Form, Button, Alert, Spinner } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../api/api';
-
+import "../styles/profile.css";
 
 const EditBook = () => {
   const { id } = useParams(); // Get book ID from URL parameters
@@ -96,8 +94,8 @@ const EditBook = () => {
   };
 
   return (
-    <Container className="mt-4">
-      <h2>Edit Book</h2>
+    <Container className="mt-5">
+      <h2 className="EditBookHeader">Edit Book</h2>
       {loading ? (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
@@ -107,7 +105,7 @@ const EditBook = () => {
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formTitle" className="mb-3">
-              <Form.Label>Title</Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Title</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter book title"
@@ -119,7 +117,7 @@ const EditBook = () => {
             </Form.Group>
 
             <Form.Group controlId="formAuthor" className="mb-3">
-              <Form.Label>Author</Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Author</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter author's name"
@@ -131,7 +129,7 @@ const EditBook = () => {
             </Form.Group>
 
             <Form.Group controlId="formDescription" className="mb-3">
-              <Form.Label>Description</Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Description</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -143,7 +141,7 @@ const EditBook = () => {
             </Form.Group>
 
             <Form.Group controlId="formCategory" className="mb-3">
-              <Form.Label>Category</Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Category</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter book category"
@@ -154,7 +152,7 @@ const EditBook = () => {
             </Form.Group>
 
             <Form.Group controlId="formPrice" className="mb-3">
-              <Form.Label>Price</Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Price</Form.Label>
               <Form.Control
                 type="number"
                 placeholder="Enter book price"
@@ -166,7 +164,7 @@ const EditBook = () => {
             </Form.Group>
 
             <Form.Group controlId="formStock" className="mb-3">
-              <Form.Label>Stock</Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Stock</Form.Label>
               <Form.Control
                 type="number"
                 placeholder="Enter available stock"
@@ -177,7 +175,7 @@ const EditBook = () => {
             </Form.Group>
 
             <Form.Group controlId="formPublishedYear" className="mb-3">
-              <Form.Label>Published Year</Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Published Year</Form.Label>
               <Form.Control
                 type="number"
                 placeholder="Enter published year"
@@ -188,7 +186,7 @@ const EditBook = () => {
             </Form.Group>
 
             <Form.Group controlId="formPublisher" className="mb-3">
-              <Form.Label>Publisher</Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Publisher</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter publisher name"
@@ -199,7 +197,7 @@ const EditBook = () => {
             </Form.Group>
 
             <Form.Group controlId="formRating" className="mb-3">
-              <Form.Label>Rating</Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Rating</Form.Label>
               <Form.Control
                 type="number"
                 placeholder="Enter book rating (1-5)"
@@ -212,7 +210,7 @@ const EditBook = () => {
             </Form.Group>
 
             <Form.Group controlId="formCoverImage" className="mb-3">
-              <Form.Label>Cover Image URL</Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Cover Image URL</Form.Label>
               <Form.Control
                 type="file" 
                 name="coverImage" 
@@ -222,7 +220,7 @@ const EditBook = () => {
             </Form.Group>
 
             <Form.Group controlId="formISBN" className="mb-3">
-              <Form.Label>ISBN</Form.Label>
+              <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>ISBN</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter ISBN"
@@ -232,9 +230,9 @@ const EditBook = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <button className="bttn mb-4" type="submit">
               Update Book
-            </Button>
+            </button>
           </Form>
         </>
       )}

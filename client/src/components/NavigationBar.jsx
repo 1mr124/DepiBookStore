@@ -121,6 +121,7 @@ const NavigationBar = ({ onBookSelect }) => {
             >
               Cart
             </Nav.Link>
+            <Nav.Link as={Link} to="/profile" onClick={handleLinkClick}>Profile</Nav.Link>
             <Nav.Link
               as={Link}
               to="/about"
