@@ -10,11 +10,13 @@ import CartPage from './components/CartPage';
 import Profile from './components/Profile';
 import Book from './components/Book'; 
 import BookDetails from './components/BookDetails'; 
-import './App.css'; 
 import { Routes, Route, useLocation } from 'react-router-dom'; 
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute'; 
 import EditBook from './components/EditBook';
+import './App.css'; // Adjust the path if necessary
+
+
 
 const App = () => {
   const location = useLocation();
@@ -27,9 +29,11 @@ const App = () => {
   };
 
   // Function to handle checkout
-  const handleCheckout = () => {
+  const handleCheckout = (e) => {
+    e.preventDefault();
     // Implement your checkout logic here
     console.log("Proceeding to checkout");
+    
     
   };
 

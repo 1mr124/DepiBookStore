@@ -96,7 +96,8 @@ const EditBook = () => {
   };
 
   return (
-    <Container className="mt-4">
+    <Container className="p-4 custom-searchResult-margin primDiv">
+
       <h2>Edit Book</h2>
       {loading ? (
         <Spinner animation="border" role="status">
@@ -142,16 +143,7 @@ const EditBook = () => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formCategory" className="mb-3">
-              <Form.Label>Category</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter book category"
-                name="category"
-                value={book.category}
-                onChange={handleChange}
-              />
-            </Form.Group>
+
 
             <Form.Group controlId="formPrice" className="mb-3">
               <Form.Label>Price</Form.Label>
@@ -176,40 +168,7 @@ const EditBook = () => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formPublishedYear" className="mb-3">
-              <Form.Label>Published Year</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter published year"
-                name="publishedYear"
-                value={book.publishedYear}
-                onChange={handleChange}
-              />
-            </Form.Group>
 
-            <Form.Group controlId="formPublisher" className="mb-3">
-              <Form.Label>Publisher</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter publisher name"
-                name="publisher"
-                value={book.publisher}
-                onChange={handleChange}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formRating" className="mb-3">
-              <Form.Label>Rating</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="Enter book rating (1-5)"
-                name="rating"
-                value={book.rating}
-                onChange={handleChange}
-                min="1"
-                max="5"
-              />
-            </Form.Group>
 
             <Form.Group controlId="formCoverImage" className="mb-3">
               <Form.Label>Cover Image URL</Form.Label>
@@ -221,16 +180,6 @@ const EditBook = () => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formISBN" className="mb-3">
-              <Form.Label>ISBN</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter ISBN"
-                name="isbn"
-                value={book.isbn}
-                onChange={handleChange}
-              />
-            </Form.Group>
 
             <Button variant="primary" type="submit">
               Update Book

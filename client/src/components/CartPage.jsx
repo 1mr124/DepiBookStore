@@ -77,13 +77,13 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
   };
 
   return (
-    <Container className="custom-searchResult-margin">
-      <Row>
+    <Container className="custom-searchResult-margin primDiv p-4">
+      <Row >
         <Col>
           <h3>Your Cart</h3>
           {cartItems.length > 0 ? (
             <>
-              <Table striped bordered hover>
+              <Table className="secondDiv" striped bordered hover >
                 <thead>
                   <tr>
                     <th>Title</th>
@@ -127,10 +127,10 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
 
       {/* Password Confirmation Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
+        <Modal.Header className="secondDiv" closeButton>
           <Modal.Title>Confirm Checkout</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="primDiv">
           <Form>
             <Form.Group controlId="formPassword">
               <Form.Label>Password</Form.Label>
@@ -144,7 +144,7 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="secondDiv">
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Cancel
           </Button>

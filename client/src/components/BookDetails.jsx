@@ -53,11 +53,11 @@ const BookDetails = ({ selectedBook }) => {
   };
 
   return (
-    <Container className="mt-5 mb-5">
-      <Row className="justify-content-md-center custom-searchResult-margin">
+    <Container >
+      <Row className="justify-content-md-center custom-searchResult-margin ">
         <Col md={8}>
           {/* Book Information */}
-          <Card className="mb-4">
+          <Card className="p-3 primDiv">
             <Card.Img className='imgResult' variant="top" src={imageLinks?.thumbnail || 'placeholder.jpg'} alt={title} />
             <Card.Body>
               <Card.Title>{title}</Card.Title>
@@ -80,8 +80,8 @@ const BookDetails = ({ selectedBook }) => {
           </Card>
 
           {/* Review Form */}
-          <Card>
-            <Card.Body>
+          <Card className='noBorder'>
+            <Card.Body className='primDiv'>
               <h5>Submit Your Review</h5>
               {successMessage && <Alert variant="success">{successMessage}</Alert>}
               {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
