@@ -24,7 +24,7 @@ const Footer = () => {
           </Col>
           <Col md={4}>
             <Nav className="footer-nav">
-              <Nav.Link href="#">Help</Nav.Link>
+              <Nav.Link as={Link} to="/contact">Help</Nav.Link>
               <Nav.Link href="#">Payment Methods</Nav.Link>
               <Nav.Link href="#">How to Use and Purchase</Nav.Link>
               <Nav.Link as={Link} to="/about">About Us</Nav.Link> {/* Updated Link */}
