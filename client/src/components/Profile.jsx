@@ -73,9 +73,9 @@ const Profile = () => {
   const togglePostForm = () => setShowPostForm(!showPostForm);
 
   return (
-    <Container className="mt-4 custom-searchResult-margin ">
+    <Container className="p-4 primDiv">
       {/* <h1 className="display-4 mt-5 text-center font-weight-bold" >My Books</h1> */}
-      <Row className="mb-5 custom-searchResult-margin">
+      <Row className="mb-5 custom-searchResult-margin ">
         <Col className="text-center">
           <Button
             variant="primary"
@@ -85,14 +85,14 @@ const Profile = () => {
             <FaPlusCircle /> Post a Book for Sale
           </Button>
 
-          <Modal show={showPostForm} onHide={togglePostForm} centered>
-            <Modal.Header closeButton>
+          <Modal  show={showPostForm} onHide={togglePostForm} centered>
+            <Modal.Header className='primDiv' closeButton>
               <Modal.Title>Post a Book</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className='primDiv'>
               <BookPostForm />
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className='primDiv'>
               <Button variant="secondary" onClick={togglePostForm}>
                 Close
               </Button>
@@ -112,7 +112,7 @@ const Profile = () => {
               <Col md={4} key={book._id} className="mb-4">
                 <Card>
                   <Card.Img style={{width: '100%',height: '200px',objectFit: 'cover'}} variant="top" src={`http://localhost:3001/${book.coverImage}`} alt={book.title}/>
-                  <Card.Body>
+                  <Card.Body className='primDiv '>
                     <Card.Title>{book.title}</Card.Title>
                     <Card.Text>
                       <strong>Author:</strong> {book.author}<br />
@@ -128,10 +128,10 @@ const Profile = () => {
             ))}
           </Row>
           <Modal show={showModal} onHide={handleCloseModal}>
-            <Modal.Header closeButton>
+            <Modal.Header className='secondDiv' closeButton>
               <Modal.Title>{selectedBook?.title}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className='primDiv'>
               {selectedBook && (
                 <>
                   <img 
@@ -148,7 +148,7 @@ const Profile = () => {
                 </>
               )}
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className='secondDiv'>
               <Button variant="secondary" onClick={handleCloseModal}>
                 Close
               </Button>

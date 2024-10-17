@@ -93,7 +93,7 @@ const handleBookClick = async (review, isFromSearch = false) => {
   
 
   return (
-    <Container className="d-flex flex-column full-height">
+    <Container className="d-flex flex-column full-height primDiv">
       <h2 className="text-center mb-4 p-2">Book Hub Dashboard</h2>
 
       {loading ? (
@@ -106,11 +106,11 @@ const handleBookClick = async (review, isFromSearch = false) => {
 
           <Row>
             {/* Section for searching reviews by username */}
-            <Col md={6} className="mb-4">
-              <Card>
+            <Col md={6} className="mb-4 ">
+              <Card className='secondDiv' >
                 <Card.Header>
                   <h5>
-                    <FaSearch className="me-2" /> Search User Reviews
+                    <FaSearch className="me-2 " /> Search User Reviews
                   </h5>
                 </Card.Header>
                 <Card.Body>
@@ -152,8 +152,8 @@ const handleBookClick = async (review, isFromSearch = false) => {
             </Col>
 
             {/* Section for current user's reviews */}
-            <Col md={6} className="mb-4">
-              <Card>
+            <Col md={6} className="mb-4 ">
+              <Card className='secondDiv'>
                 <Card.Header>
                   <h5>Your Reviews</h5>
                 </Card.Header>
@@ -179,7 +179,7 @@ const handleBookClick = async (review, isFromSearch = false) => {
           {bookDetails && (
   <Row>
     <Col md={12}>
-      <Card className="mt-2">
+      <Card className="mt-2 secondDiv">
         <Card.Img
           className="imgResult"
           variant="top"
@@ -212,17 +212,17 @@ const handleBookClick = async (review, isFromSearch = false) => {
           {/* Best Selling Books Section */}
           <Row>
             <Col md={12} className="mb-4">
-              <Card>
-                <Card.Header>
-                  <h5><FaStar className="me-2" /> Best Selling Books</h5>
+              <Card className='primDiv'>
+                <Card.Header >
+                  <h5><FaStar className="me-2 " /> Best Selling Books</h5>
                 </Card.Header>
                 <Card.Body>
-                  <Row className="g-4">
+                  <Row className="g-4  ">
                     {bestSellingBooks.map((book) => (
                       <Col key={book.id} sm={6} md={4} lg={3}>
-                        <Card className="h-100">
-                          <Card.Img variant="top" src={book.volumeInfo.imageLinks?.thumbnail || 'placeholder.jpg'} />
-                          <Card.Body>
+                        <Card className="h-100 noBorder">
+                          <Card.Img variant="top" src={book.volumeInfo.imageLinks?.thumbnail || 'Alt'} />
+                          <Card.Body className='primDiv'> 
                             <Card.Title>{book.volumeInfo.title}</Card.Title>
                             <Button variant="primary" onClick={() => handleBookClick(book.id)}>
                               View Details
@@ -237,8 +237,8 @@ const handleBookClick = async (review, isFromSearch = false) => {
             </Col>
 
             {/* Books Grouped by Categories Section */}
-            <Col md={12} className="mb-4">
-              <Card>
+            <Col md={12} className="mb-4 primDiv p-3">
+              <Card className='secondDiv'>
                 <Card.Header>
                   <h5><FaTags className="me-2" /> Books by Categories</h5>
                 </Card.Header>
@@ -246,9 +246,9 @@ const handleBookClick = async (review, isFromSearch = false) => {
                   <Row className="g-4">
                     {categories.map((category) => (
                       <Col key={category.id} sm={6} md={4} lg={3}>
-                        <Card className="h-100">
+                        <Card className="h-100 noBorder">
                           <Card.Img variant="top" src={category.volumeInfo.imageLinks?.thumbnail || 'placeholder.jpg'} />
-                          <Card.Body>
+                          <Card.Body className='primDiv'>
                             <Card.Title>{category.volumeInfo.title}</Card.Title>
                             <Button variant="secondary" onClick={() => handleBookClick(category.id)}>
                               View Details

@@ -1,4 +1,7 @@
-
+body {
+  background-color: darkslategrey !important;
+  color: #E0E0E0; /* Optional, for text contrast */
+}
 
 
 .buttonColor{
@@ -21,4 +24,46 @@
 
 .container{
   margin-top: 100px;
+}
+
+.primDiv{
+  background-color: var(--primary-div) !important;
+  color: #fff !important;
+}
+
+.secondDiv{
+  background-color: var(--second-div) !important;
+  color: #fff !important;
+}
+.container{
+  height: 100%;
+  border-radius: 10px;
+}
+
+.customBorder{
+  border: 1px solid grey;
+}
+
+.modal-header {
+  border-bottom: none !important;
+  color: #fff;
+}
+
+.modal-footer {
+  border-top: none !important;
+}
+
+
+input::placeholder {
+  text-align: left;
+}
+
+.noBorder{
+  border: none !important;
+  text-align: center;
+}
+
+.JustNoBorder{
+  border: none !important;
+
 }

@@ -72,12 +72,12 @@ const BookPostForm = () => {
   };
 
   return (
-    <div className="mt-4">
+    <div className="p-4 primDiv">
       {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
       {successMessage && <Alert variant="success">{successMessage}</Alert>}
 
-      <Form onSubmit={handleSubmit}>
-        <Row>
+      <Form  onSubmit={handleSubmit}>
+        <Row >
           <Col md={6}>
             <Form.Group controlId="formTitle" className="mb-3">
               <Form.Label>

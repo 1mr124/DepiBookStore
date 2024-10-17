@@ -76,12 +76,12 @@ const Book = ({ cartItems, setCartItems }) => {
     <Container className="mt-5">
       <Row>
         <Col>
-          <Card className="p-4 custom-searchResult-margin">
+          <Card className="p-4 custom-searchResult-margin primDiv">
             <h3 className="text-center mb-4">Search and Buy a Book</h3>
             {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
             {successMessage && <Alert variant="success">{successMessage}</Alert>} {/* Success alert */}
 
-            <Form onSubmit={handleSearch} className="mb-4">
+            <Form onSubmit={handleSearch} className="mb-4 ">
               <Row>
                 <Col md={9}>
                   <Form.Group controlId="formSearch" className="mb-3">
@@ -116,12 +116,12 @@ const Book = ({ cartItems, setCartItems }) => {
 
             {bookData.length > 0 ? (
               bookData.map((book) => (
-                <Card className="mb-4" key={book._id}>
+                <Card className="mb-4 secondDiv " key={book._id}>
                   <Card.Body>
                     <Card.Title>{book.title}</Card.Title>
                     <Row className="mb-3">
                       <Col md={6}>
-                        <Card.Subtitle className="mb-1 text-muted">
+                        <Card.Subtitle className="mb-1">
                           <strong>Author:</strong> {book.author}
                         </Card.Subtitle>
                       </Col>
@@ -134,7 +134,7 @@ const Book = ({ cartItems, setCartItems }) => {
                     <Card.Text>
                       <strong>Description:</strong>
                     </Card.Text>
-                    <Card.Text className="text-muted">{book.description}</Card.Text>
+                    <Card.Text >{book.description}</Card.Text>
 
                     <Button 
                       variant="success"
@@ -147,7 +147,7 @@ const Book = ({ cartItems, setCartItems }) => {
                 </Card>
               ))
             ) : (
-              <p className="text-muted">No books to display</p>
+              <p >No books to display</p>
             )}
           </Card>
 
@@ -159,11 +159,11 @@ const Book = ({ cartItems, setCartItems }) => {
             <FaPlusCircle /> Post a Book
           </Button>
 
-          <Modal show={showPostForm} onHide={togglePostForm}>
-            <Modal.Header closeButton>
+          <Modal  show={showPostForm} onHide={togglePostForm}>
+            <Modal.Header className="primDiv" closeButton>
               <Modal.Title>Post a New Book</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body className="primDiv">
               <BookPostForm onClose={togglePostForm} />
             </Modal.Body>
           </Modal>

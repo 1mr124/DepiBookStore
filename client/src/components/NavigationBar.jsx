@@ -89,12 +89,12 @@ const NavigationBar = ({ onBookSelect }) => {
             onChange={handleInputChange}
           />
           {searchResults.length > 0 && (
-            <ListGroup className="search-dropdown">
+            <ListGroup className="search-dropdown JustNoBorder">
               {searchResults.map(book => (
                 <ListGroup.Item 
                   key={book.id} 
                   onClick={() => handleBookSelect(book)}
-                  className="search-result-item"
+                  className="search-result-item primDiv JustNoBorder"
                 >
                   <img 
                     src={book.volumeInfo?.imageLinks?.thumbnail || 'placeholder.jpg'} 
