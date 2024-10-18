@@ -3,8 +3,8 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 const ContactUs = () => {
   return (
-    <Container className="d-flex align-items-center justify-content-center vh-100">
-      <Row className="w-100">
+    <Container className="d-flex align-items-center justify-content-center vh-100 ">
+      <Row className="w-100 primDiv p-5">
         <Col md={6}>
           <h1 className="text-center mb-4">Contact Us</h1>
           <h3>Get in Touch</h3>

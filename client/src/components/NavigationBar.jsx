@@ -120,12 +120,12 @@ const NavigationBar = ({ onBookSelect }) => {
         
         <Navbar.Collapse id="navbarNav">
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/" onClick={handleLinkClick} className="text-white">Home</Nav.Link>
-            <Nav.Link as={Link} to="/books" onClick={handleLinkClick} className="text-white">Books</Nav.Link>
-            <Nav.Link as={Link} to="/cart" onClick={handleLinkClick} className="text-white">
+            <Nav.Link as={Link} to="/" onClick={handleLinkClick} className="text-white customHover">Home</Nav.Link>
+            <Nav.Link as={Link} to="/books" onClick={handleLinkClick} className="text-white customHover">Books</Nav.Link>
+            <Nav.Link as={Link} to="/cart" onClick={handleLinkClick} className="text-white customHover">
               <FaShoppingCart style={{ marginRight: '5px' }} />Cart
             </Nav.Link>
-            <Nav.Link as={Link} to="/profile" onClick={handleLinkClick} className="text-white">
+            <Nav.Link as={Link} to="/profile" onClick={handleLinkClick} className="text-white customHover">
               <FaUser style={{ marginRight: '5px' }} />Profile
             </Nav.Link>
             {user ? (
@@ -134,7 +134,7 @@ const NavigationBar = ({ onBookSelect }) => {
               </Nav.Link>
             ) : (
               <>
-                <Nav.Link as={Link} to="/login" onClick={handleLinkClick} className="text-white">
+                <Nav.Link as={Link} to="/login" onClick={handleLinkClick} className="text-white customHover">
                   <FaSignInAlt style={{ marginRight: '5px' }} />Login
                 </Nav.Link>
                 <Nav.Link as={Link} to="/signup" onClick={handleLinkClick} className="text-danger">
