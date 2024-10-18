@@ -46,28 +46,21 @@ h2 {
   font-weight: 500 !important;
 }
 /* create account */
-.signup {
+.signup,
+.login {
   color: #b8001f;
   text-decoration: none;
 }
 /* bg img */
 .bg-image-container {
   background-image: url("../static/imgs/bookstore.jpg");
-  background-size: contain; 
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: top center;
   height: 100vh; /* Full height */
 }
 
-/* Footer Styling */
-footer {
-  bottom: 0;
-  width: 100%;
-  background-color: #000;
-  position: absolute;
-  color: #bac1c7;
-  padding: 39px 0 42px;
-}
+
 
 /* Placeholder Text Alignment */
 input::placeholder {

@@ -1,6 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 // import { Navbar, Nav, Container, Form, FormControl, ListGroup } from 'react-bootstrap';
-import { Navbar, Nav, Container, Form, FormControl, ListGroup } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Container,
+  Form,
+  FormControl,
+  ListGroup,
+} from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchBooks } from "../api/publicApi"; // Import the fetchBooks function
 import logo from "../static/imgs/Logo.png";
@@ -84,6 +91,7 @@ const NavigationBar = ({ onBookSelect }) => {
 
         {/* Centered Nav Links */}
         <Navbar.Toggle
+          className="bg-light"
           aria-controls="navbarNav"
           onClick={() => setExpanded(expanded ? false : "expanded")}
         />
@@ -114,7 +122,9 @@ const NavigationBar = ({ onBookSelect }) => {
             >
               Cart
             </Nav.Link>
-            <Nav.Link as={Link} to="/profile" onClick={handleLinkClick}>Profile</Nav.Link>
+            <Nav.Link as={Link} to="/profile" onClick={handleLinkClick}>
+              Profile
+            </Nav.Link>
             <Nav.Link
               as={Link}
               to="/about"
@@ -123,14 +133,14 @@ const NavigationBar = ({ onBookSelect }) => {
             >
               About Us
             </Nav.Link>
-            <Nav.Link
+            {/* <Nav.Link
               as={Link}
               to="/contact"
               onClick={handleLinkClick}
               className="px-3"
             >
               Contact Us
-            </Nav.Link>
+            </Nav.Link> */}
             {user ? (
               <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             ) : (
@@ -156,7 +166,11 @@ const NavigationBar = ({ onBookSelect }) => {
           </Nav>
 
           {/* Search Form on the right */}
-          <Form className="d-flex ms-3" ref={dropdownRef} onSubmit={handleSubmit}>
+          <Form
+            className="d-flex ms-3"
+            ref={dropdownRef}
+            onSubmit={handleSubmit}
+          >
             <FormControl
               type="search"
               placeholder="Search books or authors"
@@ -168,17 +182,25 @@ const NavigationBar = ({ onBookSelect }) => {
             />
             {searchResults.length > 0 && (
               <ListGroup className="search-dropdown me-2">
-                {searchResults.map(book => (
-                  <ListGroup.Item key={book.id} onClick={() => handleBookSelect(book)}>
+                {searchResults.map((book) => (
+                  <ListGroup.Item
+                    key={book.id}
+                    onClick={() => handleBookSelect(book)}
+                  >
                     <img
-                      src={book.volumeInfo?.imageLinks?.thumbnail || 'placeholder.jpg'}
+                      src={
+                        book.volumeInfo?.imageLinks?.thumbnail ||
+                        "placeholder.jpg"
+                      }
                       alt={book.volumeInfo?.title}
                       className="search-book-image"
                     />
                     <div>
                       <h5>{book.volumeInfo?.title}</h5>
-                      <p>By: {book.volumeInfo?.authors?.join(', ') || 'Unknown'}</p>
-                      <p>Rating: {book.volumeInfo?.averageRating || 'N/A'}</p>
+                      <p>
+                        By: {book.volumeInfo?.authors?.join(", ") || "Unknown"}
+                      </p>
+                      <p>Rating: {book.volumeInfo?.averageRating || "N/A"}</p>
                     </div>
                   </ListGroup.Item>
                 ))}

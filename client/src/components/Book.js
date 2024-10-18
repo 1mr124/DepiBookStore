@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Row,
-  Col,
-  Form,
-  Card,
-  Spinner,
-  Alert,
-} from "react-bootstrap";
+import { Row, Col, Form, Card, Spinner, Alert } from "react-bootstrap";
 import { FaSearch, FaShoppingCart, FaPlusCircle } from "react-icons/fa";
 import api from "../api/api"; // Import your API instance
 import "../styles/Book.css";
@@ -100,7 +93,8 @@ const Book = ({ cartItems, setCartItems }) => {
             {/* Success alert */}
             <Form onSubmit={handleSearch} className="mb-4">
               <Row>
-                <div className="searchCon"
+                <div
+                  className="searchCon"
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -108,12 +102,19 @@ const Book = ({ cartItems, setCartItems }) => {
                   }}
                 >
                   <div md={9}>
-                    <Form.Group controlId="formSearch" className="mb-3 InputBuy">
+                    <Form.Group
+                      controlId="formSearch"
+                      className="mb-3 InputBuy"
+                    >
                       {/* <Form.Label>Search by Title or Author <span className="text-danger">*</span></Form.Label> */}
                       <Form.Control
                         className="InputBuyControl"
                         type="text"
-                        style={{ width:"30rem", padding: "0.7rem", marginTop: "1rem" }}
+                        style={{
+                          width: "30rem",
+                          padding: "0.7rem",
+                          marginTop: "1rem",
+                        }}
                         placeholder="Search for a book by title or author..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -140,48 +141,58 @@ const Book = ({ cartItems, setCartItems }) => {
                 </div>
               </Row>
             </Form>
-
             <div className="container">
-
               {bookData.length > 0 ? (
                 bookData.map((book) => (
                   <Card className="mb-4" key={book._id}>
                     <Card.Body>
-                      <Card.Title className="w-100 text-center" style={{ color: '#3C486B' }}>{book.title}</Card.Title>
-                      <Row className="mb-3">
+                      <Card.Title
+                        className="w-100 text-center"
+                        style={{ color: "#3C486B" }}
+                      >
+                        {book.title}
+                      </Card.Title>
+                      <Row className="mb-3 text-center">
                         <Col md={6}>
                           <Card.Subtitle className="mb-1 text-muted">
-                            <strong style={{ color: '#3C486B' }}>Author:</strong> {book.author}
+                            <strong style={{ color: "#3C486B" }}>
+                              Author:
+                            </strong>{" "}
+                            {book.author}
                           </Card.Subtitle>
                         </Col>
                         <Col md={6}>
                           <Card.Text className="mb-0">
-                            <strong style={{ color: '#3C486B' }}>Price:</strong> ${book.price}
+                            <strong style={{ color: "#3C486B" }}>Price:</strong>{" "}
+                            ${book.price}
                           </Card.Text>
                         </Col>
                       </Row>
-                      <Card.Text>
-                        <strong style={{ color: '#3C486B' }}>Description:</strong>
+                      <Card.Text className="text-center">
+                        <strong style={{ color: "#3C486B" }}>
+                          Description:
+                        </strong>
                       </Card.Text>
-                      <Card.Text className="text-muted">
+                      <Card.Text className="text-center">
                         {book.description}
                       </Card.Text>
 
-                      <button
-                        className="btttn mb-4 mt-2"
-                        onClick={() => handleAddToCart(book._id)} // Trigger add to cart
-                      >
-                        <FaShoppingCart /> Add to Cart
-                      </button>
+                      <div className="d-flex justify-content-center">
+                        <button
+                          className="btttn mb-4 mt-2"
+                          onClick={() => handleAddToCart(book._id)} // Trigger add to cart
+                        >
+                          <FaShoppingCart /> Add to Cart
+                        </button>
+                      </div>
                     </Card.Body>
-                  {/* </div> */}
+                    {/* </div> */}
                   </Card>
                 ))
               ) : (
-                <p className="text-muted">No books to display</p>
+                <p className="text-muted  text-center">No books to display</p>
               )}
             </div>
-
           </div>
         </Col>
       </Row>

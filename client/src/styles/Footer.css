@@ -1,32 +1,53 @@
-.btn-link {
+/* Footer Styling */
+.footer {
+  background-color: #3c486b;
+  color: #bac1c7;
+  /* padding: 20px 0; */
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  
+}
+
+/* .footer a {
+  color: #bac1c7;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #ffffff;
+} */
+
+.footer .btn-link {
   background: none;
   border: none;
-  color: inherit; /* Use the inherited color */
-  cursor: pointer;
-  padding: 0; /* Remove padding */
+  color: inherit;
+  font-size: 1.1rem;
 }
 
-.btn-link i {
-  margin: 0 5px; /* Add some spacing between icons */
+.footer .btn-link:hover {
+  color: red;
 }
 
-.btn-link:hover{
-  color: red !important;
+.nav-link {
+  padding: 0;
+  margin: 0;
 }
 
-
-footer ul li{
-  list-style-type: none; /* Remove bullets */
+/* Ensure footer stays at bottom when the content is less */
+html,
+body {
+  height: 100%;
+  margin: 0;
 }
 
-
-
-.footer-nav {
-  display: flex; /* Enable Flexbox for the nav */
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Align items to the start (left) */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.footer-nav .nav-link {
-  padding: 5px 0; /* Optional: Add some vertical spacing between links */
+.content {
+  flex: 1; /* Take up remaining space between header and footer */
 }
