@@ -16,9 +16,8 @@ import PrivateRoute from './components/PrivateRoute';
 import EditBook from './components/EditBook';
 import './App.css'; // Adjust the path if necessary
 
-
-
 const App = () => {
+  
   const location = useLocation();
   const [selectedBook, setSelectedBook] = useState(null); // Manage selected book state
   const [cartItems, setCartItems] = useState([]); // Manage cart items state
@@ -32,45 +31,46 @@ const App = () => {
   const handleCheckout = () => {
     // Implement your checkout logic here
     console.log("Proceeding to checkout");
-    
-    
   };
 
-  // Determine whether to show the footer
-  const showFooter = location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/contact';
+    // Determine whether to show the footer
+    const showFooter = location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/contact';
+
 
   return (
     <AuthProvider> {/* Wrap the entire app with AuthProvider */}
-      <div>
-        <NavigationBar onBookSelect={setSelectedBook} /> {/* Pass setSelectedBook to NavigationBar */}
-        
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactUs />} />
+      <div id="root"> {/* Use Flexbox container */}
+        <div className="main-content"> {/* Main content wrapper */}
+          <NavigationBar onBookSelect={setSelectedBook} /> {/* Pass setSelectedBook to NavigationBar */}
+          
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactUs />} />
 
-          {/* Protected Routes */}
-          <Route path="/" element={<PrivateRoute element={<Home />} />} />
-          <Route path="/books" element={<PrivateRoute element={<Book cartItems={cartItems} setCartItems={setCartItems} />} />} /> {/* Pass cartItems and setCartItems */}
-          <Route 
-            path="/cart" 
-            element={
-              <PrivateRoute 
-                element={
-                  <CartPage 
-                    cartItems={cartItems} 
-                    onRemoveItem={handleRemoveItem} 
-                    onCheckout={handleCheckout} 
-                  />
-                } 
-              />} 
-          />
-          <Route path="/search" element={<PrivateRoute element={<BookDetails selectedBook={selectedBook} />} />} /> {/* Pass selectedBook */}
-          <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
-          <Route path="/edit-book/:id" element={<PrivateRoute element={<EditBook />} />} />
-        </Routes>
+            {/* Protected Routes */}
+            <Route path="/" element={<PrivateRoute element={<Home />} />} />
+            <Route path="/books" element={<PrivateRoute element={<Book cartItems={cartItems} setCartItems={setCartItems} />} />} /> {/* Pass cartItems and setCartItems */}
+            <Route 
+              path="/cart" 
+              element={
+                <PrivateRoute 
+                  element={
+                    <CartPage 
+                      cartItems={cartItems} 
+                      onRemoveItem={handleRemoveItem} 
+                      onCheckout={handleCheckout} 
+                    />
+                  } 
+                />} 
+            />
+            <Route path="/search" element={<PrivateRoute element={<BookDetails selectedBook={selectedBook} />} />} /> {/* Pass selectedBook */}
+            <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
+            <Route path="/edit-book/:id" element={<PrivateRoute element={<EditBook />} />} />
+          </Routes>
+        </div>
 
         {showFooter && <Footer />}
       </div>
