@@ -117,7 +117,7 @@ const HomePage = () => {
 
   return (
     <Container className="d-flex flex-column full-height primDiv">
-      <h2 className="text-center mb-4 p-2">Book Hub Dashboard</h2>
+      <h2 className="text-center mb-4 p-2 ">Book Hub Dashboard</h2>
 
       {loading ? (
         <Spinner animation="border" role="status">
@@ -147,7 +147,7 @@ const HomePage = () => {
                       value={searchUsername}
                       onChange={(e) => setSearchUsername(e.target.value)}
                     />
-                    <Button variant="primary" onClick={handleSearch}>
+                    <Button variant="secondary" onClick={handleSearch}>
                       Search
                     </Button>
                   </InputGroup>
@@ -240,7 +240,7 @@ const HomePage = () => {
           {/* Best Selling Books Section */}
           <Row>
             <Col md={12} className="mb-4">
-              <Card className="primDiv">
+              <Card className="primDiv2">
                 <Card.Header>
                   <h5>
                     <FaStar className="me-2" /> Best Selling Books
@@ -252,9 +252,9 @@ const HomePage = () => {
                       <Col key={book.id} sm={6} md={4} lg={3}>
                         <Card className="h-100 noBorder">
                           <Card.Img variant="top" src={book.volumeInfo.imageLinks?.thumbnail || 'Alt'} />
-                          <Card.Body className="primDiv">
+                          <Card.Body className="primDiv3">
                             <Card.Title>{book.volumeInfo.title}</Card.Title>
-                            <Button variant="primary" onClick={() => handleBookClick2(book.id)}>
+                            <Button variant="secondary" onClick={() => handleBookClick2(book.id)}>
                               View Details
                             </Button>
                           </Card.Body>
@@ -270,7 +270,7 @@ const HomePage = () => {
           {/* Books by Category Section */}
           <Row>
             <Col md={12}>
-              <Card className="primDiv">
+              <Card className="primDiv2">
                 <Card.Header>
                   <h5>
                     <FaTags className="me-2" /> Books by Categories
@@ -282,9 +282,9 @@ const HomePage = () => {
                       <Col key={book.id} sm={6} md={4} lg={3}>
                         <Card className="h-100 noBorder">
                           <Card.Img variant="top" src={book.volumeInfo.imageLinks?.thumbnail || 'Alt'} />
-                          <Card.Body className="primDiv">
+                          <Card.Body className="primDiv3">
                             <Card.Title>{book.volumeInfo.title}</Card.Title>
-                            <Button variant="primary" onClick={() => handleBookClick2(book.id)}>
+                            <Button variant="secondary" onClick={() => handleBookClick2(book.id)}>
                               View Details
                             </Button>
                           </Card.Body>

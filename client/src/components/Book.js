@@ -101,7 +101,7 @@ const Book = ({ cartItems, setCartItems }) => {
       <Row>
         <Col>
           {/* Post Book Button */}
-          <Button variant="primary" className="mb-3" onClick={togglePostForm}>
+          <Button variant="outline-light" className="mb-3" onClick={togglePostForm}>
             <FaPlusCircle /> Post a Book
           </Button>
           {/* Show Books Button */}
@@ -110,7 +110,7 @@ const Book = ({ cartItems, setCartItems }) => {
           </Button>
           
           {/* Search Section */}
-          <Card className="p-4 primDiv">
+          <Card className="p-4 primDiv3">
             <h3 className="text-center mb-4">Search for a Book</h3>
             {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
             {successMessage && <Alert variant="success">{successMessage}</Alert>}
@@ -118,7 +118,7 @@ const Book = ({ cartItems, setCartItems }) => {
             <Form onSubmit={handleSearch} className="mb-4">
               <Row>
                 <Col md={9}>
-                  <Form.Group controlId="formSearch" className="mb-3">
+                  <Form.Group controlId="formSearch" className="m-3">
                     <Form.Label>Search by Title, Author <span className="text-danger">*</span></Form.Label>
                     <Form.Control
                       type="text"
@@ -131,9 +131,9 @@ const Book = ({ cartItems, setCartItems }) => {
                 </Col>
                 <Col md={3}>
                   <Button
-                    variant="primary"
+                    variant="secondary"
                     type="submit"
-                    className="w-100 mt-4"
+                    className="w-100 mt-5"
                     disabled={loading}
                   >
                     {loading ? (

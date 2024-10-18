@@ -80,7 +80,7 @@ const Profile = () => {
       <Row className="mb-5 custom-searchResult-margin ">
         <Col className="text-center">
           <Button
-            variant="primary"
+            variant="secondary"
             onClick={togglePostForm}
             className="mb-4"
           >
@@ -88,13 +88,14 @@ const Profile = () => {
           </Button>
 
           <Modal  show={showPostForm} onHide={togglePostForm} centered>
-            <Modal.Header className='primDiv' closeButton>
+            <Modal.Header className='primDiv2' closeButton>
               <Modal.Title>Post a Book</Modal.Title>
             </Modal.Header>
-            <Modal.Body className='primDiv'>
+            
+            <Modal.Body className='primDiv2'>
               <BookPostForm />
             </Modal.Body>
-            <Modal.Footer className='primDiv'>
+            <Modal.Footer className='primDiv2'>
               <Button variant="secondary" onClick={togglePostForm}>
                 Close
               </Button>
@@ -114,15 +115,15 @@ const Profile = () => {
               <Col md={4} key={book._id} className="mb-4">
                 <Card>
                   <Card.Img style={{width: '100%',height: '200px',objectFit: 'cover'}} variant="top" src={`http://localhost:3001/${book.coverImage}`} alt={book.title}/>
-                  <Card.Body className='primDiv '>
+                  <Card.Body className='primDiv3'>
                     <Card.Title>{book.title}</Card.Title>
                     <Card.Text>
                       <strong>Author:</strong> {book.author}<br />
                       <strong>Price:</strong> ${book.price}<br />
                       <strong>Stock:</strong> {book.stock || 'N/A'}<br />
                     </Card.Text>
-                    <Button variant="primary" onClick={() => fetchBookDetails(book._id)}>View Details</Button>
-                    <Button variant="primary" onClick={() => navigate(`/edit-book/${book._id}`)} className="m-1">Edit</Button>
+                    <Button variant="secondary" onClick={() => fetchBookDetails(book._id)}>View Details</Button>
+                    <Button variant="outline-secondary" onClick={() => navigate(`/edit-book/${book._id}`)} className="m-1">Edit</Button>
                     <Button variant="danger" onClick={() => handleDelete(book._id)} className="m-1">Delete</Button>
                   </Card.Body>
                 </Card>

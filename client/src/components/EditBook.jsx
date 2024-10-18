@@ -181,7 +181,7 @@ const EditBook = () => {
             </Form.Group>
 
 
-            <Button variant="primary" type="submit">
+            <Button variant="outline-light" type="submit">
               Update Book
             </Button>
           </Form>

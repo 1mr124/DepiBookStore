@@ -72,14 +72,14 @@ const BookPostForm = () => {
   };
 
   return (
-    <div className="p-4 primDiv">
+    <div className="p-4 primDiv2">
       {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
       {successMessage && <Alert variant="success">{successMessage}</Alert>}
 
-      <Form  onSubmit={handleSubmit}>
+      <Form  onSubmit={handleSubmit} >
         <Row >
           <Col md={6}>
-            <Form.Group controlId="formTitle" className="mb-3">
+            <Form.Group controlId="formTitle" className="mb-3 ">
               <Form.Label>
                 Title <FaAsterisk className="text-danger" />
               </Form.Label>
@@ -167,7 +167,7 @@ const BookPostForm = () => {
         </Form.Group>
 
         <Button
-          variant="primary"
+          variant="secondary"
           type="submit"
           disabled={loading}
           className="mt-3 w-100"
