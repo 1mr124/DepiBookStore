@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Button, Table, Modal, Form, Toast } from "react-bootstrap";
 import api from '../api/api'; // Import your API instance
 
+
 const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState("");
@@ -18,58 +19,61 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
     }
   };
 
-  const handleConfirm = async () => {
-    console.log("Confirm button clicked");
-    console.log("Password entered:", password);  // Log the password
-  
+  const handleConfirm = async (e) => {
+    e.preventDefault();
+
     try {
-      // Create a JSON payload with the password
-      const payload = { password };
-      
-      // Send the request as JSON
-      const response = await api.post("/books/validate-password", payload, {
-        headers: {
-          "Content-Type": "application/json",  // Set the content type to JSON
-          Authorization: `Bearer ${token}`,     // JWT token for authentication
-        },
-      });
-  
-      const result = response.data;  // Axios returns the result in `response.data`
-  
-      if (response.status === 200) {
-        console.log("Password validation success:", result.message);
-  
-        // Now you can proceed to update stock or finalize the purchase
-        const stockUpdateResponse = await api.post(`/books/buy/${selectedBookId}`, 
-        { quantity: 1 }, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          }
+        const payload = { password };
+
+        // Send the request to validate the password
+        const response = await api.post("/books/validate-password", payload, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,  // JWT token for authentication
+            },
         });
-  
-        const stockUpdateResult = stockUpdateResponse.data;
-  
-        if (stockUpdateResponse.status === 200) {
-          console.log("Checkout success:", stockUpdateResult.message);
-          setShowModal(false);  // Close the modal on success
-          setErrorMessage("");  // Clear any error message
-          setShowToast(true); // Show success toast
-          onRemoveItem(selectedBookId); // Remove the book from the cart
-          onCheckout();  // Call the onCheckout function to refresh the cart or redirect
-        } else {
-          console.log("Checkout failed:", stockUpdateResult.message);
-          setErrorMessage(stockUpdateResult.message || "Something went wrong. Please try again.");
-        }
-      } else {
-        console.log("Password validation failed:", result.message);
-        setErrorMessage(result.message || "Invalid password. Please try again.");
-      }
+
+        let responseData = response.data ;
+        
+
+        
+        if (response.status === 200 && responseData.message === "ok") {
+            // Now proceed to update the stock or finalize the purchase
+            const stockUpdateResponse = await api.post(`/books/buy/${selectedBookId}`,
+                { quantity: 1 }, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+            const stockUpdateResult = stockUpdateResponse.data;
+
+            if (stockUpdateResponse.status === 200) {
+                console.log("Checkout success:", stockUpdateResult.message);
+                setShowModal(false);  // Close the modal on success
+                setErrorMessage("");  // Clear any error message
+                setShowToast(true); // Show success toast
+                onRemoveItem(selectedBookId); // Remove the book from the cart
+                onCheckout();  // Call the onCheckout function to refresh the cart or redirect
+            } else {
+                setErrorMessage(stockUpdateResult.message || "Something went wrong. Please try again.");
+            }
+        }else if (responseData.message === "Not") {
+          setErrorMessage("Invalid password. Please try again.");
+          
+        };
     } catch (error) {
-      console.error("Error during checkout:", error);
-      setErrorMessage("Server error. Please try again later.");
+        // Handle 401 Unauthorized error specifically (invalid password case)
+        if (error.response && error.response.status === 401) {
+            console.error("Invalid password:", error.response.data.message);
+            setErrorMessage("Invalid password. Please try again.");
+        } else {
+            console.error("Error during checkout:", error);
+            setErrorMessage("Server error. Please try again later.");
+        }
     }
-  };
+};
 
   const handleSelectBookForCheckout = (bookId) => {
     setSelectedBookId(bookId);
@@ -126,19 +130,20 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
       </Row>
 
       {/* Password Confirmation Modal */}
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal show={showModal} onHide={() => setShowModal(false)} backdrop="static">
         <Modal.Header className="secondDiv" closeButton>
           <Modal.Title>Confirm Checkout</Modal.Title>
         </Modal.Header>
         <Modal.Body className="primDiv">
-          <Form>
+          <Form onSubmit={handleConfirm}>
             <Form.Group controlId="formPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)} // Ensure state updates correctly
                 placeholder="Enter your password"
+                required
               />
             </Form.Group>
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
@@ -148,7 +153,7 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleConfirm}>
+          <Button variant="primary" type="submit" onClick={handleConfirm}>
             Confirm
           </Button>
         </Modal.Footer>
@@ -156,7 +161,7 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
 
       {/* Success Toast for Purchase Confirmation */}
       <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide style={{ position: 'absolute', top: '100px', right: '20px' }}>
-        <Toast.Body>
+        <Toast.Body className="primDiv">
           <span role="img" aria-label="check">✅</span> Purchase successful! Thank you for your order.
         </Toast.Body>
       </Toast>

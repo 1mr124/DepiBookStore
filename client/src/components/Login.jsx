@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Alert, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaGoogle, FaUser, FaLock, FaCheckCircle } from 'react-icons/fa';
+import {  FaUser, FaLock, FaCheckCircle } from 'react-icons/fa';
 import api from '../api/api'; 
 import { useAuth } from '../context/AuthContext'; 
 import '../styles/auth.css'; // Adjust path as necessary
