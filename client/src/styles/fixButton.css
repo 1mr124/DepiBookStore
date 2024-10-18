@@ -1,0 +1,23 @@
+/* Styles for screen sizes between 1201px and 765px */
+@media (max-width: 1201px) and (min-width: 765px) {
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .card-body button {
+      width: 100%; /* Make buttons take full width */
+      margin: 5px 0; /* Add spacing between buttons */
+    }
+  }
+  
+  /* Optional: Adjust for smaller screens */
+  @media (max-width: 765px) {
+    .card-body button {
+      width: 100%; /* Keep buttons full width for small screens */
+      margin: 5px 0; /* Add spacing between buttons */
+
+    }
+  }
+  
