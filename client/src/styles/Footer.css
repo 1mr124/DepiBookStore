@@ -2,22 +2,12 @@
 .footer {
   background-color: #3c486b;
   color: #bac1c7;
-  /* padding: 20px 0; */
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
-  
 }
 
-/* .footer a {
-  color: #bac1c7;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  color: #ffffff;
-} */
 
 .footer .btn-link {
   background: none;
@@ -35,19 +25,4 @@
   margin: 0;
 }
 
-/* Ensure footer stays at bottom when the content is less */
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
 
-#root {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.content {
-  flex: 1; /* Take up remaining space between header and footer */
-}
