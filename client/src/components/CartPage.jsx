@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Container, Row, Col, Button, Table, Modal, Form, Toast } from "react-bootstrap";
 import api from '../api/api'; // Import your API instance
 
-
 const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState("");
@@ -33,9 +32,7 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
             },
         });
 
-        let responseData = response.data ;
-        
-
+        let responseData = response.data;
         
         if (response.status === 200 && responseData.message === "ok") {
             // Now proceed to update the stock or finalize the purchase
@@ -59,9 +56,8 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
             } else {
                 setErrorMessage(stockUpdateResult.message || "Something went wrong. Please try again.");
             }
-        }else if (responseData.message === "Not") {
+        } else if (responseData.message === "Not") {
           setErrorMessage("Invalid password. Please try again.");
-          
         };
     } catch (error) {
         // Handle 401 Unauthorized error specifically (invalid password case)
@@ -73,7 +69,7 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
             setErrorMessage("Server error. Please try again later.");
         }
     }
-};
+  };
 
   const handleSelectBookForCheckout = (bookId) => {
     setSelectedBookId(bookId);
@@ -107,10 +103,10 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
                       <td>{item.quantity}</td>
                       <td>${(item.price * item.quantity).toFixed(2)}</td>
                       <td>
-                        <Button variant="danger" onClick={() => onRemoveItem(item._id)}>
+                        <Button className="m-1" variant="danger" onClick={() => onRemoveItem(item._id)}>
                           Remove
                         </Button>
-                        <Button variant="success" onClick={() => handleSelectBookForCheckout(item._id)}>
+                        <Button className="m-1" variant="success" onClick={() => handleSelectBookForCheckout(item._id)}>
                           Buy
                         </Button>
                       </td>
@@ -118,7 +114,7 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
                   ))}
                 </tbody>
               </Table>
-              <Button variant="success" onClick={handleCheckout}>
+              <Button variant="secondary" onClick={handleCheckout}>
                 Proceed to Checkout
               </Button>
               {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>} {/* Display error message */}
@@ -134,7 +130,7 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
         <Modal.Header className="secondDiv" closeButton>
           <Modal.Title>Confirm Checkout</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="primDiv">
+        <Modal.Body className="primDiv2">
           <Form onSubmit={handleConfirm}>
             <Form.Group controlId="formPassword">
               <Form.Label>Password</Form.Label>
@@ -153,7 +149,7 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Cancel
           </Button>
-          <Button variant="primary" type="submit" onClick={handleConfirm}>
+          <Button variant="primary" type="submit">
             Confirm
           </Button>
         </Modal.Footer>
