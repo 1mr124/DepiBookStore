@@ -55,7 +55,7 @@ const Login = () => {
           {/* Left Column: Background Image */}
           <Col
             md={6}
-            className="d-none d-md-flex bg-image-container align-items-center justify-content-center"
+            className=" ImageLogSign d-none d-md-flex bg-image-container align-items-center justify-content-center"
           >
             {/* This column has no content, background image is applied via CSS */}
           </Col>

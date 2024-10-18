@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Container, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Form, Button, Alert , Col, Row } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import api from '../api/api'; 
+import api from '../api/api';
 import { useAuth } from '../context/AuthContext'; // Import the AuthContext
 import '../styles/auth.css';
 
@@ -16,7 +16,7 @@ const SignUp = () => {
 
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const { login } = useAuth(); // Correctly call useAuth to get login function
 
@@ -51,7 +51,7 @@ const SignUp = () => {
 
         setSuccess(true);
         setError(null);
-        
+
         // Redirect after a short delay
         setTimeout(() => {
           navigate('/'); // Redirect to home page
@@ -65,75 +65,162 @@ const SignUp = () => {
   };
 
   return (
-    <Container className="d-flex align-items-center justify-content-center full-height">
-      <div className="login-form">
-        <Form onSubmit={handleSubmit}>
-          <h2 className="text-center">إنشاء حساب جديد</h2>
-          <br />
+    // <Container className="d-flex align-items-center justify-content-center full-height">
+    //   <div className="login-form">
+    //     <Form onSubmit={handleSubmit}>
+    //       <h2 className="text-center">إنشاء حساب جديد</h2>
+    //       <br />
 
-          {error && <Alert variant="danger">{error}</Alert>}
-          {success && <Alert variant="success">تم إنشاء الحساب بنجاح! سيتم توجيهك إلى الصفحة الرئيسية...</Alert>}
+    //       {error && <Alert variant="danger">{error}</Alert>}
+    //       {success && <Alert variant="success">تم إنشاء الحساب بنجاح! سيتم توجيهك إلى الصفحة الرئيسية...</Alert>}
 
-          <Form.Group controlId="name">
-            <Form.Control
-              type="text"
-              placeholder="الاسم الكامل"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+    //       <Form.Group controlId="name">
+    //         <Form.Control
+    //           type="text"
+    //           placeholder="الاسم الكامل"
+    //           value={formData.name}
+    //           onChange={handleChange}
+    //           required
+    //         />
+    //       </Form.Group>
 
-          <Form.Group controlId="username"> {/* Add username input field */}
-            <Form.Control
-              type="text"
-              placeholder="اسم المستخدم"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+    //       <Form.Group controlId="username"> {/* Add username input field */}
+    //         <Form.Control
+    //           type="text"
+    //           placeholder="اسم المستخدم"
+    //           value={formData.username}
+    //           onChange={handleChange}
+    //           required
+    //         />
+    //       </Form.Group>
 
-          <Form.Group controlId="email">
-            <Form.Control
-              type="email"
-              placeholder="الايميل"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+    //       <Form.Group controlId="email">
+    //         <Form.Control
+    //           type="email"
+    //           placeholder="الايميل"
+    //           value={formData.email}
+    //           onChange={handleChange}
+    //           required
+    //         />
+    //       </Form.Group>
 
-          <Form.Group controlId="password">
-            <Form.Control
-              type="password"
-              placeholder="كلمة المرور (باللغة الانجليزية)"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+    //       <Form.Group controlId="password">
+    //         <Form.Control
+    //           type="password"
+    //           placeholder="كلمة المرور (باللغة الانجليزية)"
+    //           value={formData.password}
+    //           onChange={handleChange}
+    //           required
+    //         />
+    //       </Form.Group>
 
-          <Form.Group controlId="confirmPassword">
-            <Form.Control
-              type="password"
-              placeholder="تأكيد كلمة المرور"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+    //       <Form.Group controlId="confirmPassword">
+    //         <Form.Control
+    //           type="password"
+    //           placeholder="تأكيد كلمة المرور"
+    //           value={formData.confirmPassword}
+    //           onChange={handleChange}
+    //           required
+    //         />
+    //       </Form.Group>
 
-          <Button type="submit" className="w-100 buttonColor">
-            إنشاء حساب
-          </Button>
+    //       <Button type="submit" className="w-100 buttonColor">
+    //         إنشاء حساب
+    //       </Button>
 
-          <p className="text-center mt-3">
-            لديك حساب بالفعل؟ <Link to="/login">تسجيل دخول</Link>
-          </p>
-        </Form>
-      </div>
-    </Container>
+    //       <p className="text-center mt-3">
+    //         لديك حساب بالفعل؟ <Link to="/login">تسجيل دخول</Link>
+    //       </p>
+    //     </Form>
+    //   </div>
+    // </Container>
+    <div className='logCon'>
+      <Container fluid className="d-flex">
+        <Row className="w-100">
+          <Col md={6} className=" ImageLogSign d-none d-md-flex bg-image-container align-items-center justify-content-center"></Col>
+          <Col
+            md={6}
+            className="d-flex align-items-center justify-content-center"
+          >
+            <div className="login-form">
+              <Form onSubmit={handleSubmit}>
+                <h2 className="text-center">Create a New Account</h2>
+                <br />
+
+                {error && <Alert variant="danger">{error}</Alert>}
+                {success && (
+                  <Alert variant="success">
+                    Account created successfully! You will be redirected to the
+                    homepage...
+                  </Alert>
+                )}
+
+                <Form.Group controlId="name">
+                  <Form.Control
+                    type="text"
+                    placeholder="Full Name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="username">
+                  {/* Add username input field */}
+                  <Form.Control
+                    type="text"
+                    placeholder="Username"
+                    value={formData.username}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="email">
+                {" "}
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="password">
+                  <Form.Control
+                    type="password"
+                    placeholder="Password (in English)"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="confirmPassword">
+                  <Form.Control
+                    type="password"
+                    placeholder="Confirm Password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+
+                <Button type="submit" className="w-100 button-color">
+                  Create Account
+                </Button>
+
+                <p className="text-center mt-3">Already have an account?</p>
+                <Link to="/login" className="login">
+                  Login
+                </Link>
+              </Form>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

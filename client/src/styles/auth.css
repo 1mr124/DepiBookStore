@@ -46,7 +46,7 @@ h2 {
   font-weight: 500 !important;
 }
 /* create account */
-.signup {
+.signup,.login {
   color: #b8001f;
   text-decoration: none;
 }
@@ -56,7 +56,7 @@ h2 {
   background-size: contain; 
   background-repeat: no-repeat;
   background-position: top center;
-  height: 100vh; /* Full height */
+  height: 100vh;
 }
 
 /* Footer Styling */
@@ -84,4 +84,48 @@ input::placeholder {
 
 .full-height {
   height: calc(100vh - 400px);
+}
+
+@media (min-width: 990px) and (max-width: 1224px) {
+  .login-form{
+    margin-top: 20px;
+  }
+  .ImageLogSign {
+    margin-top: 50px;
+  }
+  .bg-image-container {
+    height: 70vh;
+  }
+  .logCon{
+    margin-top: 250px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 990px) {
+  .login-form{
+    margin-top: 0px;
+  }
+  /* .ImageLogSign {
+    margin-top: 90px !important;
+  } */
+  .bg-image-container {
+    /* display: none; */
+    height: 50vh;
+  }
+  .logCon{
+    margin-top: 150px;
+  }
+}
+
+
+@media (min-width: 300px) and (max-width: 768px) {
+  .login-form{
+    margin-top: 15rem;
+  }
+  /* .ImageLogSign {
+    margin-top: 90px !important;
+  } */
+  /* .bg-image-container {
+    height: 160vh;
+  } */
 }
