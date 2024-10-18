@@ -46,15 +46,11 @@ h2 {
   font-weight: 500 !important;
 }
 /* create account */
-<<<<<<< HEAD
 .signup,.login {
-=======
-.signup,
-.login {
->>>>>>> origin/updatedesign
   color: #b8001f;
   text-decoration: none;
 }
+
 /* bg img */
 .bg-image-container {
   background-image: url("../static/imgs/bookstore.jpg");

@@ -7,8 +7,7 @@ import {
   Table,
   Modal,
   Form,
-  Toast,
-  Breadcrumb,
+  Toast
 } from "react-bootstrap";
 import api from "../api/api"; // Import your API instance
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -79,7 +78,7 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
           console.log("Checkout failed:", stockUpdateResult.message);
           setErrorMessage(
             stockUpdateResult.message ||
-              "Something went wrong. Please try again."
+            "Something went wrong. Please try again."
           );
         }
       } else {

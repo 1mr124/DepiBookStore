@@ -11,6 +11,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { fetchBooks } from "../api/publicApi"; // Import the fetchBooks function
 import logo from "../static/imgs/Logo.png";
+import { FaUser, FaShoppingCart, FaSignOutAlt, FaSignInAlt } from 'react-icons/fa';
 import { useAuth } from "../context/AuthContext";
 import "../styles/apiSearch.css";
 
@@ -120,9 +121,11 @@ const NavigationBar = ({ onBookSelect }) => {
               onClick={handleLinkClick}
               className="px-3"
             >
+            <FaShoppingCart style={{ marginRight: '5px' }} />
               Cart
             </Nav.Link>
             <Nav.Link as={Link} to="/profile" onClick={handleLinkClick}>
+            <FaUser style={{ marginRight: '5px' }} />
               Profile
             </Nav.Link>
             <Nav.Link
@@ -142,7 +145,10 @@ const NavigationBar = ({ onBookSelect }) => {
               Contact Us
             </Nav.Link> */}
             {user ? (
-              <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+              <Nav.Link onClick={handleLogout}>
+              <FaSignOutAlt style={{ marginRight: '5px' }} />
+              Logout
+              </Nav.Link>
             ) : (
               <>
                 <Nav.Link
@@ -151,6 +157,7 @@ const NavigationBar = ({ onBookSelect }) => {
                   onClick={handleLinkClick}
                   className="px-3"
                 >
+                <FaSignInAlt style={{ marginRight: '5px' }} />
                   Login
                 </Nav.Link>
                 <Nav.Link

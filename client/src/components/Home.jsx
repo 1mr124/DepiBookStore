@@ -3,7 +3,6 @@ import { Container, Row, Col, Card, Button, Alert, Spinner, InputGroup, Form } f
 import { FaSearch, FaUser, FaStar, FaTags } from 'react-icons/fa'; // Import additional icons
 import api from '../api/api';
 import { fetchBooks } from '../api/publicApi';
-import Footer from '../components/Footer'; 
 
 const HomePage = () => {
   const [userReviews, setUserReviews] = useState([]);
@@ -67,7 +66,7 @@ const HomePage = () => {
     }
   };
 
-  // Handle clicking a book to view details
+  // Handle clicking a book to view details, with user's rating included
   const handleBookClick = async (review, isFromSearch = false) => {
     const bookId = review.bookId;
 
@@ -79,7 +78,8 @@ const HomePage = () => {
       try {
         const books = await fetchBooks(review.bookName);
         if (books.length > 0) {
-          setBookDetails({ ...books[0], isFromSearch });
+          // Include user's rating in the book details if available
+          setBookDetails({ ...books[0], userRating: review.rating, isFromSearch });
         } else {
           setError('No book details found.');
           setBookDetails(null);
@@ -92,9 +92,31 @@ const HomePage = () => {
     }
   };
 
+  // New function for handling book clicks in best-selling books and categories sections
+  const handleBookClick2 = async (bookId) => {
+    if (openBookId === bookId) {
+      setOpenBookId(null);
+      setBookDetails(null);
+    } else {
+      setOpenBookId(bookId);
+      try {
+        const books = await fetchBooks(bookId);
+        if (books.length > 0) {
+          setBookDetails(books[0]);
+        } else {
+          setError('No book details found.');
+          setBookDetails(null);
+        }
+      } catch (err) {
+        console.error('Error fetching book details:', err);
+        setError('Failed to load book details.');
+        setBookDetails(null);
+      }
+    }
+  };
 
   return (
-    <Container className="d-flex flex-column full-height" style={{ marginTop: "6rem" }}>
+    <Container className="d-flex flex-column full-height primDiv">
       <h2 className="text-center mb-4 p-2">Book Hub Dashboard</h2>
 
       {loading ? (
@@ -108,7 +130,7 @@ const HomePage = () => {
           <Row>
             {/* Section for searching reviews by username */}
             <Col md={6} className="mb-4">
-              <Card>
+              <Card className="secondDiv">
                 <Card.Header>
                   <h5>
                     <FaSearch className="me-2" /> Search User Reviews
@@ -154,7 +176,7 @@ const HomePage = () => {
 
             {/* Section for current user's reviews */}
             <Col md={6} className="mb-4">
-              <Card>
+              <Card className="secondDiv">
                 <Card.Header>
                   <h5>Your Reviews</h5>
                 </Card.Header>
@@ -178,54 +200,61 @@ const HomePage = () => {
 
           {/* Section to display book details */}
           {bookDetails && (
-            <Row>
-              <Col md={12}>
-                <Card className="mt-2">
-                  <Card.Img
-                    className="imgResult"
-                    variant="top"
-                    src={bookDetails.volumeInfo?.imageLinks?.thumbnail || 'placeholder.jpg'}
-                    alt={bookDetails.volumeInfo?.title || 'Unknown'}
-                  />
-                  <Card.Body>
-                    <Card.Title>{bookDetails.volumeInfo?.title || "Unknown"}</Card.Title>
-                    <Card.Text>
-                      <strong>Authors:</strong> {bookDetails.volumeInfo?.authors?.join(', ') || 'Unknown'}<br />
-                      <strong>Published Date:</strong> {bookDetails.volumeInfo?.publishedDate || 'N/A'}<br />
-                      <strong>Average Rating:</strong> {bookDetails.volumeInfo?.averageRating || 'N/A'}<br />
-                      <strong>Page Count:</strong> {bookDetails.volumeInfo?.pageCount || 'N/A'}<br />
-                      <strong>Description:</strong> {bookDetails.volumeInfo?.description || 'No description available.'}<br />
-                      <strong>User's Rating:</strong> {bookDetails.isFromSearch
-                        ? searchedReviews.find((review) => review.bookId === bookDetails.id)?.rating || 'No rating provided.'
-                        : userReviews.find((review) => review.bookId === bookDetails.id)?.rating || 'No rating provided.'}
-                    </Card.Text>
-                    <h5>User Review</h5>
-                    <Card.Text>{bookDetails.isFromSearch
-                      ? searchedReviews.find((review) => review.bookId === bookDetails.id)?.review || 'No review provided.'
-                      : userReviews.find((review) => review.bookId === bookDetails.id)?.review || 'No review provided.'}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
-          )}
+  <Row>
+    <Col md={12}>
+      <Card className="mt-2 secondDiv">
+        <Card.Img
+          className="imgResult"
+          variant="top"
+          src={bookDetails.volumeInfo?.imageLinks?.thumbnail || 'placeholder.jpg'}
+          alt={bookDetails.volumeInfo?.title || 'Unknown'}
+        />
+        <Card.Body>
+          <Card.Title>{bookDetails.volumeInfo?.title || "Unknown"}</Card.Title>
+          <Card.Text>
+            <strong>Authors:</strong> {bookDetails.volumeInfo?.authors?.join(', ') || 'Unknown'}<br />
+            <strong>Published Date:</strong> {bookDetails.volumeInfo?.publishedDate || 'N/A'}<br />
+            <strong>Average Rating:</strong> {bookDetails.volumeInfo?.averageRating || 'N/A'}<br />
+            <strong>Page Count:</strong> {bookDetails.volumeInfo?.pageCount || 'N/A'}<br />
+            <strong>Description:</strong> {bookDetails.volumeInfo?.description || 'No description available.'}<br />
+            
+            {/* Display user's rating if available */}
+            <strong>User's Rating:</strong> {bookDetails.isFromSearch
+              ? searchedReviews.find((review) => review.bookId === bookDetails.id)?.rating || 'No rating provided.'
+              : userReviews.find((review) => review.bookId === bookDetails.id)?.rating || 'No rating provided.'}
+          </Card.Text>
+          
+          {/* Display user's review/comment if available */}
+          <h5>User Review</h5>
+          <Card.Text>{bookDetails.isFromSearch
+            ? searchedReviews.find((review) => review.bookId === bookDetails.id)?.review || 'No review provided.'
+            : userReviews.find((review) => review.bookId === bookDetails.id)?.review || 'No review provided.'}
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </Col>
+  </Row>
+)}
+
 
           {/* Best Selling Books Section */}
           <Row>
             <Col md={12} className="mb-4">
-              <Card>
+              <Card className="primDiv">
                 <Card.Header>
-                  <h5><FaStar className="me-2" /> Best Selling Books</h5>
+                  <h5>
+                    <FaStar className="me-2" /> Best Selling Books
+                  </h5>
                 </Card.Header>
                 <Card.Body>
                   <Row className="g-4">
                     {bestSellingBooks.map((book) => (
                       <Col key={book.id} sm={6} md={4} lg={3}>
-                        <Card className="h-100">
-                          <Card.Img style={{ height:"50vh" }} src={book.volumeInfo.imageLinks?.thumbnail || 'placeholder.jpg'} />
-                          <Card.Body>
+                        <Card className="h-100 noBorder">
+                          <Card.Img variant="top" src={book.volumeInfo.imageLinks?.thumbnail || 'Alt'} />
+                          <Card.Body className="primDiv">
                             <Card.Title>{book.volumeInfo.title}</Card.Title>
-                            <Button variant="primary" onClick={() => handleBookClick(book.id)}>
+                            <Button variant="primary" onClick={() => handleBookClick2(book.id)}>
                               View Details
                             </Button>
                           </Card.Body>
@@ -236,22 +265,26 @@ const HomePage = () => {
                 </Card.Body>
               </Card>
             </Col>
+          </Row>
 
-            {/* Books Grouped by Categories Section */}
-            <Col md={12} className="mb-4">
-              <Card>
+          {/* Books by Category Section */}
+          <Row>
+            <Col md={12}>
+              <Card className="primDiv">
                 <Card.Header>
-                  <h5><FaTags className="me-2" /> Books by Categories</h5>
+                  <h5>
+                    <FaTags className="me-2" /> Books by Categories
+                  </h5>
                 </Card.Header>
                 <Card.Body>
                   <Row className="g-4">
-                    {categories.map((category) => (
-                      <Col key={category.id} sm={6} md={4} lg={3}>
-                        <Card className="h-100">
-                          <Card.Img style={{ height:"50vh" }} src={category.volumeInfo.imageLinks?.thumbnail || 'placeholder.jpg'} />
-                          <Card.Body>
-                            <Card.Title>{category.volumeInfo.title}</Card.Title>
-                            <Button variant="secondary" onClick={() => handleBookClick(category.id)}>
+                    {categories.map((book) => (
+                      <Col key={book.id} sm={6} md={4} lg={3}>
+                        <Card className="h-100 noBorder">
+                          <Card.Img variant="top" src={book.volumeInfo.imageLinks?.thumbnail || 'Alt'} />
+                          <Card.Body className="primDiv">
+                            <Card.Title>{book.volumeInfo.title}</Card.Title>
+                            <Button variant="primary" onClick={() => handleBookClick2(book.id)}>
                               View Details
                             </Button>
                           </Card.Body>
@@ -265,7 +298,6 @@ const HomePage = () => {
           </Row>
         </>
       )}
-      <Footer/>
     </Container>
   );
 };
