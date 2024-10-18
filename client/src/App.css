@@ -1,46 +1,44 @@
 body {
-  background-color: darkslategrey !important;
-  color: #E0E0E0; /* Optional, for text contrast */
+  background-color: #d6e4e5 !important;
+  color: #2222 !important; /* Optional, for text contrast */
 }
 
-
-.buttonColor{
-  background-color: var(--btn-bg-color) !important; 
+.buttonColor {
+  background-color: var(--btn-bg-color) !important;
   color: var(--primary-text-color);
 }
 
-.buttonColor:hover{
+.buttonColor:hover {
   color: #fff;
 }
-
 
 .full-height {
   height: calc(100vh - 400px); /* Adjust the height based on your navbar */
 }
 
 .custom-searchResult-margin {
-  margin-top: 100px !important; 
+  margin-top: 100px !important;
 }
 
-.container{
+.container {
   margin-top: 100px;
 }
 
-.primDiv{
+.primDiv {
   background-color: var(--primary-div) !important;
-  color: #fff !important;
+  color: #222 !important;
 }
 
-.secondDiv{
+.secondDiv {
   background-color: var(--second-div) !important;
-  color: #fff !important;
+  color: #222 !important;
 }
-.container{
+.container {
   height: 100%;
   border-radius: 10px;
 }
 
-.customBorder{
+.customBorder {
   border: 1px solid grey;
 }
 
@@ -53,17 +51,15 @@ body {
   border-top: none !important;
 }
 
-
 input::placeholder {
   text-align: left;
 }
 
-.noBorder{
+.noBorder {
   border: none !important;
   text-align: center;
 }
 
-.JustNoBorder{
+.JustNoBorder {
   border: none !important;
-
 }

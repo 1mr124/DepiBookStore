@@ -1,14 +1,14 @@
 :root {
-    --primary-bg-color: #000;   /* Black */
-    --primary-div:rgb(26, 26, 26);
-    --second-div:darkslategrey;
-    --primary-text-color: #fff; /* White */
-    --btn-bg-color: #333333; /* Red */
-    --footer-text-color: #bac1c7; /* Light Grey */
-    --form-width: 400px;
-    --form-padding: 15px;
-    --font-size-small: 0.9rem;
-    --font-size-xsmall: 0.64rem;
-    --border-radius: 5px;
-    --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  --primary-bg-color: #191717; /* Black */
+  --primary-div: #d6e4e5;
+  --second-div: #f0f0f0;
+  --primary-text-color: #222222; /* White */
+  --btn-bg-color: #333333; /* Red */
+  --footer-text-color: #bac1c7; /* Light Grey */
+  --form-width: 400px;
+  --form-padding: 15px;
+  --font-size-small: 0.9rem;
+  --font-size-xsmall: 0.64rem;
+  --border-radius: 5px;
+  --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
