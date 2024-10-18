@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button, Alert, Spinner, InputGroup, Form } f
 import { FaSearch, FaUser, FaStar, FaTags } from 'react-icons/fa'; // Import additional icons
 import api from '../api/api';
 import { fetchBooks } from '../api/publicApi';
+import Footer from '../components/Footer'; 
 
 const HomePage = () => {
   const [userReviews, setUserReviews] = useState([]);
@@ -264,6 +265,7 @@ const HomePage = () => {
           </Row>
         </>
       )}
+      <Footer/>
     </Container>
   );
 };

@@ -70,6 +70,7 @@ const App = () => {
         </Routes>
 
         {/* {showFooter && <Footer />} */}
+        {/* <Footer /> */}
       </div>
     </AuthProvider>
   );

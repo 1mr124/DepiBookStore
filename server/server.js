@@ -29,6 +29,8 @@ app.use('/api/books', bookRoutes);
 app.use('/profile',profileRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/uploads', express.static('uploads'));
+app.use(express.static('public'));
+
 
 
 // Connect to MongoDB

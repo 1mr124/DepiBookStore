@@ -1,32 +1,28 @@
-.btn-link {
+/* Footer Styling */
+.footer {
+  background-color: #3c486b;
+  color: #bac1c7;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+
+.footer .btn-link {
   background: none;
   border: none;
-  color: inherit; /* Use the inherited color */
-  cursor: pointer;
-  padding: 0; /* Remove padding */
+  color: inherit;
+  font-size: 1.1rem;
 }
 
-.btn-link i {
-  margin: 0 5px; /* Add some spacing between icons */
+.footer .btn-link:hover {
+  color: red;
 }
 
-.btn-link:hover{
-  color: red !important;
-}
-
-
-footer ul li{
-  list-style-type: none; /* Remove bullets */
+.nav-link {
+  padding: 0;
+  margin: 0;
 }
 
 
-
-.footer-nav {
-  display: flex; /* Enable Flexbox for the nav */
-  flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Align items to the start (left) */
-}
-
-.footer-nav .nav-link {
-  padding: 5px 0; /* Optional: Add some vertical spacing between links */
-}
