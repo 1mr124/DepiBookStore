@@ -1,7 +1,7 @@
 :root {
     --primary-bg-color: #000;   /* Black */
     --primary-div:rgb(26, 26, 26);
-    --second-div:darkslategrey;
+    --second-div:#25313e;
     --primary-text-color: #fff; /* White */
     --btn-bg-color: #333333; /* Red */
     --footer-text-color: #bac1c7; /* Light Grey */
