@@ -33,16 +33,7 @@ h2 {
     text-align: right;
 }
 
-/* Footer Styling */
-footer {
-    background-color: var(--primary-bg-color); /* Black */
-    color: var(--footer-text-color); /* Light grey */
-    padding: 1rem 0;
-    position: fixed; 
-    bottom: 0;
-    width: 100%;
-    bottom: 0;
-}
+
 
 /* Placeholder Text Alignment */
 input::placeholder {

@@ -1,32 +1,82 @@
+/* Ensure body and html take full height */
+html, body {
+  height: 100%; /* Ensure the body takes up the full height */
+  margin: 0; /* Remove any default margin */
+}
+
+/* Main page container that wraps everything including the footer */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+}
+
+/* Content wrapper - fills the available space */
+.main-content {
+  flex: 1; /* Grow to take available space */
+}
+
+/* Footer Styling */
+footer {
+  background-color: var(--primary-bg-color); /* Example: Black */
+  color: var(--footer-text-color); /* Example: Light grey */
+  padding: 1rem 0;
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Button Link Styling */
 .btn-link {
   background: none;
   border: none;
   color: inherit; /* Use the inherited color */
   cursor: pointer;
-  padding: 0; /* Remove padding */
+  padding: 0;
+  font-size: 1.2rem; /* Slightly larger for readability */
 }
 
 .btn-link i {
-  margin: 0 5px; /* Add some spacing between icons */
+  margin: 0 8px; /* Add spacing between icons */
+  font-size: 1.5rem; /* Make the icons bigger */
 }
 
-.btn-link:hover{
+.btn-link:hover {
   color: red !important;
 }
 
-
-footer ul li{
-  list-style-type: none; /* Remove bullets */
-}
-
-
-
+/* Footer Navigation */
 .footer-nav {
-  display: flex; /* Enable Flexbox for the nav */
+  display: flex;
   flex-direction: column; /* Stack items vertically */
-  align-items: center; /* Align items to the start (left) */
+  align-items: center; /* Center align on mobile */
+  justify-content: center; /* Center align */
 }
 
 .footer-nav .nav-link {
-  padding: 5px 0; /* Optional: Add some vertical spacing between links */
+  padding: 5px 0;
+  font-size: 1.1rem; /* Responsive font size */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .footer-nav {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-nav .nav-link {
+    font-size: 1rem; /* Smaller font size for mobile */
+  }
+
+  .btn-link i {
+    font-size: 1.3rem; /* Smaller icons for mobile */
+  }
+}
+
+/* Responsive Design for Larger Screens */
+@media (min-width: 1200px) {
+  .btn-link i {
+    font-size: 2rem; /* Larger icons for large screens */
+  }
 }

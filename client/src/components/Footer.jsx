@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import 'font-awesome/css/font-awesome.min.css'; // Ensure you have Font Awesome included
-import '../styles/Footer.css'; // Adjust path as necessary
+import { Link } from 'react-router-dom';
+import 'font-awesome/css/font-awesome.min.css';
+import '../styles/Footer.css'; // Ensure the correct path to Footer.css
 
 const Footer = () => {
   return (
@@ -27,7 +27,7 @@ const Footer = () => {
               <Nav.Link as={Link} to="/contact">Help</Nav.Link>
               <Nav.Link href="#">Payment Methods</Nav.Link>
               <Nav.Link href="#">How to Use and Purchase</Nav.Link>
-              <Nav.Link as={Link} to="/about">About Us</Nav.Link> {/* Updated Link */}
+              <Nav.Link as={Link} to="/about">About Us</Nav.Link>
             </Nav>
           </Col>
         </Row>
