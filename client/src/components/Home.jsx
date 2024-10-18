@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button, Alert, Spinner, InputGroup, Form } f
 import { FaSearch, FaUser, FaStar, FaTags } from 'react-icons/fa'; // Import additional icons
 import api from '../api/api';
 import { fetchBooks } from '../api/publicApi';
+import Footer from '../components/Footer';
 
 const HomePage = () => {
   const [userReviews, setUserReviews] = useState([]);
@@ -200,42 +201,41 @@ const HomePage = () => {
 
           {/* Section to display book details */}
           {bookDetails && (
-  <Row>
-    <Col md={12}>
-      <Card className="mt-2 secondDiv">
-        <Card.Img
-          className="imgResult"
-          variant="top"
-          src={bookDetails.volumeInfo?.imageLinks?.thumbnail || 'placeholder.jpg'}
-          alt={bookDetails.volumeInfo?.title || 'Unknown'}
-        />
-        <Card.Body>
-          <Card.Title>{bookDetails.volumeInfo?.title || "Unknown"}</Card.Title>
-          <Card.Text>
-            <strong>Authors:</strong> {bookDetails.volumeInfo?.authors?.join(', ') || 'Unknown'}<br />
-            <strong>Published Date:</strong> {bookDetails.volumeInfo?.publishedDate || 'N/A'}<br />
-            <strong>Average Rating:</strong> {bookDetails.volumeInfo?.averageRating || 'N/A'}<br />
-            <strong>Page Count:</strong> {bookDetails.volumeInfo?.pageCount || 'N/A'}<br />
-            <strong>Description:</strong> {bookDetails.volumeInfo?.description || 'No description available.'}<br />
-            
-            {/* Display user's rating if available */}
-            <strong>User's Rating:</strong> {bookDetails.isFromSearch
-              ? searchedReviews.find((review) => review.bookId === bookDetails.id)?.rating || 'No rating provided.'
-              : userReviews.find((review) => review.bookId === bookDetails.id)?.rating || 'No rating provided.'}
-          </Card.Text>
-          
-          {/* Display user's review/comment if available */}
-          <h5>User Review</h5>
-          <Card.Text>{bookDetails.isFromSearch
-            ? searchedReviews.find((review) => review.bookId === bookDetails.id)?.review || 'No review provided.'
-            : userReviews.find((review) => review.bookId === bookDetails.id)?.review || 'No review provided.'}
-          </Card.Text>
-        </Card.Body>
-      </Card>
-    </Col>
-  </Row>
-)}
+            <Row>
+              <Col md={12}>
+                <Card className="mt-2 secondDiv">
+                  <Card.Img
+                    className="imgResult"
+                    variant="top"
+                    src={bookDetails.volumeInfo?.imageLinks?.thumbnail || 'placeholder.jpg'}
+                    alt={bookDetails.volumeInfo?.title || 'Unknown'}
+                  />
+                  <Card.Body>
+                    <Card.Title>{bookDetails.volumeInfo?.title || "Unknown"}</Card.Title>
+                    <Card.Text>
+                      <strong>Authors:</strong> {bookDetails.volumeInfo?.authors?.join(', ') || 'Unknown'}<br />
+                      <strong>Published Date:</strong> {bookDetails.volumeInfo?.publishedDate || 'N/A'}<br />
+                      <strong>Average Rating:</strong> {bookDetails.volumeInfo?.averageRating || 'N/A'}<br />
+                      <strong>Page Count:</strong> {bookDetails.volumeInfo?.pageCount || 'N/A'}<br />
+                      <strong>Description:</strong> {bookDetails.volumeInfo?.description || 'No description available.'}<br />
 
+                      {/* Display user's rating if available */}
+                      <strong>User's Rating:</strong> {bookDetails.isFromSearch
+                        ? searchedReviews.find((review) => review.bookId === bookDetails.id)?.rating || 'No rating provided.'
+                        : userReviews.find((review) => review.bookId === bookDetails.id)?.rating || 'No rating provided.'}
+                    </Card.Text>
+
+                    {/* Display user's review/comment if available */}
+                    <h5>User Review</h5>
+                    <Card.Text>{bookDetails.isFromSearch
+                      ? searchedReviews.find((review) => review.bookId === bookDetails.id)?.review || 'No review provided.'
+                      : userReviews.find((review) => review.bookId === bookDetails.id)?.review || 'No review provided.'}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
+          )}
 
           {/* Best Selling Books Section */}
           <Row>
@@ -298,6 +298,7 @@ const HomePage = () => {
           </Row>
         </>
       )}
+      <Footer />
     </Container>
   );
 };
