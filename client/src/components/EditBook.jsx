@@ -132,6 +132,7 @@ const EditBook = () => {
               <Form.Label style={{ fontWeight:700, color:"#3C486B" }}>Description</Form.Label>
               <Form.Control
                 as="textarea"
+                style={{ resize: "none"}}
                 rows={3}
                 placeholder="Enter book description"
                 name="description"

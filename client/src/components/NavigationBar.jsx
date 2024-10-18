@@ -82,7 +82,7 @@ const NavigationBar = ({ onBookSelect }) => {
       className="nav-color py-0"
     >
       <Container
-        fluid
+        // fluid
         className="d-flex justify-content-between align-items-center "
       >
         {/* Logo on the left */}
@@ -121,11 +121,11 @@ const NavigationBar = ({ onBookSelect }) => {
               onClick={handleLinkClick}
               className="px-3"
             >
-            <FaShoppingCart style={{ marginRight: '5px' }} />
+              {/* <FaShoppingCart style={{ marginRight: '5px' }} /> */}
               Cart
             </Nav.Link>
             <Nav.Link as={Link} to="/profile" onClick={handleLinkClick}>
-            <FaUser style={{ marginRight: '5px' }} />
+              {/* <FaUser style={{ marginRight: '5px' }} /> */}
               Profile
             </Nav.Link>
             <Nav.Link
@@ -146,8 +146,8 @@ const NavigationBar = ({ onBookSelect }) => {
             </Nav.Link> */}
             {user ? (
               <Nav.Link onClick={handleLogout}>
-              <FaSignOutAlt style={{ marginRight: '5px' }} />
-              Logout
+                <FaSignOutAlt style={{ marginRight: '5px' }} />
+                Logout
               </Nav.Link>
             ) : (
               <>
@@ -157,7 +157,7 @@ const NavigationBar = ({ onBookSelect }) => {
                   onClick={handleLinkClick}
                   className="px-3"
                 >
-                <FaSignInAlt style={{ marginRight: '5px' }} />
+                  <FaSignInAlt style={{ marginRight: '5px' }} />
                   Login
                 </Nav.Link>
                 <Nav.Link

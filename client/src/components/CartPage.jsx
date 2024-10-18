@@ -142,9 +142,9 @@ const CartPage = ({ cartItems, onRemoveItem, onCheckout }) => {
                   ))}
                 </tbody>
               </Table>
-              <Button variant="success" onClick={handleCheckout}>
+              {/* <Button variant="success" onClick={handleCheckout}>
                 Proceed to Checkout
-              </Button>
+              </Button> */}
               {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}{" "}
               {/* Display error message */}
             </>
