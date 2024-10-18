@@ -29,8 +29,7 @@ const App = () => {
   };
 
   // Function to handle checkout
-  const handleCheckout = (e) => {
-    e.preventDefault();
+  const handleCheckout = () => {
     // Implement your checkout logic here
     console.log("Proceeding to checkout");
     

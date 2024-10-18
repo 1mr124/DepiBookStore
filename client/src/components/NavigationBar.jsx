@@ -3,7 +3,7 @@ import { Navbar, Nav, Container, Form, FormControl, ListGroup } from 'react-boot
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchBooks } from '../api/publicApi'; 
 import { useAuth } from '../context/AuthContext'; 
-import { FaUser, FaShoppingCart, FaSearch, FaSignOutAlt, FaSignInAlt } from 'react-icons/fa';
+import { FaUser, FaShoppingCart, FaSignOutAlt, FaSignInAlt } from 'react-icons/fa';
 import logo from '../static/imgs/Logo.png';
 import '../styles/apiSearch.css';
 

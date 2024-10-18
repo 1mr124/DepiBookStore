@@ -159,10 +159,8 @@ router.post("/buy/:id", authenticateToken, async (req, res) => {
 
 // POST: /users/validate-password - Validate user password
 router.post("/validate-password", authenticateToken, async (req, res) => {
-  console.log("Starting password validation");
 
   const { password } = req.body;  // Extract the password from the request body
-  console.log(req.body);  // For debugging, log the incoming request body
   
   const userId = req.user.userId;  // Extract the userId from the authenticated request
 
@@ -181,11 +179,12 @@ router.post("/validate-password", authenticateToken, async (req, res) => {
     // Validate the password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Invalid password." });
+      return res.status(200).json({ message: "Not" });
     }
 
     // If password is correct
-    return res.status(200).json({ message: "Password validated successfully." });
+    
+    return res.status(200).json({ message: "ok" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Server error. Could not validate the password." });
