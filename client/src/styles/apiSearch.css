@@ -64,3 +64,15 @@
 
 .search-input::placeholder {
     text-align: left;}
+
+
+
+.customHover {
+    color: white;
+    transition: color 0.3s ease;
+  }
+  
+.customHover:hover {
+    color: red !important; /* Change text color on hover */
+  }
+  

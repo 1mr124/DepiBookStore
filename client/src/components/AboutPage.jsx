@@ -6,7 +6,7 @@ const About = () => {
   const navigate = useNavigate(); // Initialize the navigate function
 
   return (
-    <Container className="custom-searchResult-margin mb-5">
+    <Container className="custom-searchResult-margin mb-5 primDiv p-4">
       <h1 className="text-center mb-4">About BookHub</h1>
       <p className="text-center mb-5">
         Welcome to BookHub, your ultimate online bookstore! Our mission is to create a community where book lovers can buy, sell, and review books while connecting with others who share their passion for reading.
