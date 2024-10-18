@@ -113,7 +113,7 @@ router.get("/search", authenticateToken , async (req, res) => {
 
 
 // GET: /books/:id - Get Book By Id (with token authentication)
-router.get("/:id", authenticateToken, async (req, res) => {
+router.get("/new/:id", authenticateToken, async (req, res) => {
   const { id } = req.params; // Get the book ID from the URL parameters
 
   try {
@@ -190,6 +190,36 @@ router.post("/validate-password", authenticateToken, async (req, res) => {
     return res.status(500).json({ message: "Server error. Could not validate the password." });
   }
 });
+
+
+// GET: /books/for-sale - Get all books available for sale (with stock > 0)
+router.get("/for-sale", authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user ? req.user.userId : null; // Safely access user ID, handle if undefined
+    console.log("fetching books");
+
+    // Find books where stock is greater than 0 (available for sale) and not added by the current user
+    const booksForSale = await Book.find({
+      stock: { $gt: 0 },
+      addedBy: { $ne: userId } // Exclude books added by the current user
+    })
+    .populate('addedBy', 'username email') // Optionally, populate addedBy with user info
+    .select('title author price description stock coverImage'); // Select the fields to return
+
+    // Check if there are no books for sale
+    if (booksForSale.length === 0) {
+      return res.status(404).json({ message: "No books available for sale at the moment." });
+    }
+
+    // Return the books that are available for sale
+    res.status(200).json(booksForSale);
+  } catch (error) {
+    console.error("Error fetching books for sale:", error);
+    res.status(500).json({ message: "Server error. Could not fetch books for sale." });
+  }
+});
+
+
 
 
 

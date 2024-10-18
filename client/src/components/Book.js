@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container, Row, Col, Form, Button, Card, Spinner, Alert, Modal
 } from "react-bootstrap";
@@ -8,19 +8,52 @@ import api from '../api/api'; // Import your API instance
 
 const Book = ({ cartItems, setCartItems }) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [bookData, setBookData] = useState([]); // Change to an array
+  const [bookData, setBookData] = useState([]); // Example books
+  const [searchResults, setSearchResults] = useState([]); // Search results
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState(""); // Track success message
-  const [showPostForm, setShowPostForm] = useState(false); // For toggling book post form
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showPostForm, setShowPostForm] = useState(false);
+  const [showBooks, setShowBooks] = useState(false); // State to toggle books listed
 
-  // Handle book search
+  // Fetch books for sale when the component mounts
+  useEffect(() => {
+    const fetchBooksForSale = async () => {
+      setLoading(true);
+      setErrorMessage("");
+      setSuccessMessage("");
+
+      try {
+        const response = await api.get(`/books/for-sale`);
+
+        if (response.status === 200) {
+          const data = response.data;
+
+          if (Array.isArray(data) && data.length > 0) {
+            setBookData(data);
+          } else {
+            setErrorMessage("No books have been posted for sale.");
+            setBookData([]);
+          }
+        } else {
+          throw new Error("Error fetching books for sale");
+        }
+      } catch (error) {
+        setErrorMessage(error.message || "An error occurred during fetching");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBooksForSale();
+  }, []); // Empty dependency array ensures this runs only once when the component mounts
+
   const handleSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage("");
     setSuccessMessage("");
-    setBookData([]); // Reset bookData to an empty array
+    setSearchResults([]); // Clear previous search results
 
     try {
       const response = await api.get(`/books/search?query=${encodeURIComponent(searchQuery)}`);
@@ -29,10 +62,9 @@ const Book = ({ cartItems, setCartItems }) => {
         const data = await response.data;
 
         if (Array.isArray(data) && data.length > 0) {
-          setBookData(data);
+          setSearchResults(data); // Set the search results
         } else {
           setErrorMessage("No books found.");
-          setBookData([]);
         }
       } else {
         throw new Error("Book not found");
@@ -44,44 +76,46 @@ const Book = ({ cartItems, setCartItems }) => {
     }
   };
 
-  // Handle adding book to cart
   const handleAddToCart = (bookId) => {
     const selectedBook = bookData.find(book => book._id === bookId);
-    
+
     if (selectedBook) {
-      // Check if the book is already in the cart
       const existingBook = cartItems.find(item => item._id === selectedBook._id);
       if (existingBook) {
-        // Update the quantity if the book already exists in the cart
         setCartItems(cartItems.map(item => 
           item._id === selectedBook._id ? { ...item, quantity: item.quantity + 1 } : item
         ));
       } else {
-        // Add the book to the cart with quantity 1
         setCartItems([...cartItems, { ...selectedBook, quantity: 1 }]);
       }
-      
-      // Show success message
       setSuccessMessage(`"${selectedBook.title}" has been added to the cart.`);
-      
-      // Hide the success message after 3 seconds
       setTimeout(() => setSuccessMessage(""), 3000);
     }
   };
 
-  // Toggle Post Book Form
   const togglePostForm = () => setShowPostForm(!showPostForm);
+  const toggleShowBooks = () => setShowBooks(!showBooks); // Toggle function for showing books
 
   return (
-    <Container className="mt-5">
+    <Container>
       <Row>
         <Col>
-          <Card className="p-4 custom-searchResult-margin primDiv">
-            <h3 className="text-center mb-4">Search and Buy a Book</h3>
+          {/* Post Book Button */}
+          <Button variant="primary" className="mb-3" onClick={togglePostForm}>
+            <FaPlusCircle /> Post a Book
+          </Button>
+          {/* Show Books Button */}
+          <Button variant="secondary" className="mb-3 ms-2" onClick={toggleShowBooks}>
+            {showBooks ? 'Hide Books Listed for Sale' : 'Show Books Listed for Sale'}
+          </Button>
+          
+          {/* Search Section */}
+          <Card className="p-4 primDiv">
+            <h3 className="text-center mb-4">Search for a Book</h3>
             {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-            {successMessage && <Alert variant="success">{successMessage}</Alert>} {/* Success alert */}
+            {successMessage && <Alert variant="success">{successMessage}</Alert>}
 
-            <Form onSubmit={handleSearch} className="mb-4 ">
+            <Form onSubmit={handleSearch} className="mb-4">
               <Row>
                 <Col md={9}>
                   <Form.Group controlId="formSearch" className="mb-3">
@@ -96,7 +130,7 @@ const Book = ({ cartItems, setCartItems }) => {
                   </Form.Group>
                 </Col>
                 <Col md={3}>
-                  <Button 
+                  <Button
                     variant="primary"
                     type="submit"
                     className="w-100 mt-4"
@@ -113,10 +147,14 @@ const Book = ({ cartItems, setCartItems }) => {
                 </Col>
               </Row>
             </Form>
+          </Card>
 
-            {bookData.length > 0 ? (
-              bookData.map((book) => (
-                <Card className="mb-4 secondDiv " key={book._id}>
+          {/* Search Results Section */}
+          {searchResults.length > 0 && (
+            <Card className="p-4 custom-searchResult-margin mt-4 primDiv">
+              <h3 className="text-center mb-4">Search Results</h3>
+              {searchResults.map((book) => (
+                <Card className="mb-4 secondDiv" key={book._id} style={{ width: '100%', maxWidth: '400px', margin: '0 auto' }}>
                   <Card.Body>
                     <Card.Title>{book.title}</Card.Title>
                     <Row className="mb-3">
@@ -134,32 +172,70 @@ const Book = ({ cartItems, setCartItems }) => {
                     <Card.Text>
                       <strong>Description:</strong>
                     </Card.Text>
-                    <Card.Text >{book.description}</Card.Text>
+                    <Card.Text>{book.description}</Card.Text>
 
-                    <Button 
+                    <Button
                       variant="success"
                       className="mt-2"
-                      onClick={() => handleAddToCart(book._id)} // Trigger add to cart
+                      onClick={() => handleAddToCart(book._id)}
                     >
                       <FaShoppingCart /> Add to Cart
                     </Button>
                   </Card.Body>
                 </Card>
-              ))
-            ) : (
-              <p >No books to display</p>
-            )}
-          </Card>
+              ))}
+            </Card>
+          )}
 
-          <Button 
-            variant="primary"
-            className="mt-3"
-            onClick={togglePostForm}
-          >
-            <FaPlusCircle /> Post a Book
-          </Button>
+          {/* Example Books for Sale Section */}
+          {showBooks && ( // Conditionally render based on showBooks state
+            <Card className="p-4 custom-searchResult-margin mt-4 primDiv">
+              <h3 className="text-center mb-4">Books Listed for Sale</h3>
+              {loading ? (
+                <Spinner animation="border" />
+              ) : bookData.length > 0 ? (
+                <Row>
+                  {bookData.map((book) => (
+                    <Col md={6} key={book._id} className="mb-4"> {/* 2 cards per row on medium and larger screens */}
+                      <Card className="secondDiv">
+                        <Card.Body>
+                          <Card.Title>{book.title}</Card.Title>
+                          <Row className="mb-3">
+                            <Col md={6}>
+                              <Card.Subtitle className="mb-1">
+                                <strong>Author:</strong> {book.author}
+                              </Card.Subtitle>
+                            </Col>
+                            <Col md={6}>
+                              <Card.Text className="mb-0">
+                                <strong>Price:</strong> ${book.price}
+                              </Card.Text>
+                            </Col>
+                          </Row>
+                          <Card.Text>
+                            <strong>Description:</strong>
+                          </Card.Text>
+                          <Card.Text>{book.description}</Card.Text>
 
-          <Modal  show={showPostForm} onHide={togglePostForm}>
+                          <Button
+                            variant="success"
+                            className="mt-2"
+                            onClick={() => handleAddToCart(book._id)}
+                          >
+                            <FaShoppingCart /> Add to Cart
+                          </Button>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  ))}
+                </Row>
+              ) : (
+                <p>No books available for sale.</p>
+              )}
+            </Card>
+          )}
+
+          <Modal show={showPostForm} onHide={togglePostForm}>
             <Modal.Header className="primDiv" closeButton>
               <Modal.Title>Post a New Book</Modal.Title>
             </Modal.Header>

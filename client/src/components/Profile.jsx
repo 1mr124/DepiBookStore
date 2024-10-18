@@ -36,7 +36,7 @@ const Profile = () => {
   const handleDelete = async (bookId) => {
     if (window.confirm("Are you sure you want to delete this book?")) {
       try {
-        await api.delete(`http://localhost:3001/profile/${bookId}`, {
+        await api.delete(`http://localhost:3001/profile/new/${bookId}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }
@@ -51,7 +51,7 @@ const Profile = () => {
 
   const fetchBookDetails = async (bookId) => {
     try {
-      const response = await api.get(`http://localhost:3001/api/books/${bookId}`, {
+      const response = await api.get(`http://localhost:3001/api/books/new/${bookId}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }

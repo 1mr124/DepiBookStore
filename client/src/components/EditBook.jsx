@@ -29,7 +29,7 @@ const EditBook = () => {
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const response = await api.get(`http://localhost:3001/api/books/${id}`, {
+        const response = await api.get(`http://localhost:3001/api/books/new/${id}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
           }
