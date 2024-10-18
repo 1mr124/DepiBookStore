@@ -4,6 +4,8 @@ import api from '../api/api';
 import { useNavigate } from 'react-router-dom';
 import { FaPlusCircle } from "react-icons/fa";
 import BookPostForm from "./BookPostForm";
+import '../styles/fixButton.css'; // Adjust path as necessary
+
 
 const Profile = () => {
   const [books, setBooks] = useState([]);
@@ -120,8 +122,8 @@ const Profile = () => {
                       <strong>Stock:</strong> {book.stock || 'N/A'}<br />
                     </Card.Text>
                     <Button variant="primary" onClick={() => fetchBookDetails(book._id)}>View Details</Button>
-                    <Button variant="primary" onClick={() => navigate(`/edit-book/${book._id}`)} className="ms-2">Edit</Button>
-                    <Button variant="danger" onClick={() => handleDelete(book._id)} className="ms-2">Delete</Button>
+                    <Button variant="primary" onClick={() => navigate(`/edit-book/${book._id}`)} className="m-1">Edit</Button>
+                    <Button variant="danger" onClick={() => handleDelete(book._id)} className="m-1">Delete</Button>
                   </Card.Body>
                 </Card>
               </Col>

@@ -196,8 +196,7 @@ router.post("/validate-password", authenticateToken, async (req, res) => {
 router.get("/for-sale", authenticateToken, async (req, res) => {
   try {
     const userId = req.user ? req.user.userId : null; // Safely access user ID, handle if undefined
-    console.log("fetching books");
-
+    
     // Find books where stock is greater than 0 (available for sale) and not added by the current user
     const booksForSale = await Book.find({
       stock: { $gt: 0 },

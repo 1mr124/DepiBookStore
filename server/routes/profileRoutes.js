@@ -20,10 +20,8 @@ const upload = multer({ storage });
 router.get('/', authenticateToken, async (req, res) => {
   try {
     const userId = req.user.userId; // Get user ID from the token
-    console.log(userId);
     
     const books = await Book.find({ addedBy: userId });
-    console.log(books);
     if (!books) {
       return res.status(404).json({ msg: 'No books found for this user.' });
     }
